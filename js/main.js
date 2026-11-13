@@ -59,6 +59,7 @@ function render(D) {
   const S = D.site || {};
   $$("[data-bind]").forEach((el) => { el.textContent = S[el.dataset.bind] ?? ""; });
   $("#avatar").textContent = String(S.author || "").split(/[\s.]+/).filter(Boolean).map((w) => w[0]).join("").slice(0, 2).toUpperCase();
+  if (S.photo) $("#avatar").innerHTML = `<img src="${esc(S.photo)}" alt="${esc(S.author)}" width="56" height="56">`;
   if (S.author) document.title = `${S.author} | Taʼlim portali`;
 
   const NA = D.newAssessment || {};
