@@ -1,4 +1,4 @@
-/* Sayt ma'lumotlari /api/data dan olinadi (admin panelda tahrirlanadi). */
+/* Sayt maʼlumotlari /api/data dan olinadi (admin panelda tahrirlanadi). */
 
 const $ = (s, r = document) => r.querySelector(s);
 const $$ = (s, r = document) => [...r.querySelectorAll(s)];
@@ -9,10 +9,10 @@ const icon = (v) => esc(String(v || "fa-circle").replace(/[^a-z0-9- ]/gi, ""));
 const safeUrl = (u) => (/^(https?:|mailto:|tel:)/i.test(String(u || "").trim()) ? String(u).trim() : "#");
 const stat = (v, l) => `<div class="stat reveal"><b>${esc(v)}</b><span>${esc(l)}</span></div>`;
 const arr = (v) => (Array.isArray(v) ? v : []);
-const EMPTY = "Hozircha ma'lumot kiritilmagan.";
+const EMPTY = "Hozircha maʼlumot kiritilmagan.";
 const emptyNote = `<p class="note">${EMPTY}</p>`;
 
-// Rasm uslublari alohida faylda (asosiy style.css o'zgarmaydi)
+// Rasm uslublari alohida faylda (asosiy style.css oʻzgarmaydi)
 document.head.insertAdjacentHTML("beforeend", '<link rel="stylesheet" href="/css/photos.css">');
 
 const DAYS = ["yakshanba", "dushanba", "seshanba", "chorshanba", "payshanba", "juma", "shanba"];
@@ -59,7 +59,7 @@ function render(D) {
   const S = D.site || {};
   $$("[data-bind]").forEach((el) => { el.textContent = S[el.dataset.bind] ?? ""; });
   $("#avatar").textContent = String(S.author || "").split(/[\s.]+/).filter(Boolean).map((w) => w[0]).join("").slice(0, 2).toUpperCase();
-  if (S.author) document.title = `${S.author} | Ta'lim portali`;
+  if (S.author) document.title = `${S.author} | Taʼlim portali`;
 
   const NA = D.newAssessment || {};
   $("#naStats").innerHTML = arr(NA.stats).map((s) => stat(s.value, s.label)).join("");
@@ -109,9 +109,9 @@ function renderWinners(W) {
   $("#winSubject").innerHTML = `<option value="">Barcha fanlar</option>` + subjects.map((s) => `<option>${esc(s)}</option>`).join("");
   $("#winGrade").innerHTML = `<option value="">Barcha sinflar</option>` + grades.map((g) => `<option value="${esc(g)}">${esc(g)}-sinf</option>`).join("");
   $("#winStats").innerHTML = [
-    stat(W.length, "sovrinli o'rin"),
+    stat(W.length, "sovrinli oʻrin"),
     stat(new Set(W.map((w) => w.school)).size, "maktab"),
-    stat(new Set(W.map((w) => w.teacher).filter(Boolean)).size, "fan o'qituvchisi"),
+    stat(new Set(W.map((w) => w.teacher).filter(Boolean)).size, "fan oʻqituvchisi"),
     stat(subjects.length, "fan")
   ].join("");
 
@@ -131,7 +131,7 @@ function renderWinners(W) {
       list = Object.values(map).sort((a, b) => b.count - a.count);
       html = list.slice(0, st.limit).map((t) => `
         <div class="win">${t.photo ? photo(t.photo, t.name) : ""}<div class="medal p${t.best}">${t.count}</div><div>
-          <h4>${esc(t.name)}</h4><p>${esc(t.school)} · ${t.count} ta g'olib tayyorlagan</p>
+          <h4>${esc(t.name)}</h4><p>${esc(t.school)} · ${t.count} ta gʻolib tayyorlagan</p>
           <span class="subj">${esc([...t.subjects].join(", "))}</span></div></div>`).join("");
     } else {
       list = [...list].sort((a, b) => num(a.place) - num(b.place));
@@ -144,7 +144,7 @@ function renderWinners(W) {
           <span class="subj">${esc(w.subject)}</span></div></div>`;
       }).join("");
     }
-    $("#winList").innerHTML = html || (W.length ? `<p class="note">Tanlangan filtr bo'yicha ma'lumot topilmadi.</p>` : emptyNote);
+    $("#winList").innerHTML = html || (W.length ? `<p class="note">Tanlangan filtr boʻyicha maʼlumot topilmadi.</p>` : emptyNote);
     $("#winMore").classList.toggle("hidden", list.length <= st.limit);
   };
   bindTabs("winners", (m) => { st.mode = m; st.limit = 8; draw(); });
@@ -302,15 +302,15 @@ function renderQuarter(Q) {
   const pct = (a, b, c) => (num(c) ? Math.round(((num(a) + num(b)) / num(c)) * 100) : 0);
   const quality = pct(Q.excellent, Q.good, Q.graded);
   $("#qFormula").innerHTML = `
-    <span class="op">(</span><span class="term">A'lo (5) <b>${fmt(Q.excellent)}</b> nafar</span><span class="op">+</span>
+    <span class="op">(</span><span class="term">Aʼlo (5) <b>${fmt(Q.excellent)}</b> nafar</span><span class="op">+</span>
     <span class="term">Yaxshi (4) <b>${fmt(Q.good)}</b> nafar</span><span class="op">)</span><span class="op">÷</span>
     <span class="term">Baho olganlar <b>${fmt(Q.graded)}</b> nafar</span><span class="op">=</span>
     <span class="res">${quality}% bilim sifati</span>`;
   $("#qStats").innerHTML = [
-    stat(fmt(Q.graded), "barcha fanlardan baho olgan o'quvchi"),
-    stat(quality + "%", "tuman bo'yicha bilim sifati"),
-    stat(num(Q.mastery) + "%", "o'zlashtirish ko'rsatkichi"),
-    stat(num(Q.failed), "muvaffaqiyatsiz o'quvchi")
+    stat(fmt(Q.graded), "barcha fanlardan baho olgan oʻquvchi"),
+    stat(quality + "%", "tuman boʻyicha bilim sifati"),
+    stat(num(Q.mastery) + "%", "oʻzlashtirish koʻrsatkichi"),
+    stat(num(Q.failed), "muvaffaqiyatsiz oʻquvchi")
   ].join("");
   $("#qTable").innerHTML = arr(Q.schools)
     .map((s) => ({ ...s, q: Math.min(100, pct(s.excellent, s.good, s.graded)) }))
@@ -330,7 +330,7 @@ function renderAccreditation(A) {
   $("#accStats").innerHTML = [
     stat(orgs.length + " ta", "tashkilot rejasi"),
     stat(schCount + " ta", "maktab"),
-    stat(orgs.length - schCount + " ta", "DMTT (bog'cha)"),
+    stat(orgs.length - schCount + " ta", "DMTT (bogʻcha)"),
     stat(experts.length + " nafar", "ekspertlar")
   ].join("");
   const drawOrgs = (q = "") => {
@@ -378,7 +378,7 @@ async function loadData() {
       if (r.ok) return await r.json();
     } catch { /* qayta urinamiz */ }
   }
-  throw new Error("Ma'lumotlarni yuklab bo'lmadi");
+  throw new Error("Maʼlumotlarni yuklab boʻlmadi");
 }
 
 initNav();
@@ -386,6 +386,6 @@ loadData()
   .then(render)
   .catch((e) => {
     console.error(e);
-    document.body.insertAdjacentHTML("afterbegin", `<div class="load-error">Ma'lumotlarni yuklashda xatolik. Sahifani yangilang.</div>`);
+    document.body.insertAdjacentHTML("afterbegin", `<div class="load-error">Maʼlumotlarni yuklashda xatolik. Sahifani yangilang.</div>`);
   })
   .finally(() => document.documentElement.classList.add("ready"));
