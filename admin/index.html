@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noindex, nofollow">
+  <title>Admin panel | Ta'lim portali</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link rel="stylesheet" href="/admin/admin.css">
+</head>
+<body>
+
+<div class="login-wrap hidden" id="loginView">
+  <form class="login-card" id="loginForm" autocomplete="on">
+    <div class="login-logo"><i class="fa-solid fa-graduation-cap"></i></div>
+    <h1>Admin panel</h1>
+    <p class="muted">Sayt ma'lumotlarini tahrirlash uchun tizimga kiring</p>
+    <label>Login<input name="username" autocomplete="username" required></label>
+    <label>Parol
+      <span class="pw"><input name="password" type="password" autocomplete="current-password" required><button type="button" class="pw-toggle" aria-label="Parolni ko'rsatish"><i class="fa-regular fa-eye"></i></button></span>
+    </label>
+    <p class="form-error" id="loginError"></p>
+    <button class="btn btn-primary full" type="submit" id="loginBtn">Kirish</button>
+    <a href="/" class="back-link"><i class="fa-solid fa-arrow-left"></i> Saytga qaytish</a>
+  </form>
+</div>
+
+<div class="app hidden" id="appView">
+  <aside class="side" id="side">
+    <div class="side-head">
+      <span class="logo"><i class="fa-solid fa-graduation-cap"></i></span>
+      <div><b>Admin panel</b><small id="whoami"></small></div>
+    </div>
+    <nav id="sideNav"></nav>
+    <div class="side-foot">
+      <a href="/" target="_blank" class="side-link"><i class="fa-solid fa-arrow-up-right-from-square"></i> Saytni ko'rish</a>
+      <button class="side-link" id="logoutBtn"><i class="fa-solid fa-right-from-bracket"></i> Chiqish</button>
+    </div>
+  </aside>
+  <div class="backdrop" id="backdrop"></div>
+
+  <main class="main">
+    <header class="topbar">
+      <button class="icon-btn menu-btn" id="menuBtn" aria-label="Menyu"><i class="fa-solid fa-bars"></i></button>
+      <h2 id="pageTitle">—</h2>
+      <span class="save-state" id="saveState"></span>
+      <button class="btn btn-primary" id="saveBtn" disabled><i class="fa-solid fa-floppy-disk"></i> <span>Saqlash</span></button>
+    </header>
+    <div class="content" id="content"></div>
+  </main>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script src="/admin/admin.js" defer></script>
+</body>
+</html>

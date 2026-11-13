@@ -1,0 +1,9 @@
+/* Admin paneldagi rasm maydoni */
+.photo-cell { display: flex; align-items: center; gap: 6px; min-width: 110px; }
+.photo-cell img { display: none; width: 36px; height: 48px; object-fit: cover; object-position: top; border-radius: 6px; border: 1px solid var(--border); }
+.photo-cell.has img { display: block; }
+.photo-cell .icon-btn.del { display: none; }
+.photo-cell.has .icon-btn.del { display: inline-grid; }
+.photo-up { cursor: pointer; position: relative; overflow: hidden; }
+.photo-up input { position: absolute; inset: 0; opacity: 0; cursor: pointer; width: 100%; min-width: 0; }
+.photo-cell.busy { opacity: .5; pointer-events: none; }

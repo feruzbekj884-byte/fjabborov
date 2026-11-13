@@ -1,0 +1,8 @@
+/* G'oliblar va ustozlar rasmlari */
+.win .ph { flex: none; width: 66px; height: 88px; object-fit: cover; object-position: top; border-radius: 10px; border: 1px solid var(--border); background: #f1f5f9; }
+.win .tch { display: flex; align-items: center; gap: 8px; margin-top: 4px; }
+.win .tph { flex: none; width: 30px; height: 40px; object-fit: cover; object-position: top; border-radius: 6px; border: 1px solid var(--border); }
+.win > div:last-child { min-width: 0; overflow-wrap: break-word; }
+/* Rasmli kartochkada medal rasm burchagida turadi (matnga ko'proq joy qoladi) */
+.win:has(> .ph) { position: relative; }
+.win:has(> .ph) > .medal { position: absolute; left: 10px; top: 10px; width: 28px; height: 28px; font-size: 12px; border: 2px solid #fff; box-shadow: 0 1px 4px rgba(0,0,0,.25); }

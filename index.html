@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>F. Jabborov | Ta'lim portali</title>
+  <meta name="description" content="Tuman ta'lim yo'nalishidagi monitoring va axborot portali: olimpiadalar, g'oliblar, sinov grafiklari va ta'lim tahlili.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+
+<header class="nav" id="nav">
+  <div class="container nav-inner">
+    <a href="#home" class="brand">
+      <span class="brand-logo"><i class="fa-solid fa-graduation-cap"></i></span>
+      <span><strong data-bind="author"></strong><small>Ta'lim portali</small></span>
+    </a>
+    <button class="burger" id="burger" aria-label="Menyu"><i class="fa-solid fa-bars"></i></button>
+    <nav class="menu" id="menu">
+      <a href="#home">Asosiy</a>
+      <a href="#yangi-baholash">Yangi baholash</a>
+      <a href="#rasmiy">Olimpiadalar</a>
+      <a href="#goliblar">G'oliblar</a>
+      <a href="#grafik">Grafik</a>
+      <a href="#otm">OTM tahlili</a>
+      <a href="#baholash">ChSB</a>
+      <a href="#chorak-tahlil">Chorak tahlili</a>
+      <a href="#akkreditatsiya">Akkreditatsiya</a>
+      <a href="#contact" class="menu-cta">Aloqa</a>
+    </nav>
+  </div>
+</header>
+
+<section class="hero" id="home">
+  <div class="container hero-grid">
+    <div>
+      <span class="badge"><i class="fa-solid fa-location-dot"></i> <span data-bind="district"></span> · <span data-bind="year"></span> o'quv yili</span>
+      <h1>Olimpiadalar, tanlovlar va <span class="grad">ta'lim tahlili</span> bir joyda</h1>
+      <p class="lead">Tuman olimpiadasi natijalari, g'olib o'quvchilar va ularning ustozlari, sinov grafigi hamda yil davomida o'tkaziladigan olimpiada va tanlovlar.</p>
+      <div class="hero-btns">
+        <a href="#goliblar" class="btn btn-primary"><i class="fa-solid fa-medal"></i> G'oliblar va ustozlar</a>
+        <a href="#olimpiada" class="btn btn-ghost"><i class="fa-solid fa-square-poll-vertical"></i> Natijalar</a>
+        <a href="#grafik" class="btn btn-ghost"><i class="fa-regular fa-calendar"></i> Sinov grafigi</a>
+        <a href="#yangi-baholash" class="btn btn-ghost"><i class="fa-solid fa-star"></i> Yangi baholash</a>
+      </div>
+      <div class="author-card">
+        <div class="avatar" id="avatar"></div>
+        <div><strong data-bind="author"></strong><span><span data-bind="position"></span> · Sayt muallifi</span></div>
+      </div>
+    </div>
+    <div class="tiles">
+      <a href="#olimpiada" class="tile"><i class="fa-solid fa-chart-column"></i><b>Tuman natijalari</b><span>Real vaqt rejimida</span></a>
+      <a href="#goliblar" class="tile"><i class="fa-solid fa-trophy"></i><b>G'oliblar</b><span>O'quvchi va ustozlar</span></a>
+      <a href="#chorak-tahlil" class="tile"><i class="fa-solid fa-magnifying-glass-chart"></i><b>Tahlillar</b><span>Maktab va fanlar kesimi</span></a>
+      <a href="#rasmiy" class="tile"><i class="fa-solid fa-list-check"></i><b>Olimpiadalar ro'yxati</b><span>Vazir buyrug'i</span></a>
+      <a href="#rasmiy" class="tile"><i class="fa-solid fa-award"></i><b>Ko'rik-tanlovlar</b><span>Rasmiy ro'yxat</span></a>
+      <a href="#akkreditatsiya" class="tile"><i class="fa-solid fa-file-signature"></i><b>Attestatsiya</b><span>Jadval va ro'yxatlar</span></a>
+      <a href="#chorak-tahlil" class="tile"><i class="fa-solid fa-chart-pie"></i><b>1-chorak yakunlari</b><span>Bilim sifati tahlili</span></a>
+      <a href="#goliblar" class="tile"><i class="fa-solid fa-camera"></i><b>Taqdirlash marosimi</b><span>Suratlar va g'oliblar</span></a>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="yangi-baholash">
+  <div class="container">
+    <div class="sec-head">
+      <span class="eyebrow"><span data-bind="district"></span> · <span data-bind="year"></span> o'quv yili</span>
+      <h2>Yangi baholash tizimi</h2>
+      <p>Joriy o'quv yilida tumandagi umumta'lim maktablarida 5–11-sinf o'quvchilari bilimi yangi tartibda baholanadi. Ushbu bo'lim maktab rahbarlari va o'qituvchilar uchun: tizim nima, qaysi hujjatlarga asoslanadi, qaysi maktablar kiradi va chorak davomida nimalar rejalashtirilgan.</p>
+    </div>
+    <div class="stats" id="naStats"></div>
+    <h3 class="sub-title">Yangi baholash tizimi nima?</h3>
+    <div class="cards cards-4" id="naCards"></div>
+  </div>
+</section>
+
+<section class="section alt" id="directions">
+  <div class="container">
+    <div class="sec-head center">
+      <span class="eyebrow">Asosiy yo'nalishlar</span>
+      <h2>Ta'lim jarayonlarini rivojlantirish</h2>
+    </div>
+    <div class="cards cards-3" id="dirCards"></div>
+  </div>
+</section>
+
+<section class="section" id="rasmiy">
+  <div class="container">
+    <div class="sec-head">
+      <span class="eyebrow">Vazir buyrug'i</span>
+      <h2>Olimpiadalar, ko'rik-tanlovlar va musobaqalar ro'yxati</h2>
+      <p>O'qituvchilarning bazaviy tarif stavkalariga direktor jamg'armasi hisobidan oylik ustama belgilashda o'quvchilarning ishtiroki natijalari inobatga olinadigan tadbirlar.</p>
+    </div>
+    <div class="tabs" data-tabs="official">
+      <button class="tab active" data-tab="olympiads">Fan olimpiadalari (<span id="cntOly"></span>)</button>
+      <button class="tab" data-tab="contests">Ko'rik-tanlov va musobaqalar (<span id="cntCon"></span>)</button>
+    </div>
+    <ol class="official-list" id="officialList"></ol>
+    <p class="note" id="officialSource"></p>
+  </div>
+</section>
+
+<section class="section alt" id="goliblar">
+  <div class="container">
+    <div class="sec-head">
+      <span class="eyebrow"><span data-bind="year"></span> · tuman bosqichi</span>
+      <h2>G'olib o'quvchilar va ularning ustozlari</h2>
+      <p>Fan va sinf kesimida 1–3-o'rinni egallagan o'quvchilar hamda ularni tayyorlagan fan o'qituvchilari.</p>
+    </div>
+    <div class="stats" id="winStats"></div>
+    <div class="toolbar">
+      <div class="tabs" data-tabs="winners">
+        <button class="tab active" data-tab="students">O'quvchilar</button>
+        <button class="tab" data-tab="teachers">Ustozlar</button>
+      </div>
+      <select id="winSubject"><option value="">Barcha fanlar</option></select>
+      <select id="winGrade"><option value="">Barcha sinflar</option></select>
+    </div>
+    <div class="chips" id="winChips">
+      <button class="chip active" data-place="">Hammasi</button>
+      <button class="chip" data-place="1">I o'rin</button>
+      <button class="chip" data-place="2">II o'rin</button>
+      <button class="chip" data-place="3">III o'rin</button>
+    </div>
+    <div class="win-grid" id="winList"></div>
+    <div class="center"><button class="btn btn-ghost" id="winMore">Yana ko'rsatish</button></div>
+  </div>
+</section>
+
+<section class="section" id="olimpiada">
+  <div class="container">
+    <div class="sec-head">
+      <span class="eyebrow"><span class="live-dot"></span> Real vaqt rejimi</span>
+      <h2>Olimpiada natijalari tizimi</h2>
+      <p>Ushbu oynaga Google Sheets / Google Apps Script orqali e'lon qilingan natijalar avtomatik yuklanadi.</p>
+    </div>
+    <div class="results-frame" id="resultsFrame">
+      <div class="empty"><i class="fa-solid fa-satellite-dish"></i><p>Natijalar hali e'lon qilinmagan. Olimpiada yakunlangach shu yerda ko'rinadi.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="section alt" id="grafik">
+  <div class="container">
+    <div class="sec-head">
+      <span class="eyebrow">Asosiy olimpiada</span>
+      <h2 id="schTitle"></h2>
+      <p class="pill-date"><i class="fa-regular fa-calendar"></i> <span id="schPeriod"></span></p>
+    </div>
+    <div class="next-exam" id="nextExamCard">
+      <div>
+        <span class="eyebrow light">Keyingi imtihon</span>
+        <h3 id="nextExamSubject">—</h3>
+        <p><i class="fa-regular fa-calendar"></i> <span id="nextExamDate"></span> &nbsp; <i class="fa-regular fa-clock"></i> <span id="nextExamTime"></span> &nbsp; <i class="fa-solid fa-users"></i> <span id="nextExamShift"></span></p>
+      </div>
+      <div class="countdown"><span id="countdownLabel">Boshlanishiga</span><strong id="liveCountdownTimer">—</strong></div>
+    </div>
+    <div class="toolbar">
+      <div class="chips" id="gradeChips"></div>
+      <div class="search"><i class="fa-solid fa-magnifying-glass"></i><input id="subjectSearchInput" placeholder="Fan bo'yicha qidirish..."></div>
+      <div class="tabs small" data-tabs="view">
+        <button class="tab active" data-tab="cards"><i class="fa-solid fa-grip"></i> Kartalar</button>
+        <button class="tab" data-tab="table"><i class="fa-solid fa-table"></i> Jadval</button>
+      </div>
+    </div>
+    <div class="date-strip" id="dateStripTrack"></div>
+    <div id="cardsDeckContainer" class="exam-grid"></div>
+    <div id="tableDeckContainer" class="table-wrap hidden">
+      <table>
+        <thead><tr><th>Sana</th><th>Kun</th><th>Fan</th><th>Smena va sinf</th><th>Vaqt oralig'i</th><th>Davomiyligi</th><th>Savollar / ball</th><th>Holati</th></tr></thead>
+        <tbody id="masterTableBody"></tbody>
+      </table>
+    </div>
+    <div class="rule"><i class="fa-solid fa-circle-info"></i> <b>Tuman (shahar) bosqichi o'tkazilish nizomi:</b> <span id="schRule"></span></div>
+  </div>
+</section>
+
+<section class="section" id="otm">
+  <div class="container">
+    <div class="sec-head">
+      <span class="eyebrow">Dastlabki ma'lumotlar tahlili</span>
+      <h2>OTMga kirish tahlili</h2>
+      <p>Tuman bitiruvchilarining so'nggi ikki yildagi natijalari tahlili.</p>
+    </div>
+    <div class="cards cards-3" id="otmCards"></div>
+    <div class="charts">
+      <div class="chart-card"><h4>Grant va shartnoma</h4><canvas id="chartAdmit"></canvas></div>
+      <div class="chart-card"><h4>OTM turlari bo'yicha (%)</h4><canvas id="chartTypes"></canvas></div>
+    </div>
+  </div>
+</section>
+
+<section class="section alt" id="baholash">
+  <div class="container">
+    <div class="sec-head">
+      <span class="eyebrow">MMTB rasmiy reja-jadvali</span>
+      <h2>1-chorak onlayn ChSB topshirish grafigi</h2>
+      <p id="chsbIntro"></p>
+    </div>
+    <div class="stats" id="chsbStats"></div>
+    <div class="tabs" data-tabs="chsb">
+      <button class="tab active" data-tab="jadval">1-ChSB sinov jadvali</button>
+      <button class="tab" data-tab="maktablar">Maktablar ro'yxati va manzillari</button>
+    </div>
+    <div id="tab-jadval" class="timeline"></div>
+    <div id="tab-maktablar" class="hidden">
+      <div class="search wide"><i class="fa-solid fa-magnifying-glass"></i><input id="schoolSearchInput" placeholder="Maktab nomi yoki manzil bo'yicha qidirish..."></div>
+      <div class="table-wrap"><table><thead><tr><th>№</th><th>Maktab nomi</th><th>Manzil</th><th>Sinflar soni</th></tr></thead><tbody id="schoolsTableBody"></tbody></table></div>
+      <p class="note hidden" id="noSchoolMatch">Hech narsa topilmadi.</p>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="chorak-tahlil">
+  <div class="container">
+    <div class="sec-head">
+      <span class="eyebrow"><span data-bind="district"></span> · 1-chorak yakunlari</span>
+      <h2>O'quvchilar bilim darajasi tahlili</h2>
+      <p>Bilim sifati — a'lo (5) va yaxshi (4) baho olgan o'quvchilar sonining barcha fanlardan baho olgan o'quvchilar soniga nisbati.</p>
+    </div>
+    <div class="formula" id="qFormula"></div>
+    <div class="stats" id="qStats"></div>
+    <div class="callout"><i class="fa-solid fa-triangle-exclamation"></i> Ba'zi sinflarda bilim sifati 0% ga yaqin yoki 0% ga teng bo'lishi mumkin. Bu sinfda a'lo va yaxshi baho olgan o'quvchi yo'qligini bildiradi.</div>
+    <div class="table-wrap">
+      <table><thead><tr><th>№</th><th>Maktab</th><th>A'lo (5)</th><th>Yaxshi (4)</th><th>Baho olganlar</th><th>Bilim sifati</th></tr></thead><tbody id="qTable"></tbody></table>
+    </div>
+  </div>
+</section>
+
+<section class="section alt" id="akkreditatsiya">
+  <div class="container">
+    <div class="sec-head">
+      <span class="eyebrow">MMTB rasmiy reja-grafigi</span>
+      <h2>Akkreditatsiya va tashqi baholash (2026-yil)</h2>
+      <p id="accIntro"></p>
+    </div>
+    <div class="stats" id="accStats"></div>
+    <div class="tabs" data-tabs="acc">
+      <button class="tab active" data-tab="reja">Tashkilotlar rejasi</button>
+      <button class="tab" data-tab="ekspert">Ekspertlar</button>
+    </div>
+    <div id="tab-reja">
+      <div class="search wide"><i class="fa-solid fa-magnifying-glass"></i><input id="orgSearch" placeholder="Tashkilot yoki rahbar bo'yicha qidirish..."></div>
+      <div class="table-wrap"><table><thead><tr><th>T/r</th><th>Tashkilotning to'liq nomi</th><th>Rahbar F.I.Sh.</th><th>Ichki baholash</th><th>Tashqi baholash (attestatsiya)</th></tr></thead><tbody id="orgsBody"></tbody></table></div>
+    </div>
+    <div id="tab-ekspert" class="hidden">
+      <div class="toolbar">
+        <div class="chips">
+          <button class="chip active" data-exp="">Barchasi (<span id="eAll"></span>)</button>
+          <button class="chip" data-exp="sch">Maktablar (<span id="eSch"></span>)</button>
+          <button class="chip" data-exp="mtt">DMTT (<span id="eMtt"></span>)</button>
+        </div>
+        <div class="search"><i class="fa-solid fa-magnifying-glass"></i><input id="expSearch" placeholder="Ekspert qidirish..."></div>
+      </div>
+      <div class="table-wrap"><table><thead><tr><th>№</th><th>F.I.Sh.</th><th>Ish joyi</th><th>Yo'nalish / fan</th></tr></thead><tbody id="expertsBody"></tbody></table></div>
+    </div>
+  </div>
+</section>
+
+<footer class="footer" id="contact">
+  <div class="container footer-grid">
+    <div>
+      <h3 data-bind="author"></h3>
+      <p class="muted" data-bind="position"></p>
+      <p class="motto" data-bind="motto"></p>
+      <p class="muted" data-bind="about"></p>
+    </div>
+    <div>
+      <h4>Rasmiy bog'lanish va ijtimoiy tarmoqlar</h4>
+      <div class="socials" id="socials"></div>
+    </div>
+  </div>
+  <div class="container copy">© 2026 <span data-bind="author"></span>. Barcha huquqlar himoyalangan.</div>
+</footer>
+
+<button class="to-top" id="toTop" aria-label="Yuqoriga"><i class="fa-solid fa-arrow-up"></i></button>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js" defer></script>
+<script src="/js/main.js" defer></script>
+</body>
+</html>
