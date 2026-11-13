@@ -1,0 +1,48 @@
+/* Umamatov.uz saytining ranglariga mos mavzu (to'q ko'k + oltin) */
+
+/* Navbar */
+.brand strong { color: #0f2547; }
+.brand small { color: #b45309; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; }
+.brand-logo { background: linear-gradient(135deg, #1d4ed8, #2b5fd9); }
+
+/* Hero */
+.hero {
+  background:
+    radial-gradient(1200px 500px at 85% -10%, #2b5fd9 0%, transparent 60%),
+    radial-gradient(900px 500px at -10% 110%, #0e7fb8 0%, transparent 55%),
+    #0b1e3f;
+}
+.hero h1 { color: #fff; }
+.hero .grad { background: none; -webkit-text-fill-color: #fbbf24; color: #fbbf24; }
+.hero .lead { color: #cbd5e1; }
+.hero .badge { background: rgba(255, 255, 255, .08); border-color: rgba(255, 255, 255, .22); color: #fde68a; }
+.hero .btn-primary { background: #f59e0b; color: #0f172a; box-shadow: 0 8px 20px -8px #f59e0b; }
+.hero .btn-primary:hover { background: #d97706; }
+.hero .btn-ghost { background: rgba(255, 255, 255, .06); border-color: rgba(255, 255, 255, .35); color: #fff; }
+.hero .btn-ghost:hover { border-color: #fbbf24; color: #fbbf24; }
+.author-card strong { color: #0f2547; }
+.avatar { background: linear-gradient(135deg, #1d4ed8, #f59e0b); }
+
+/* Hero kartalari: to'q fon, rangli ikonkalar */
+.tiles .tile { background: rgba(255, 255, 255, .06); border-color: rgba(255, 255, 255, .14); }
+.tiles .tile b { color: #fff; }
+.tiles .tile span { color: #94a3b8; }
+.tiles .tile:hover { border-color: #fbbf24; box-shadow: 0 14px 30px -14px rgba(0, 0, 0, .6); }
+.tiles .tile i { color: #fff; }
+.tiles .tile:nth-child(1) i { background: #1d4ed8; }
+.tiles .tile:nth-child(2) i { background: #d97706; }
+.tiles .tile:nth-child(3) i { background: #059669; }
+.tiles .tile:nth-child(4) i { background: #7c3aed; }
+.tiles .tile:nth-child(5) i { background: #db2777; }
+.tiles .tile:nth-child(6) i { background: #0891b2; }
+.tiles .tile:nth-child(7) i { background: #4f46e5; }
+.tiles .tile:nth-child(8) i { background: #ea580c; }
+
+/* Bo'limlar */
+.section.alt { background: #f1f7ff; }
+.sec-head h2, .card h3, .stat b { color: #0f2547; }
+.eyebrow { color: #1d4ed8; }
+.card .ic { background: #2563eb; }
+.cards .card:nth-child(4n+2) .ic { background: #16a34a; }
+.cards .card:nth-child(4n+3) .ic { background: #7c3aed; }
+.cards .card:nth-child(4n) .ic { background: #ea580c; }
