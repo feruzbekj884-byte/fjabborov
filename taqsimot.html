@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dars soatlari taqsimoti | F. Jabborov</title>
+  <meta name="description" content="Haftalik dars soatlarini o'qituvchilar o'rtasida 3271-nizom ustuvorlik tartibida avtomatik taqsimlash.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="stylesheet" href="/css/theme.css">
+  <style>
+    /* Faqat shu sahifa uchun (prefiks: tq-) */
+    .tq-hero { padding: 56px 0 72px; color: #fff; text-align: center;
+      background: linear-gradient(135deg, #0f172a 0%, #1e3a8a 55%, #0369a1 100%); }
+    .tq-hero h1 { font-size: clamp(1.8rem, 5vw, 2.8rem); font-weight: 800; line-height: 1.15; margin: 14px 0 10px; }
+    .tq-hero p { max-width: 680px; margin: 0 auto; color: #cfe0ff; }
+    .tq-chip { display: inline-flex; gap: 8px; align-items: center; padding: 6px 14px; border-radius: 30px;
+      background: rgba(255,255,255,.14); border: 1px solid rgba(255,255,255,.25); font-weight: 700; font-size: .9rem; }
+    .tq-wrap { max-width: 960px; margin: -40px auto 0; padding: 0 16px 60px; position: relative; }
+    .tq-card { background: #fff; border: 1px solid var(--border); border-radius: var(--radius);
+      box-shadow: var(--shadow); padding: 22px; margin-top: 18px; }
+    .tq-card h2 { display: flex; gap: 10px; align-items: center; font-size: 1.15rem; color: var(--dark); margin-bottom: 14px; }
+    .tq-n { width: 30px; height: 30px; border-radius: 50%; color: #fff; flex-shrink: 0; font-size: .95rem;
+      display: inline-flex; align-items: center; justify-content: center;
+      background: linear-gradient(135deg, var(--primary), var(--secondary)); }
+    .tq-grid3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
+    .tq-grid4 { display: grid; grid-template-columns: 1.2fr 1.5fr 1.2fr 110px; gap: 10px; }
+    .tq-f label { display: block; font-weight: 600; font-size: .85rem; color: var(--muted); margin-bottom: 6px; }
+    .tq-f input, .tq-f select { width: 100%; min-height: 48px; padding: 10px 14px; font-size: 16px; color: var(--dark);
+      background: #f8fafc; border: 1.5px solid var(--border); border-radius: 12px; outline: none; }
+    .tq-f input:focus, .tq-f select:focus { border-color: var(--primary); background: #fff; box-shadow: 0 0 0 4px rgba(37,99,235,.12); }
+    .tq-t { border: 1.5px solid var(--border); border-radius: 14px; padding: 14px; margin-top: 12px; background: #fbfdff; }
+    .tq-t > b { display: block; margin-bottom: 10px; color: var(--dark); }
+    .tq-actions { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 16px; }
+    .tq-hint { margin-top: 12px; color: var(--muted); font-size: .9rem; }
+    .tq-sum { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 14px; }
+    .tq-sum div { background: #eef2f9; border-radius: 12px; padding: 8px 16px; font-weight: 600; color: var(--dark); }
+    .tq-alert { padding: 12px 16px; border-radius: 12px; font-weight: 600; margin-bottom: 14px; }
+    .tq-alert.ok { background: #dcfce7; color: #065f46; }
+    .tq-alert.warn { background: #fef3c7; color: #92400e; }
+    .tq-row { display: grid; grid-template-columns: 40px 1fr auto; gap: 12px; align-items: center;
+      padding: 12px; margin-top: 10px; border: 1.5px solid var(--border); border-radius: 14px; }
+    .tq-row.zero { background: #f8fafc; }
+    .tq-rk { width: 40px; height: 40px; border-radius: 50%; background: var(--dark); color: #fff; font-weight: 800;
+      display: flex; align-items: center; justify-content: center; }
+    .tq-nm { font-weight: 700; color: var(--dark); word-break: break-word; }
+    .tq-tags { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 4px; }
+    .tq-tag { font-size: .78rem; font-weight: 600; padding: 2px 10px; border-radius: 20px; background: #eef2f9; color: #334155; }
+    .tq-tag.t { background: #dbeafe; color: #1e40af; }
+    .tq-tag.c { background: #fef3c7; color: #92400e; }
+    .tq-h { text-align: center; min-width: 70px; }
+    .tq-h .v { display: block; font-size: 1.9rem; font-weight: 800; line-height: 1; color: var(--primary); }
+    .tq-row.zero .v { color: #94a3b8; }
+    .tq-h small { color: var(--muted); font-weight: 600; }
+    .tq-prio summary { cursor: pointer; font-weight: 700; color: var(--dark); }
+    .tq-prio ol { margin: 14px 0 0 22px; display: grid; gap: 8px; }
+    .tq-prio small { display: block; color: var(--muted); }
+    .tq-note { margin-top: 18px; text-align: center; color: var(--muted); font-size: .9rem; }
+    .tq-toast { position: fixed; left: 50%; bottom: 24px; transform: translateX(-50%) translateY(30px); opacity: 0;
+      background: var(--dark); color: #fff; padding: 12px 22px; border-radius: 30px; font-weight: 600;
+      pointer-events: none; transition: .25s; z-index: 99; }
+    .tq-toast.on { opacity: 1; transform: translateX(-50%); }
+    @media (max-width: 820px) { .tq-grid4 { grid-template-columns: 1fr 1fr; } .tq-grid4 .tq-f:first-child { grid-column: 1 / -1; } }
+    @media (max-width: 560px) { .tq-grid3, .tq-grid4 { grid-template-columns: 1fr; } .tq-card { padding: 16px; }
+      .tq-row { grid-template-columns: 34px 1fr auto; gap: 10px; } .tq-rk { width: 34px; height: 34px; } }
+    @media print { .nav, .tq-hero p, .tq-chip, #tqSetup, #tqCalc, #tqPrio, .tq-actions, .tq-note { display: none !important; }
+      .tq-wrap { margin-top: 0; } .tq-card { box-shadow: none; border: 0; } }
+  </style>
+</head>
+<body>
+
+<header class="nav" id="nav">
+  <div class="container nav-inner">
+    <a href="/" class="brand">
+      <span class="brand-logo"><i class="fa-solid fa-graduation-cap"></i></span>
+      <span><strong>F. Jabborov</strong><small>Taʼlim portali</small></span>
+    </a>
+    <button class="burger" id="burger" aria-label="Menyu"><i class="fa-solid fa-bars"></i></button>
+    <nav class="menu" id="menu">
+      <a href="/"><i class="fa-solid fa-arrow-left"></i> Bosh sahifa</a>
+    </nav>
+  </div>
+</header>
+
+<section class="tq-hero">
+  <div class="container">
+    <span class="tq-chip"><i class="fa-solid fa-table-cells"></i> Avtomatik hisob-kitob</span>
+    <h1>Dars soatlari taqsimoti</h1>
+    <p>Haftalik dars soatlari o'qituvchilar o'rtasida 3271-nizomdagi ustuvorlik tartibida taqsimlanadi.</p>
+  </div>
+</section>
+
+<main class="tq-wrap">
+
+  <div class="tq-card" id="tqPrio">
+    <details class="tq-prio">
+      <summary><i class="fa-solid fa-list-ol" style="color:var(--primary)"></i> Ustuvorlik tartibi (3271-nizom)</summary>
+      <ol>
+        <li>Oliy malaka toifali o'qituvchilar<small>Attestatsiya sertifikatining amal qilish muddatiga ko'ra</small></li>
+        <li>Milliy yoki xalqaro tan olingan sertifikatga ega o'qituvchilar<small>Sertifikat darajasi va amal qilish muddatiga ko'ra</small></li>
+        <li>Birinchi malaka toifali o'qituvchilar</li>
+        <li>Ikkinchi malaka toifali o'qituvchilar</li>
+        <li>Oliy maʼlumotli toifasiz o'qituvchilar</li>
+        <li>Qayta tayyorlash diplomiga ega o'qituvchilar</li>
+        <li>O'rindoshlik asosida ishlayotgan oliy maʼlumotli o'qituvchilar</li>
+        <li>Pedagogika yo'nalishi bo'yicha 3-kurs va undan yuqori talabalar</li>
+        <li>O'rta maxsus, professional maʼlumotli o'qituvchilar<small>Faqat boshlang'ich sinflarda dars beruvchilar uchun</small></li>
+        <li>Tegishli mutaxassislik bo'yicha rahbar xodimlar<small>Oliy maʼlumotli o'qituvchilar bilan taʼminlanguncha</small></li>
+      </ol>
+    </details>
+  </div>
+
+  <div class="tq-card" id="tqSetup">
+    <h2><span class="tq-n">1</span> Umumiy maʼlumotlar</h2>
+    <div class="tq-grid3">
+      <div class="tq-f"><label for="tqTotal">Jami haftalik dars soati</label>
+        <input type="number" id="tqTotal" inputmode="numeric" min="1" max="1000" placeholder="Masalan: 60"></div>
+      <div class="tq-f"><label for="tqCount">O'qituvchilar soni</label>
+        <input type="number" id="tqCount" inputmode="numeric" min="1" max="60" placeholder="Masalan: 3"></div>
+      <div class="tq-f"><label for="tqMax">Bir o'qituvchiga eng ko'p soat</label>
+        <input type="number" id="tqMax" inputmode="numeric" min="1" max="100" value="30"></div>
+    </div>
+    <div class="tq-actions"><button class="btn btn-primary" id="tqMake"><i class="fa-solid fa-table-list"></i> Jadval yaratish</button></div>
+  </div>
+
+  <div class="tq-card hidden" id="tqCalc">
+    <h2><span class="tq-n">2</span> O'qituvchilar maʼlumotlari</h2>
+    <div id="tqTeachers"></div>
+    <p class="tq-hint">Pedagogik kengash bahosi (1–10) ixtiyoriy: bir xil ustuvorlikdagi o'qituvchilar o'rtasida tartibni belgilaydi.</p>
+    <div class="tq-actions"><button class="btn btn-primary" id="tqRun"><i class="fa-solid fa-calculator"></i> Dars soatlarini taqsimlash</button></div>
+  </div>
+
+  <div class="tq-card hidden" id="tqOut">
+    <h2><span class="tq-n">3</span> Taqsimlash natijalari</h2>
+    <div id="tqBody"></div>
+    <div class="tq-actions">
+      <button class="btn btn-primary" id="tqCopy"><i class="fa-solid fa-copy"></i> Nusxalash</button>
+      <button class="btn btn-ghost" id="tqPrint"><i class="fa-solid fa-print"></i> Chop etish</button>
+    </div>
+    <p class="tq-hint">Taqsimlash yuqori ustuvorlikdagi o'qituvchilardan boshlanadi: har bir guruh o'z chegarasigacha dars oladi, qolgani keyingi guruhga beriladi. Guruh ichida soatlar teng bo'linadi. O'rindoshlik va rahbar xodim uchun chegara 10 soatdan oshmaydi.</p>
+  </div>
+
+  <p class="tq-note">Natija tavsiyaviy xarakterga ega; yakuniy taqsimot pedagogik kengash qarori bilan belgilanadi.</p>
+</main>
+
+<div class="tq-toast" id="tqToast" role="status"></div>
+
+<script src="/js/taqsimot.js"></script>
+<script>
+(function () {
+  var T = window.Taqsimot;
+  var $ = function (id) { return document.getElementById(id); };
+  var lastText = '';
+
+  function esc(s) {
+    return String(s).replace(/[&<>"']/g, function (c) {
+      return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c];
+    });
+  }
+  function opts(list, get) {
+    return list.map(function (x, i) { return '<option value="' + i + '">' + esc(get(x)) + '</option>'; }).join('');
+  }
+  function toast(msg) {
+    var t = $('tqToast'); t.textContent = msg; t.classList.add('on');
+    setTimeout(function () { t.classList.remove('on'); }, 1800);
+  }
+
+  function makeRows() {
+    var h = parseInt($('tqTotal').value, 10), n = parseInt($('tqCount').value, 10);
+    if (!(h > 0) || !(n > 0)) { toast('Jami soat va o‘qituvchilar sonini kiriting'); return; }
+    n = Math.min(n, 60);
+    var dOpts = opts(T.DEGREES, function (d) { return d.name; });
+    var cOpts = opts(T.CERTS, function (c) { return c; });
+    var html = '';
+    for (var i = 0; i < n; i++) {
+      html += '<div class="tq-t"><b>' + (i + 1) + '-o‘qituvchi</b><div class="tq-grid4">' +
+        '<div class="tq-f"><label for="tqName' + i + '">F.I.Sh.</label><input type="text" id="tqName' + i + '" placeholder="Familiya Ism" autocomplete="off"></div>' +
+        '<div class="tq-f"><label for="tqDeg' + i + '">Darajasi</label><select id="tqDeg' + i + '">' + dOpts + '</select></div>' +
+        '<div class="tq-f"><label for="tqCert' + i + '">Sertifikat</label><select id="tqCert' + i + '">' + cOpts + '</select></div>' +
+        '<div class="tq-f"><label for="tqScore' + i + '">Kengash (1–10)</label><input type="number" id="tqScore' + i + '" inputmode="numeric" min="1" max="10" placeholder="ixtiyoriy"></div>' +
+        '</div></div>';
+    }
+    $('tqTeachers').innerHTML = html;
+    $('tqCalc').classList.remove('hidden');
+    $('tqOut').classList.add('hidden');
+    $('tqCalc').scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }
+
+  function run() {
+    var total = parseInt($('tqTotal').value, 10);
+    var maxH = parseInt($('tqMax').value, 10); if (!(maxH > 0)) maxH = 30;
+    var n = document.querySelectorAll('.tq-t').length, teachers = [];
+    for (var i = 0; i < n; i++) {
+      var sc = parseInt($('tqScore' + i).value, 10);
+      if (!(sc >= 1)) sc = 5; if (sc > 10) sc = 10;
+      teachers.push({
+        name: $('tqName' + i).value.trim() || ('O‘qituvchi ' + (i + 1)),
+        degree: parseInt($('tqDeg' + i).value, 10),
+        cert: parseInt($('tqCert' + i).value, 10),
+        score: sc
+      });
+    }
+    var r = T.distribute(total, teachers, maxH);
+
+    var html = '<div class="tq-sum"><div>Jami: <b>' + total + '</b> soat</div><div>Taqsimlangan: <b>' + r.given + '</b> soat</div>' +
+      (r.excess > 0 ? '<div>Ortiqcha: <b>' + r.excess + '</b> soat</div>' : '') + '</div>';
+    html += r.excess > 0
+      ? '<div class="tq-alert warn"><i class="fa-solid fa-triangle-exclamation"></i> Ortiqcha ' + r.excess + ' soat qoldi. Barcha o‘qituvchilarning sig‘imi to‘ldi, qo‘shimcha o‘qituvchi jalb qilish talab etiladi.</div>'
+      : '<div class="tq-alert ok"><i class="fa-solid fa-circle-check"></i> Barcha soatlar to‘liq taqsimlandi</div>';
+
+    var txt = 'Dars soatlari taqsimoti (' + total + ' soat)\n';
+    r.rows.forEach(function (t, k) {
+      var deg = T.DEGREES[t.degree].name;
+      html += '<div class="tq-row' + (t.hours === 0 ? ' zero' : '') + '"><div class="tq-rk">' + (k + 1) + '</div><div>' +
+        '<div class="tq-nm">' + esc(t.name) + '</div><div class="tq-tags"><span class="tq-tag t">' + esc(T.TIER_NAMES[t.tier]) + '</span>' +
+        '<span class="tq-tag">' + esc(deg) + '</span>' + (t.cert > 0 ? '<span class="tq-tag c">' + esc(T.CERTS[t.cert]) + '</span>' : '') +
+        '</div></div><div class="tq-h"><span class="v">' + t.hours + '</span><small>soat' + (t.hours > 0 && t.hours === t.cap ? ' · max' : '') + '</small></div></div>';
+      txt += (k + 1) + '. ' + t.name + ' — ' + deg + (t.cert > 0 ? ' (' + T.CERTS[t.cert] + ')' : '') + ' — ' + t.hours + ' soat\n';
+    });
+    if (r.excess > 0) txt += 'Ortiqcha: ' + r.excess + ' soat\n';
+    lastText = txt;
+    $('tqBody').innerHTML = html;
+    $('tqOut').classList.remove('hidden');
+    $('tqOut').scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }
+
+  function copy() {
+    if (!lastText) return;
+    var ok = function () { toast('Nusxalandi'); };
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(lastText).then(ok, fallback);
+    } else fallback();
+    function fallback() {
+      var a = document.createElement('textarea'); a.value = lastText; document.body.appendChild(a); a.select();
+      try { document.execCommand('copy'); ok(); } catch (e) { toast('Nusxalab bo‘lmadi'); }
+      document.body.removeChild(a);
+    }
+  }
+
+  $('tqMake').addEventListener('click', makeRows);
+  $('tqRun').addEventListener('click', run);
+  $('tqCopy').addEventListener('click', copy);
+  $('tqPrint').addEventListener('click', function () { window.print(); });
+  $('burger').addEventListener('click', function () { $('menu').classList.toggle('open'); });
+})();
+</script>
+</body>
+</html>
