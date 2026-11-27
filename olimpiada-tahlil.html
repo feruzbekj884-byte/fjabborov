@@ -1,306 +1,277 @@
 <!DOCTYPE html>
 <html lang="uz">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Olimpiada natijalari tahlili | F. Jabborov</title>
-  <meta name="description" content="Tuproqqalʼa tumani asosiy fan olimpiadasi tuman bosqichi natijalarining chuqur tahlili: maktablar, fanlar va sinflar kesimi, oʻtgan yil bilan solishtiruv.">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-  <link rel="stylesheet" href="/css/style.css">
-  <link rel="stylesheet" href="/css/theme.css">
-  <style>
-    /* Faqat shu sahifa uchun (prefiks: ot-) */
-    :root { --ot-ok: #16a34a; --ot-bad: #dc2626; --ot-mid: #d97706; --ot-ink: #0f2547; }
-    html { scroll-behavior: smooth; scroll-padding-top: 130px; }
-    .ot-prog { position: fixed; inset: 0 0 auto 0; height: 3px; z-index: 100; background: transparent; pointer-events: none; }
-    .ot-prog i { display: block; height: 100%; width: 100%; transform-origin: 0 50%; transform: scaleX(0); background: linear-gradient(90deg, #2563eb, #f59e0b); }
-    .ot-pills { position: sticky; top: 64px; z-index: 40; background: rgba(255,255,255,.94); backdrop-filter: blur(10px); border-bottom: 1px solid var(--border); }
-    .ot-pills-in { max-width: 1180px; margin: 0 auto; display: flex; gap: 8px; padding: 10px 16px; overflow-x: auto; scrollbar-width: none; }
-    .ot-pills-in::-webkit-scrollbar { display: none; }
-    .ot-pills a { flex: none; display: inline-flex; align-items: center; gap: 7px; padding: 8px 14px; border-radius: 999px; font-size: 13.5px; font-weight: 600; color: var(--muted); background: #f1f5f9; border: 1px solid transparent; white-space: nowrap; }
-    .ot-pills a:hover { color: var(--primary); }
-    .ot-pills a.on { background: var(--ot-ink); color: #fff; }
-    .ot-pills a.red.on { background: var(--ot-bad); }
-
-    .ot-hero { position: relative; overflow: hidden; padding: 60px 0 96px; color: #fff; text-align: center;
-      background: radial-gradient(1000px 420px at 85% -10%, #2b5fd9 0%, transparent 60%), radial-gradient(800px 420px at -10% 110%, #0e7fb8 0%, transparent 55%), #0b1e3f; }
-    .ot-chip { display: inline-flex; gap: 8px; align-items: center; padding: 6px 14px; border-radius: 30px; background: rgba(255,255,255,.12); border: 1px solid rgba(255,255,255,.25); font-weight: 700; font-size: .9rem; color: #fde68a; }
-    .ot-hero h1 { font-size: clamp(1.9rem, 5.2vw, 3rem); font-weight: 800; line-height: 1.12; margin: 16px 0 12px; }
-    .ot-hero h1 span { color: #fbbf24; }
-    .ot-hero p { max-width: 720px; margin: 0 auto; color: #cbd5e1; }
-    .ot-stamp { display: inline-flex; flex-wrap: wrap; gap: 8px; justify-content: center; margin-top: 18px; font-size: .88rem; color: #94a3b8; }
-
-    .ot-wrap { max-width: 1180px; margin: -56px auto 0; padding: 0 16px 70px; position: relative; }
-    .ot-kpis { display: grid; grid-template-columns: repeat(auto-fit, minmax(165px, 1fr)); gap: 14px; }
-    .ot-kpi { background: #fff; border: 1px solid var(--border); border-radius: var(--radius); padding: 18px 20px; box-shadow: var(--shadow); position: relative; overflow: hidden; }
-    .ot-kpi::before { content: ""; position: absolute; inset: 0 auto 0 0; width: 4px; background: var(--c, var(--primary)); }
-    .ot-kpi small { display: flex; gap: 7px; align-items: center; color: var(--muted); font-weight: 600; font-size: .82rem; text-transform: uppercase; letter-spacing: .04em; }
-    .ot-kpi b { display: block; font-size: 2rem; line-height: 1.15; font-weight: 800; color: var(--ot-ink); margin: 4px 0 2px; }
-    .ot-kpi em { font-style: normal; font-size: .85rem; font-weight: 700; }
-
-    .up { color: var(--ot-ok); } .dn { color: var(--ot-bad); } .eq { color: var(--muted); }
-    .ot-blk { margin-top: 44px; }
-    .ot-sh { display: flex; gap: 14px; align-items: center; margin-bottom: 18px; }
-    .ot-bd { width: 50px; height: 50px; border-radius: 14px; flex: none; display: grid; place-items: center; color: #fff; font-size: 21px; background: linear-gradient(135deg, #1d4ed8, #0ea5e9); box-shadow: 0 10px 22px -8px rgba(29,78,216,.55); }
-    .ot-sh h2 { font-size: clamp(1.3rem, 3vw, 1.75rem); color: var(--ot-ink); line-height: 1.2; }
-    .ot-sh p { color: var(--muted); font-size: .95rem; margin-top: 3px; }
-    .ot-grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
-    .ot-card { background: #fff; border: 1px solid var(--border); border-radius: var(--radius); box-shadow: var(--shadow); padding: 22px; min-width: 0; }
-    .ot-ct { display: flex; gap: 9px; align-items: center; font-size: 1.05rem; color: var(--ot-ink); }
-    .ot-cs { color: var(--muted); font-size: .86rem; margin: 3px 0 14px; }
-
-    /* gorizontal ustunlar */
-    .ot-row { display: grid; grid-template-columns: minmax(96px, 190px) 1fr auto; gap: 10px; align-items: center; padding: 6px 0; font-size: .92rem; }
-    .ot-row > b { color: var(--ot-ink); font-weight: 600; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
-    .ot-row.click { cursor: pointer; border-radius: 10px; padding: 6px 8px; margin: 0 -8px; }
-    .ot-row.click:hover, .ot-row.sel { background: #eff6ff; }
-    .ot-track { position: relative; height: 16px; background: #eef2f7; border-radius: 99px; }
-    .ot-fill { position: absolute; inset: 0 auto 0 0; border-radius: 99px; background: var(--c, var(--primary)); min-width: 3px; }
-    .ot-ghost { position: absolute; top: -3px; bottom: -3px; width: 3px; background: #475569; border-radius: 2px; opacity: .8; }
-    .ot-avgline { position: absolute; top: -4px; bottom: -4px; border-left: 2px dashed var(--ot-ink); opacity: .55; }
-    .ot-val { font-weight: 800; color: var(--ot-ink); white-space: nowrap; text-align: right; min-width: 92px; }
-    .ot-val small { font-weight: 700; margin-left: 6px; }
-    .ot-legend { display: flex; flex-wrap: wrap; gap: 6px 16px; margin-top: 12px; font-size: .82rem; color: var(--muted); font-weight: 600; }
-    .ot-legend i { display: inline-block; width: 10px; height: 10px; border-radius: 3px; margin-right: 5px; vertical-align: -1px; }
-
-    /* sinf kartalari */
-    .ot-cls { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 14px; }
-    .ot-cc { border: 1.5px solid var(--border); border-radius: 14px; padding: 16px; background: #fbfdff; }
-    .ot-cc h4 { color: var(--ot-ink); font-size: 1.05rem; display: flex; justify-content: space-between; align-items: center; }
-    .ot-cc .big { font-size: 2rem; font-weight: 800; color: var(--primary-dark); line-height: 1.1; margin: 8px 0 2px; }
-    .ot-cc dl { display: grid; grid-template-columns: 1fr auto; gap: 4px 10px; font-size: .88rem; color: var(--muted); margin-top: 8px; }
-    .ot-cc dd { color: var(--ot-ink); font-weight: 700; text-align: right; }
-
-    .ot-alert { background: linear-gradient(135deg, #fef2f2, #fff7ed); border: 1.5px solid #fecaca; border-radius: var(--radius); padding: 22px; }
-    .ot-alert h3 { color: #991b1b; font-size: 1.1rem; }
-    .ot-alert p { color: #7f1d1d; font-size: .92rem; margin-top: 4px; }
-    .ot-abig { display: grid; grid-template-columns: repeat(auto-fit, minmax(170px, 1fr)); gap: 12px; margin-top: 14px; }
-    .ot-abig div { background: #fff; border-radius: 12px; padding: 12px 14px; border: 1px solid #fee2e2; }
-    .ot-abig b { display: block; font-size: 1.7rem; font-weight: 800; color: var(--ot-bad); line-height: 1.1; }
-    .ot-abig span { font-size: .82rem; color: #7f1d1d; font-weight: 600; }
-
-    .ot-tool { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 14px; }
-    .ot-in { flex: 1 1 220px; display: flex; align-items: center; gap: 8px; background: #f8fafc; border: 1.5px solid var(--border); border-radius: 12px; padding: 0 12px; }
-    .ot-in input, .ot-sel { border: 0; background: transparent; outline: none; min-height: 46px; font: inherit; font-size: 16px; color: var(--dark); width: 100%; }
-    .ot-sel { flex: 0 1 240px; background: #f8fafc; border: 1.5px solid var(--border); border-radius: 12px; padding: 0 12px; width: auto; }
-    .ot-tw { overflow-x: auto; border: 1px solid var(--border); border-radius: 14px; }
-    table.ot-t { width: 100%; border-collapse: collapse; font-size: .9rem; min-width: 640px; }
-    .ot-t th { background: #f1f5f9; color: var(--ot-ink); text-align: right; padding: 10px 12px; font-weight: 700; font-size: .8rem; text-transform: uppercase; letter-spacing: .03em; white-space: nowrap; }
-    .ot-t th:first-child, .ot-t td:first-child, .ot-t th.l, .ot-t td.l { text-align: left; }
-    .ot-t td { padding: 10px 12px; border-top: 1px solid #eef2f7; text-align: right; white-space: nowrap; }
-    .ot-t td.l { white-space: normal; font-weight: 600; color: var(--ot-ink); }
-    .ot-t tbody tr.m { cursor: pointer; }
-    .ot-t tbody tr.m:hover { background: #f8fbff; }
-    .ot-t tr.det > td { background: #f8fafc; white-space: normal; text-align: left; padding: 14px 16px; }
-    .ot-t tr.det .ot-t td { white-space: nowrap; } .ot-t tr.det .ot-t td.l { white-space: normal; }
-    .ot-small { opacity: .6; }
-    .ot-rk { display: inline-grid; place-items: center; width: 28px; height: 28px; border-radius: 50%; background: #e2e8f0; color: var(--ot-ink); font-weight: 800; font-size: .8rem; }
-    .ot-rk.g1 { background: #fde68a; } .ot-rk.g2 { background: #e2e8f0; } .ot-rk.g3 { background: #fed7aa; }
-    .ot-pill { display: inline-block; padding: 2px 10px; border-radius: 99px; font-weight: 800; font-size: .82rem; }
-    .ot-pill.hi { background: #dcfce7; color: #166534; } .ot-pill.md { background: #fef3c7; color: #92400e; } .ot-pill.lo { background: #fee2e2; color: #991b1b; }
-    .ot-mini { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 8px; }
-    .ot-mini div { background: #fff; border: 1px solid var(--border); border-radius: 10px; padding: 8px 12px; font-size: .85rem; color: var(--muted); }
-    .ot-mini b { display: block; color: var(--ot-ink); font-size: 1.05rem; }
-
-    /* xarita */
-    .ot-map { overflow: auto; border: 1px solid var(--border); border-radius: 14px; max-height: 78vh; }
-    .ot-map table { border-collapse: separate; border-spacing: 0; font-size: .82rem; }
-    .ot-map th { position: sticky; top: 0; z-index: 2; background: #0f2547; color: #fff; padding: 8px 6px; font-weight: 700; min-width: 74px; text-align: center; vertical-align: bottom; }
-    .ot-map th:first-child { left: 0; z-index: 3; text-align: left; min-width: 180px; padding-left: 12px; }
-    .ot-map td { padding: 7px 4px; text-align: center; font-weight: 700; border: 1px solid #fff; color: #0f172a; }
-    .ot-map td:first-child { position: sticky; left: 0; z-index: 1; background: #f1f5f9; text-align: left; padding-left: 12px; font-weight: 700; color: var(--ot-ink); white-space: nowrap; border-color: #e2e8f0; }
-    .ot-map td.few { opacity: .55; } .ot-map td.na { background: #f8fafc; color: #cbd5e1; font-weight: 400; }
-    .ot-scale { display: flex; align-items: center; gap: 10px; margin-top: 12px; font-size: .82rem; color: var(--muted); font-weight: 600; flex-wrap: wrap; }
-    .ot-scale i { flex: 0 0 180px; height: 10px; border-radius: 99px; background: linear-gradient(90deg, hsl(0,78%,66%), hsl(55,85%,62%), hsl(130,60%,52%)); }
-
-    .ot-chips { display: flex; flex-wrap: wrap; gap: 8px; }
-    .ot-c { padding: 6px 12px; border-radius: 99px; background: #fee2e2; color: #991b1b; font-weight: 700; font-size: .84rem; }
-    .ot-c.ok { background: #dcfce7; color: #166534; }
-    .ot-note { margin-top: 12px; color: var(--muted); font-size: .85rem; }
-    .ot-concl { display: grid; gap: 12px; }
-    .ot-concl li { list-style: none; display: grid; grid-template-columns: 40px 1fr; gap: 14px; align-items: start; background: #fff; border: 1px solid var(--border); border-radius: 14px; padding: 14px 16px; }
-    .ot-concl li > i { width: 40px; height: 40px; border-radius: 12px; display: grid; place-items: center; color: #fff; background: var(--c, var(--primary)); }
-    .ot-concl b { color: var(--ot-ink); display: block; margin-bottom: 2px; }
-    .ot-concl span { color: var(--text); font-size: .93rem; }
-    .ot-back { display: inline-flex; gap: 8px; align-items: center; color: #fff; opacity: .85; font-weight: 600; font-size: .9rem; margin-bottom: 18px; }
-    .ot-top { position: fixed; right: 16px; bottom: 16px; width: 46px; height: 46px; border-radius: 50%; border: 0; background: var(--ot-ink); color: #fff; box-shadow: var(--shadow); cursor: pointer; opacity: 0; pointer-events: none; transition: opacity .2s; z-index: 60; }
-    .ot-top.show { opacity: 1; pointer-events: auto; }
-
-    @media (max-width: 860px) {
-      .ot-grid2 { grid-template-columns: 1fr; }
-      .ot-row { grid-template-columns: minmax(84px, 130px) 1fr auto; font-size: .86rem; }
-      .ot-card { padding: 16px; }
-      .ot-val { min-width: 74px; }
-    }
-    @media print { .nav, .ot-pills, .ot-top, .ot-prog { display: none !important; } .ot-wrap { margin-top: 0; } .ot-card, .ot-kpi { box-shadow: none; break-inside: avoid; } }
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Olimpiada natijalari tahlili | F. Jabborov</title>
+<meta name="description" content="Tuproqqalʼa tumani asosiy fan olimpiadasi tuman bosqichi natijalarining chuqur tahlili: maktablar, fanlar va sinflar kesimi, oʻtgan yil bilan solishtiruv.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<link rel="stylesheet" href="/css/style.css">
+<link rel="stylesheet" href="/css/theme.css">
+<style>
+:root { --ot-ok: #16a34a; --ot-bad: #dc2626; --ot-mid: #d97706; --ot-ink: #0f2547; }
+html { scroll-behavior: smooth; scroll-padding-top: 130px; }
+.ot-prog { position: fixed; inset: 0 0 auto 0; height: 3px; z-index: 100; background: transparent; pointer-events: none; }
+.ot-prog i { display: block; height: 100%; width: 100%; transform-origin: 0 50%; transform: scaleX(0); background: linear-gradient(90deg, #2563eb, #f59e0b); }
+.ot-pills { position: sticky; top: 64px; z-index: 40; background: rgba(255,255,255,.94); backdrop-filter: blur(10px); border-bottom: 1px solid var(--border); }
+.ot-pills-in { max-width: 1180px; margin: 0 auto; display: flex; gap: 8px; padding: 10px 16px; overflow-x: auto; scrollbar-width: none; }
+.ot-pills-in::-webkit-scrollbar { display: none; }
+.ot-pills a { flex: none; display: inline-flex; align-items: center; gap: 7px; padding: 8px 14px; border-radius: 999px; font-size: 13.5px; font-weight: 600; color: var(--muted); background: #f1f5f9; border: 1px solid transparent; white-space: nowrap; }
+.ot-pills a:hover { color: var(--primary); }
+.ot-pills a.on { background: var(--ot-ink); color: #fff; }
+.ot-pills a.red.on { background: var(--ot-bad); }
+.ot-hero { position: relative; overflow: hidden; padding: 60px 0 96px; color: #fff; text-align: center;
+background: radial-gradient(1000px 420px at 85% -10%, #2b5fd9 0%, transparent 60%), radial-gradient(800px 420px at -10% 110%, #0e7fb8 0%, transparent 55%), #0b1e3f; }
+.ot-chip { display: inline-flex; gap: 8px; align-items: center; padding: 6px 14px; border-radius: 30px; background: rgba(255,255,255,.12); border: 1px solid rgba(255,255,255,.25); font-weight: 700; font-size: .9rem; color: #fde68a; }
+.ot-hero h1 { font-size: clamp(1.9rem, 5.2vw, 3rem); font-weight: 800; line-height: 1.12; margin: 16px 0 12px; }
+.ot-hero h1 span { color: #fbbf24; }
+.ot-hero p { max-width: 720px; margin: 0 auto; color: #cbd5e1; }
+.ot-stamp { display: inline-flex; flex-wrap: wrap; gap: 8px; justify-content: center; margin-top: 18px; font-size: .88rem; color: #94a3b8; }
+.ot-wrap { max-width: 1180px; margin: -56px auto 0; padding: 0 16px 70px; position: relative; }
+.ot-kpis { display: grid; grid-template-columns: repeat(auto-fit, minmax(165px, 1fr)); gap: 14px; }
+.ot-kpi { background: #fff; border: 1px solid var(--border); border-radius: var(--radius); padding: 18px 20px; box-shadow: var(--shadow); position: relative; overflow: hidden; }
+.ot-kpi::before { content: ""; position: absolute; inset: 0 auto 0 0; width: 4px; background: var(--c, var(--primary)); }
+.ot-kpi small { display: flex; gap: 7px; align-items: center; color: var(--muted); font-weight: 600; font-size: .82rem; text-transform: uppercase; letter-spacing: .04em; }
+.ot-kpi b { display: block; font-size: 2rem; line-height: 1.15; font-weight: 800; color: var(--ot-ink); margin: 4px 0 2px; }
+.ot-kpi em { font-style: normal; font-size: .85rem; font-weight: 700; }
+.up { color: var(--ot-ok); } .dn { color: var(--ot-bad); } .eq { color: var(--muted); }
+.ot-blk { margin-top: 44px; }
+.ot-sh { display: flex; gap: 14px; align-items: center; margin-bottom: 18px; }
+.ot-bd { width: 50px; height: 50px; border-radius: 14px; flex: none; display: grid; place-items: center; color: #fff; font-size: 21px; background: linear-gradient(135deg, #1d4ed8, #0ea5e9); box-shadow: 0 10px 22px -8px rgba(29,78,216,.55); }
+.ot-sh h2 { font-size: clamp(1.3rem, 3vw, 1.75rem); color: var(--ot-ink); line-height: 1.2; }
+.ot-sh p { color: var(--muted); font-size: .95rem; margin-top: 3px; }
+.ot-grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
+.ot-card { background: #fff; border: 1px solid var(--border); border-radius: var(--radius); box-shadow: var(--shadow); padding: 22px; min-width: 0; }
+.ot-ct { display: flex; gap: 9px; align-items: center; font-size: 1.05rem; color: var(--ot-ink); }
+.ot-cs { color: var(--muted); font-size: .86rem; margin: 3px 0 14px; }
+.ot-row { display: grid; grid-template-columns: minmax(96px, 190px) 1fr auto; gap: 10px; align-items: center; padding: 6px 0; font-size: .92rem; }
+.ot-row > b { color: var(--ot-ink); font-weight: 600; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.ot-row.click { cursor: pointer; border-radius: 10px; padding: 6px 8px; margin: 0 -8px; }
+.ot-row.click:hover, .ot-row.sel { background: #eff6ff; }
+.ot-track { position: relative; height: 16px; background: #eef2f7; border-radius: 99px; }
+.ot-fill { position: absolute; inset: 0 auto 0 0; border-radius: 99px; background: var(--c, var(--primary)); min-width: 3px; }
+.ot-ghost { position: absolute; top: -3px; bottom: -3px; width: 3px; background: #475569; border-radius: 2px; opacity: .8; }
+.ot-avgline { position: absolute; top: -4px; bottom: -4px; border-left: 2px dashed var(--ot-ink); opacity: .55; }
+.ot-val { font-weight: 800; color: var(--ot-ink); white-space: nowrap; text-align: right; min-width: 92px; }
+.ot-val small { font-weight: 700; margin-left: 6px; }
+.ot-legend { display: flex; flex-wrap: wrap; gap: 6px 16px; margin-top: 12px; font-size: .82rem; color: var(--muted); font-weight: 600; }
+.ot-legend i { display: inline-block; width: 10px; height: 10px; border-radius: 3px; margin-right: 5px; vertical-align: -1px; }
+.ot-cls { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 14px; }
+.ot-cc { border: 1.5px solid var(--border); border-radius: 14px; padding: 16px; background: #fbfdff; }
+.ot-cc h4 { color: var(--ot-ink); font-size: 1.05rem; display: flex; justify-content: space-between; align-items: center; }
+.ot-cc .big { font-size: 2rem; font-weight: 800; color: var(--primary-dark); line-height: 1.1; margin: 8px 0 2px; }
+.ot-cc dl { display: grid; grid-template-columns: 1fr auto; gap: 4px 10px; font-size: .88rem; color: var(--muted); margin-top: 8px; }
+.ot-cc dd { color: var(--ot-ink); font-weight: 700; text-align: right; }
+.ot-alert { background: linear-gradient(135deg, #fef2f2, #fff7ed); border: 1.5px solid #fecaca; border-radius: var(--radius); padding: 22px; }
+.ot-alert h3 { color: #991b1b; font-size: 1.1rem; }
+.ot-alert p { color: #7f1d1d; font-size: .92rem; margin-top: 4px; }
+.ot-abig { display: grid; grid-template-columns: repeat(auto-fit, minmax(170px, 1fr)); gap: 12px; margin-top: 14px; }
+.ot-abig div { background: #fff; border-radius: 12px; padding: 12px 14px; border: 1px solid #fee2e2; }
+.ot-abig b { display: block; font-size: 1.7rem; font-weight: 800; color: var(--ot-bad); line-height: 1.1; }
+.ot-abig span { font-size: .82rem; color: #7f1d1d; font-weight: 600; }
+.ot-tool { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 14px; }
+.ot-in { flex: 1 1 220px; display: flex; align-items: center; gap: 8px; background: #f8fafc; border: 1.5px solid var(--border); border-radius: 12px; padding: 0 12px; }
+.ot-in input, .ot-sel { border: 0; background: transparent; outline: none; min-height: 46px; font: inherit; font-size: 16px; color: var(--dark); width: 100%; }
+.ot-sel { flex: 0 1 240px; background: #f8fafc; border: 1.5px solid var(--border); border-radius: 12px; padding: 0 12px; width: auto; }
+.ot-tw { overflow-x: auto; border: 1px solid var(--border); border-radius: 14px; }
+table.ot-t { width: 100%; border-collapse: collapse; font-size: .9rem; min-width: 640px; }
+.ot-t th { background: #f1f5f9; color: var(--ot-ink); text-align: right; padding: 10px 12px; font-weight: 700; font-size: .8rem; text-transform: uppercase; letter-spacing: .03em; white-space: nowrap; }
+.ot-t th:first-child, .ot-t td:first-child, .ot-t th.l, .ot-t td.l { text-align: left; }
+.ot-t td { padding: 10px 12px; border-top: 1px solid #eef2f7; text-align: right; white-space: nowrap; }
+.ot-t td.l { white-space: normal; font-weight: 600; color: var(--ot-ink); }
+.ot-t tbody tr.m { cursor: pointer; }
+.ot-t tbody tr.m:hover { background: #f8fbff; }
+.ot-t tr.det > td { background: #f8fafc; white-space: normal; text-align: left; padding: 14px 16px; }
+.ot-t tr.det .ot-t td { white-space: nowrap; } .ot-t tr.det .ot-t td.l { white-space: normal; }
+.ot-small { opacity: .6; }
+.ot-rk { display: inline-grid; place-items: center; width: 28px; height: 28px; border-radius: 50%; background: #e2e8f0; color: var(--ot-ink); font-weight: 800; font-size: .8rem; }
+.ot-rk.g1 { background: #fde68a; } .ot-rk.g2 { background: #e2e8f0; } .ot-rk.g3 { background: #fed7aa; }
+.ot-pill { display: inline-block; padding: 2px 10px; border-radius: 99px; font-weight: 800; font-size: .82rem; }
+.ot-pill.hi { background: #dcfce7; color: #166534; } .ot-pill.md { background: #fef3c7; color: #92400e; } .ot-pill.lo { background: #fee2e2; color: #991b1b; }
+.ot-mini { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 8px; }
+.ot-mini div { background: #fff; border: 1px solid var(--border); border-radius: 10px; padding: 8px 12px; font-size: .85rem; color: var(--muted); }
+.ot-mini b { display: block; color: var(--ot-ink); font-size: 1.05rem; }
+.ot-map { overflow: auto; border: 1px solid var(--border); border-radius: 14px; max-height: 78vh; }
+.ot-map table { border-collapse: separate; border-spacing: 0; font-size: .82rem; }
+.ot-map th { position: sticky; top: 0; z-index: 2; background: #0f2547; color: #fff; padding: 8px 6px; font-weight: 700; min-width: 74px; text-align: center; vertical-align: bottom; }
+.ot-map th:first-child { left: 0; z-index: 3; text-align: left; min-width: 180px; padding-left: 12px; }
+.ot-map td { padding: 7px 4px; text-align: center; font-weight: 700; border: 1px solid #fff; color: #0f172a; }
+.ot-map td:first-child { position: sticky; left: 0; z-index: 1; background: #f1f5f9; text-align: left; padding-left: 12px; font-weight: 700; color: var(--ot-ink); white-space: nowrap; border-color: #e2e8f0; }
+.ot-map td.few { opacity: .55; } .ot-map td.na { background: #f8fafc; color: #cbd5e1; font-weight: 400; }
+.ot-scale { display: flex; align-items: center; gap: 10px; margin-top: 12px; font-size: .82rem; color: var(--muted); font-weight: 600; flex-wrap: wrap; }
+.ot-scale i { flex: 0 0 180px; height: 10px; border-radius: 99px; background: linear-gradient(90deg, hsl(0,78%,66%), hsl(55,85%,62%), hsl(130,60%,52%)); }
+.ot-chips { display: flex; flex-wrap: wrap; gap: 8px; }
+.ot-c { padding: 6px 12px; border-radius: 99px; background: #fee2e2; color: #991b1b; font-weight: 700; font-size: .84rem; }
+.ot-c.ok { background: #dcfce7; color: #166534; }
+.ot-note { margin-top: 12px; color: var(--muted); font-size: .85rem; }
+.ot-concl { display: grid; gap: 12px; }
+.ot-concl li { list-style: none; display: grid; grid-template-columns: 40px 1fr; gap: 14px; align-items: start; background: #fff; border: 1px solid var(--border); border-radius: 14px; padding: 14px 16px; }
+.ot-concl li > i { width: 40px; height: 40px; border-radius: 12px; display: grid; place-items: center; color: #fff; background: var(--c, var(--primary)); }
+.ot-concl b { color: var(--ot-ink); display: block; margin-bottom: 2px; }
+.ot-concl span { color: var(--text); font-size: .93rem; }
+.ot-back { display: inline-flex; gap: 8px; align-items: center; color: #fff; opacity: .85; font-weight: 600; font-size: .9rem; margin-bottom: 18px; }
+.ot-top { position: fixed; right: 16px; bottom: 16px; width: 46px; height: 46px; border-radius: 50%; border: 0; background: var(--ot-ink); color: #fff; box-shadow: var(--shadow); cursor: pointer; opacity: 0; pointer-events: none; transition: opacity .2s; z-index: 60; }
+.ot-top.show { opacity: 1; pointer-events: auto; }
+@media (max-width: 860px) {
+.ot-grid2 { grid-template-columns: 1fr; }
+.ot-row { grid-template-columns: minmax(84px, 130px) 1fr auto; font-size: .86rem; }
+.ot-card { padding: 16px; }
+.ot-val { min-width: 74px; }
+}
+@media print { .nav, .ot-pills, .ot-top, .ot-prog { display: none !important; } .ot-wrap { margin-top: 0; } .ot-card, .ot-kpi { box-shadow: none; break-inside: avoid; } }
+</style>
 </head>
 <body>
 <div class="ot-prog" aria-hidden="true"><i id="otProg"></i></div>
-
 <header class="nav" id="nav">
-  <div class="container nav-inner">
-    <a href="/" class="brand">
-      <span class="brand-logo"><i class="fa-solid fa-graduation-cap"></i></span>
-      <span><strong>F. Jabborov</strong><small>Taʼlim portali</small></span>
-    </a>
-    <button class="burger" id="burger" aria-label="Menyu"><i class="fa-solid fa-bars"></i></button>
-    <nav class="menu" id="menu">
-      <a href="/"><i class="fa-solid fa-arrow-left"></i> Bosh sahifa</a>
-      <a href="/#goliblar">Gʻoliblar</a>
-      <a href="/olimpiada-tahlil.html" style="color:var(--primary)">Tahlillar</a>
-    </nav>
-  </div>
-</header>
-
-<nav class="ot-pills" aria-label="Boʻlimlar"><div class="ot-pills-in" id="pills">
-  <a href="#umumiy" class="on"><i class="fa-solid fa-gauge-high"></i> Umumiy</a>
-  <a href="#sinflar"><i class="fa-solid fa-layer-group"></i> Sinflar</a>
-  <a href="#fanlar"><i class="fa-solid fa-book-open"></i> Fanlar</a>
-  <a href="#diqqat" class="red"><i class="fa-solid fa-triangle-exclamation"></i> Past natijalar</a>
-  <a href="#maktablar"><i class="fa-solid fa-school"></i> Maktablar</a>
-  <a href="#xarita"><i class="fa-solid fa-table-cells"></i> Xarita</a>
-  <a href="#yutuq"><i class="fa-solid fa-trophy"></i> Sovrindorlar</a>
-  <a href="#otgan"><i class="fa-solid fa-clock-rotate-left"></i> Oʻtgan yil</a>
-  <a href="#xulosa"><i class="fa-solid fa-lightbulb"></i> Xulosa</a>
-</div></nav>
-
-<section class="ot-hero">
-  <div class="container">
-    <a class="ot-back" href="/"><i class="fa-solid fa-arrow-left"></i> Bosh sahifaga qaytish</a><br>
-    <span class="ot-chip"><i class="fa-solid fa-chart-pie"></i> 2026/2027 oʻquv yili · Tuman bosqichi</span>
-    <h1>Olimpiada natijalari <span>chuqur tahlili</span></h1>
-    <p>Tuproqqalʼa tumani maktablari, fanlari va sinflari kesimida: oʻrtacha ball, sovrindorlar, oʻtgan yil bilan solishtiruv hamda eʼtibor talab qiladigan yoʻnalishlar.</p>
-    <div class="ot-stamp"><span><i class="fa-solid fa-clock"></i> Barcha ballar 50 balldan</span> · <span>Sovrindor — 1–3-oʻrin egalari</span> · <span>Taqqoslash — 2025/2026 oʻquv yili</span></div>
-  </div>
-</section>
-
-<div class="ot-wrap">
-  <div class="ot-kpis" id="kpis"></div>
-
-  <section class="ot-blk" id="umumiy">
-    <div class="ot-sh"><div class="ot-bd"><i class="fa-solid fa-gauge-high"></i></div><div><h2>Umumiy statistika</h2><p>Tuman boʻyicha asosiy koʻrsatkichlarning oʻtgan yilga nisbatan oʻzgarishi.</p></div></div>
-    <div class="ot-grid2">
-      <div class="ot-card">
-        <h3 class="ot-ct"><i class="fa-solid fa-scale-balanced" style="color:var(--primary)"></i> Bir qarashda</h3>
-        <div class="ot-cs">Joriy yil va oʻtgan yil koʻrsatkichlari yonma-yon</div>
-        <div class="ot-tw"><table class="ot-t" id="sumT" style="min-width:0"></table></div>
-      </div>
-      <div class="ot-card">
-        <h3 class="ot-ct"><i class="fa-solid fa-circle-half-stroke" style="color:var(--ot-mid)"></i> Ball darajalari</h3>
-        <div class="ot-cs">Maktablar oʻrtacha ball boʻyicha qaysi darajada (maksimal 50 ball)</div>
-        <div id="levels"></div>
-        <div class="ot-legend"><span><i style="background:#ef4444"></i>15 dan past (30%)</span><span><i style="background:#f59e0b"></i>15–20</span><span><i style="background:#22c55e"></i>20 va yuqori</span></div>
-      </div>
-    </div>
-  </section>
-
-  <section class="ot-blk" id="sinflar">
-    <div class="ot-sh"><div class="ot-bd" style="background:linear-gradient(135deg,#0891b2,#2563eb)"><i class="fa-solid fa-layer-group"></i></div><div><h2>Sinflar kesimida</h2><p>9, 10 va 11-sinflar natijalari hamda oʻtgan yilga nisbatan oʻzgarish.</p></div></div>
-    <div class="ot-cls" id="cls"></div>
-  </section>
-
-  <section class="ot-blk" id="fanlar">
-    <div class="ot-sh"><div class="ot-bd" style="background:linear-gradient(135deg,#7c3aed,#2563eb)"><i class="fa-solid fa-book-open"></i></div><div><h2>Fanlar kesimida</h2><p>Qaysi fanlarda natija yuqori, qaysilarida past. Fanni bosing — batafsil koʻrsatkichlar chiqadi.</p></div></div>
-    <div class="ot-grid2">
-      <div class="ot-card">
-        <h3 class="ot-ct"><i class="fa-solid fa-ranking-star" style="color:#7c3aed"></i> Fanlar reytingi</h3>
-        <div class="ot-cs">Oʻrtacha ball (50 dan). Qora chiziqcha — oʻtgan yil, punktir — tuman oʻrtachasi.</div>
-        <div id="fbars"></div>
-        <div class="ot-legend"><span style="color:#dc2626"><i style="background:#ef4444"></i>past</span><span style="color:#d97706"><i style="background:#f59e0b"></i>oʻrta</span><span style="color:#16a34a"><i style="background:#22c55e"></i>yuqori</span></div>
-      </div>
-      <div class="ot-card" id="fdet"></div>
-    </div>
-  </section>
-
-  <section class="ot-blk" id="diqqat">
-    <div class="ot-sh"><div class="ot-bd" style="background:linear-gradient(135deg,#dc2626,#ea580c);box-shadow:0 10px 22px -8px rgba(220,38,38,.55)"><i class="fa-solid fa-triangle-exclamation"></i></div><div><h2>Diqqat: past natijalar</h2><p>Eʼtibor va metodik yordam talab qiladigan maktablar hamda fanlar.</p></div></div>
-    <div class="ot-alert">
-      <h3>Past natija — maksimal ballning 30% idan kam (15 balldan past oʻrtacha)</h3>
-      <p>Quyida tuman boʻyicha oʻrtacha ball 15 dan past boʻlgan yoki oʻtgan yilga nisbatan sezilarli pasaygan koʻrsatkichlar jamlangan.</p>
-      <div class="ot-abig" id="abig"></div>
-    </div>
-    <div class="ot-grid2" style="margin-top:18px">
-      <div class="ot-card">
-        <h3 class="ot-ct"><i class="fa-solid fa-arrow-trend-down" style="color:var(--ot-bad)"></i> Oʻrtacha bali eng past muassasalar</h3>
-        <div class="ot-cs">Tuman oʻrtachasidan qancha orqada (kamida 10 ishtirokchi)</div>
-        <div id="lowS"></div>
-      </div>
-      <div class="ot-card">
-        <h3 class="ot-ct"><i class="fa-solid fa-book" style="color:var(--ot-bad)"></i> Eng past fanlar</h3>
-        <div class="ot-cs">Tuman boʻyicha oʻrtacha bali eng past fanlar (kamida 20 ishtirokchi)</div>
-        <div id="lowF"></div>
-        <h3 class="ot-ct" style="margin-top:22px"><i class="fa-solid fa-arrow-trend-down" style="color:var(--ot-bad)"></i> Eng koʻp pasaygan fanlar</h3>
-        <div class="ot-cs">Oʻtgan yilga nisbatan oʻrtacha ball tushishi</div>
-        <div id="dropF"></div>
-      </div>
-    </div>
-    <div class="ot-card" style="margin-top:18px">
-      <h3 class="ot-ct"><i class="fa-solid fa-magnifying-glass-chart" style="color:var(--ot-bad)"></i> Eng orqada qolgan maktab–fan juftliklari</h3>
-      <div class="ot-cs">Maktab shu fandan tuman oʻrtachasiga nisbatan eng koʻp orqada qolgan holatlar (kamida 4 ishtirokchi)</div>
-      <div class="ot-tw"><table class="ot-t" id="lowT"></table></div>
-    </div>
-  </section>
-
-  <section class="ot-blk" id="maktablar">
-    <div class="ot-sh"><div class="ot-bd" style="background:linear-gradient(135deg,#0ea5e9,#2563eb)"><i class="fa-solid fa-school"></i></div><div><h2>Maktablar reytingi</h2><p>Qidiring, saralang va maktabni bosib sinflar hamda fanlar boʻyicha natijalarini koʻring.</p></div></div>
-    <div class="ot-card" style="padding:18px">
-      <div class="ot-tool">
-        <label class="ot-in"><i class="fa-solid fa-magnifying-glass" style="color:var(--muted)"></i><input id="sq" placeholder="Maktab nomi boʻyicha qidirish..."></label>
-        <select class="ot-sel" id="ss" aria-label="Saralash">
-          <option value="avg">Oʻrtacha ball boʻyicha</option>
-          <option value="sov">Sovrindorlar soni boʻyicha</option>
-          <option value="share">Sovrindorlar ulushi boʻyicha</option>
-          <option value="d">Oʻrtacha ball oʻsishi boʻyicha</option>
-          <option value="n">Ishtirokchilar soni boʻyicha</option>
-        </select>
-      </div>
-      <div class="ot-tw"><table class="ot-t" id="sT"></table></div>
-      <p class="ot-note"><i class="fa-solid fa-circle-info"></i> Qatorni bosing — maktabning sinf va fanlar boʻyicha natijalari ochiladi. 10 tadan kam ishtirokchisi boʻlgan muassasalar (xira) ishonchlilik past boʻlgani uchun reytingga kiritilmaydi.</p>
-    </div>
-  </section>
-
-  <section class="ot-blk" id="xarita">
-    <div class="ot-sh"><div class="ot-bd" style="background:linear-gradient(135deg,#059669,#0ea5e9)"><i class="fa-solid fa-table-cells"></i></div><div><h2>Maktab × fan xaritasi</h2><p>Har bir maktabning har bir fandan oʻrtacha bali. Qizil — past, yashil — yuqori.</p></div></div>
-    <div class="ot-map" id="map"></div>
-    <div class="ot-scale"><span>8 va past</span><i></i><span>32 va yuqori</span><span>· Xira katak — 3 tadan kam ishtirokchi (ishonchlilik past)</span></div>
-  </section>
-
-  <section class="ot-blk" id="yutuq">
-    <div class="ot-sh"><div class="ot-bd" style="background:linear-gradient(135deg,#d97706,#f59e0b);box-shadow:0 10px 22px -8px rgba(217,119,6,.55)"><i class="fa-solid fa-trophy"></i></div><div><h2>Sovrindorlar (1–3-oʻrin)</h2><p>Qaysi maktablar eng koʻp sovrindor tayyorlagan va ulushi qancha.</p></div></div>
-    <div class="ot-grid2">
-      <div class="ot-card"><h3 class="ot-ct"><i class="fa-solid fa-medal" style="color:#d97706"></i> Sovrindorlar soni</h3><div class="ot-cs">Qora chiziqcha — oʻtgan yil</div><div id="sovBars"></div></div>
-      <div class="ot-card"><h3 class="ot-ct"><i class="fa-solid fa-percent" style="color:#d97706"></i> Sovrindorlar ulushi</h3><div class="ot-cs">Ishtirokchilarning necha foizi sovrindor boʻlgan (kamida 20 ishtirokchi)</div><div id="shareBars"></div></div>
-    </div>
-  </section>
-
-  <section class="ot-blk" id="otgan">
-    <div class="ot-sh"><div class="ot-bd" style="background:linear-gradient(135deg,#4f46e5,#7c3aed)"><i class="fa-solid fa-clock-rotate-left"></i></div><div><h2>Oʻtgan yil bilan solishtiruv</h2><p>2026/2027 va 2025/2026 oʻquv yillari natijalari: kim oldinga siljidi, kim orqaga ketdi.</p></div></div>
-    <div class="ot-grid2">
-      <div class="ot-card"><h3 class="ot-ct"><i class="fa-solid fa-arrow-trend-up" style="color:var(--ot-ok)"></i> Oʻrtacha ball oʻzgarishi (maktablar)</h3><div class="ot-cs">Joriy yil minus oʻtgan yil, ball (ikkala yilda kamida 10 ishtirokchi)</div><div id="dBars"></div></div>
-      <div class="ot-card"><h3 class="ot-ct"><i class="fa-solid fa-users" style="color:#4f46e5"></i> Ishtirokchilar soni oʻzgarishi</h3><div class="ot-cs">Qatnashchilar eng koʻp kamaygan muassasalar</div><div id="pBars"></div></div>
-    </div>
-    <div class="ot-card" style="margin-top:18px">
-      <h3 class="ot-ct"><i class="fa-solid fa-book-open" style="color:#7c3aed"></i> Fanlar boʻyicha oʻzgarish</h3>
-      <div class="ot-cs">Barcha fanlar: oʻrtacha ball va ishtirokchilar soni oʻzgarishi</div>
-      <div class="ot-tw"><table class="ot-t" id="fT"></table></div>
-    </div>
-  </section>
-
-  <section class="ot-blk" id="xulosa">
-    <div class="ot-sh"><div class="ot-bd" style="background:linear-gradient(135deg,#0f2547,#2563eb)"><i class="fa-solid fa-lightbulb"></i></div><div><h2>Xulosa va tavsiyalar</h2><p>Maʼlumotlardan avtomatik shakllantirilgan asosiy topilmalar.</p></div></div>
-    <ul class="ot-concl" id="concl"></ul>
-    <p class="ot-note">Manba: tuman bosqichi natijalari jamlanmasi (maktablar, sinflar, fanlar, maktab×sinf, maktab×fan kesimlari). Taqqoslashda ishtirokchilar soni kamaygani sababli oʻrtacha ball oʻsishining bir qismi saralash kuchayishi bilan ham bogʻliq boʻlishi mumkin.</p>
-  </section>
+<div class="container nav-inner">
+<a href="/" class="brand">
+<span class="brand-logo"><i class="fa-solid fa-graduation-cap"></i></span>
+<span><strong>F. Jabborov</strong><small>Taʼlim portali</small></span>
+</a>
+<button class="burger" id="burger" aria-label="Menyu"><i class="fa-solid fa-bars"></i></button>
+<nav class="menu" id="menu">
+<a href="/"><i class="fa-solid fa-arrow-left"></i> Bosh sahifa</a>
+<a href="/#goliblar">Gʻoliblar</a>
+<a href="/olimpiada-tahlil.html" style="color:var(--primary)">Tahlillar</a>
+</nav>
 </div>
-
+</header>
+<nav class="ot-pills" aria-label="Boʻlimlar"><div class="ot-pills-in" id="pills">
+<a href="#umumiy" class="on"><i class="fa-solid fa-gauge-high"></i> Umumiy</a>
+<a href="#sinflar"><i class="fa-solid fa-layer-group"></i> Sinflar</a>
+<a href="#fanlar"><i class="fa-solid fa-book-open"></i> Fanlar</a>
+<a href="#diqqat" class="red"><i class="fa-solid fa-triangle-exclamation"></i> Past natijalar</a>
+<a href="#maktablar"><i class="fa-solid fa-school"></i> Maktablar</a>
+<a href="#xarita"><i class="fa-solid fa-table-cells"></i> Xarita</a>
+<a href="#yutuq"><i class="fa-solid fa-trophy"></i> Sovrindorlar</a>
+<a href="#otgan"><i class="fa-solid fa-clock-rotate-left"></i> Oʻtgan yil</a>
+<a href="#xulosa"><i class="fa-solid fa-lightbulb"></i> Xulosa</a>
+</div></nav>
+<section class="ot-hero">
+<div class="container">
+<a class="ot-back" href="/"><i class="fa-solid fa-arrow-left"></i> Bosh sahifaga qaytish</a><br>
+<span class="ot-chip"><i class="fa-solid fa-chart-pie"></i> 2026/2027 oʻquv yili · Tuman bosqichi</span>
+<h1>Olimpiada natijalari <span>chuqur tahlili</span></h1>
+<p>Tuproqqalʼa tumani maktablari, fanlari va sinflari kesimida: oʻrtacha ball, sovrindorlar, oʻtgan yil bilan solishtiruv hamda eʼtibor talab qiladigan yoʻnalishlar.</p>
+<div class="ot-stamp"><span><i class="fa-solid fa-clock"></i> Barcha ballar 50 balldan</span> · <span>Sovrindor — 1–3-oʻrin egalari</span> · <span>Taqqoslash — 2025/2026 oʻquv yili</span></div>
+</div>
+</section>
+<div class="ot-wrap">
+<div class="ot-kpis" id="kpis"></div>
+<section class="ot-blk" id="umumiy">
+<div class="ot-sh"><div class="ot-bd"><i class="fa-solid fa-gauge-high"></i></div><div><h2>Umumiy statistika</h2><p>Tuman boʻyicha asosiy koʻrsatkichlarning oʻtgan yilga nisbatan oʻzgarishi.</p></div></div>
+<div class="ot-grid2">
+<div class="ot-card">
+<h3 class="ot-ct"><i class="fa-solid fa-scale-balanced" style="color:var(--primary)"></i> Bir qarashda</h3>
+<div class="ot-cs">Joriy yil va oʻtgan yil koʻrsatkichlari yonma-yon</div>
+<div class="ot-tw"><table class="ot-t" id="sumT" style="min-width:0"></table></div>
+</div>
+<div class="ot-card">
+<h3 class="ot-ct"><i class="fa-solid fa-circle-half-stroke" style="color:var(--ot-mid)"></i> Ball darajalari</h3>
+<div class="ot-cs">Maktablar oʻrtacha ball boʻyicha qaysi darajada (maksimal 50 ball)</div>
+<div id="levels"></div>
+<div class="ot-legend"><span><i style="background:#ef4444"></i>15 dan past (30%)</span><span><i style="background:#f59e0b"></i>15–20</span><span><i style="background:#22c55e"></i>20 va yuqori</span></div>
+</div>
+</div>
+</section>
+<section class="ot-blk" id="sinflar">
+<div class="ot-sh"><div class="ot-bd" style="background:linear-gradient(135deg,#0891b2,#2563eb)"><i class="fa-solid fa-layer-group"></i></div><div><h2>Sinflar kesimida</h2><p>9, 10 va 11-sinflar natijalari hamda oʻtgan yilga nisbatan oʻzgarish.</p></div></div>
+<div class="ot-cls" id="cls"></div>
+</section>
+<section class="ot-blk" id="fanlar">
+<div class="ot-sh"><div class="ot-bd" style="background:linear-gradient(135deg,#7c3aed,#2563eb)"><i class="fa-solid fa-book-open"></i></div><div><h2>Fanlar kesimida</h2><p>Qaysi fanlarda natija yuqori, qaysilarida past. Fanni bosing — batafsil koʻrsatkichlar chiqadi.</p></div></div>
+<div class="ot-grid2">
+<div class="ot-card">
+<h3 class="ot-ct"><i class="fa-solid fa-ranking-star" style="color:#7c3aed"></i> Fanlar reytingi</h3>
+<div class="ot-cs">Oʻrtacha ball (50 dan). Qora chiziqcha — oʻtgan yil, punktir — tuman oʻrtachasi.</div>
+<div id="fbars"></div>
+<div class="ot-legend"><span style="color:#dc2626"><i style="background:#ef4444"></i>past</span><span style="color:#d97706"><i style="background:#f59e0b"></i>oʻrta</span><span style="color:#16a34a"><i style="background:#22c55e"></i>yuqori</span></div>
+</div>
+<div class="ot-card" id="fdet"></div>
+</div>
+</section>
+<section class="ot-blk" id="diqqat">
+<div class="ot-sh"><div class="ot-bd" style="background:linear-gradient(135deg,#dc2626,#ea580c);box-shadow:0 10px 22px -8px rgba(220,38,38,.55)"><i class="fa-solid fa-triangle-exclamation"></i></div><div><h2>Diqqat: past natijalar</h2><p>Eʼtibor va metodik yordam talab qiladigan maktablar hamda fanlar.</p></div></div>
+<div class="ot-alert">
+<h3>Past natija — maksimal ballning 30% idan kam (15 balldan past oʻrtacha)</h3>
+<p>Quyida tuman boʻyicha oʻrtacha ball 15 dan past boʻlgan yoki oʻtgan yilga nisbatan sezilarli pasaygan koʻrsatkichlar jamlangan.</p>
+<div class="ot-abig" id="abig"></div>
+</div>
+<div class="ot-grid2" style="margin-top:18px">
+<div class="ot-card">
+<h3 class="ot-ct"><i class="fa-solid fa-arrow-trend-down" style="color:var(--ot-bad)"></i> Oʻrtacha bali eng past muassasalar</h3>
+<div class="ot-cs">Tuman oʻrtachasidan qancha orqada (kamida 10 ishtirokchi)</div>
+<div id="lowS"></div>
+</div>
+<div class="ot-card">
+<h3 class="ot-ct"><i class="fa-solid fa-book" style="color:var(--ot-bad)"></i> Eng past fanlar</h3>
+<div class="ot-cs">Tuman boʻyicha oʻrtacha bali eng past fanlar (kamida 20 ishtirokchi)</div>
+<div id="lowF"></div>
+<h3 class="ot-ct" style="margin-top:22px"><i class="fa-solid fa-arrow-trend-down" style="color:var(--ot-bad)"></i> Eng koʻp pasaygan fanlar</h3>
+<div class="ot-cs">Oʻtgan yilga nisbatan oʻrtacha ball tushishi</div>
+<div id="dropF"></div>
+</div>
+</div>
+<div class="ot-card" style="margin-top:18px">
+<h3 class="ot-ct"><i class="fa-solid fa-magnifying-glass-chart" style="color:var(--ot-bad)"></i> Eng orqada qolgan maktab–fan juftliklari</h3>
+<div class="ot-cs">Maktab shu fandan tuman oʻrtachasiga nisbatan eng koʻp orqada qolgan holatlar (kamida 4 ishtirokchi)</div>
+<div class="ot-tw"><table class="ot-t" id="lowT"></table></div>
+</div>
+</section>
+<section class="ot-blk" id="maktablar">
+<div class="ot-sh"><div class="ot-bd" style="background:linear-gradient(135deg,#0ea5e9,#2563eb)"><i class="fa-solid fa-school"></i></div><div><h2>Maktablar reytingi</h2><p>Qidiring, saralang va maktabni bosib sinflar hamda fanlar boʻyicha natijalarini koʻring.</p></div></div>
+<div class="ot-card" style="padding:18px">
+<div class="ot-tool">
+<label class="ot-in"><i class="fa-solid fa-magnifying-glass" style="color:var(--muted)"></i><input id="sq" placeholder="Maktab nomi boʻyicha qidirish..."></label>
+<select class="ot-sel" id="ss" aria-label="Saralash">
+<option value="avg">Oʻrtacha ball boʻyicha</option>
+<option value="sov">Sovrindorlar soni boʻyicha</option>
+<option value="share">Sovrindorlar ulushi boʻyicha</option>
+<option value="d">Oʻrtacha ball oʻsishi boʻyicha</option>
+<option value="n">Ishtirokchilar soni boʻyicha</option>
+</select>
+</div>
+<div class="ot-tw"><table class="ot-t" id="sT"></table></div>
+<p class="ot-note"><i class="fa-solid fa-circle-info"></i> Qatorni bosing — maktabning sinf va fanlar boʻyicha natijalari ochiladi. 10 tadan kam ishtirokchisi boʻlgan muassasalar (xira) ishonchlilik past boʻlgani uchun reytingga kiritilmaydi.</p>
+</div>
+</section>
+<section class="ot-blk" id="xarita">
+<div class="ot-sh"><div class="ot-bd" style="background:linear-gradient(135deg,#059669,#0ea5e9)"><i class="fa-solid fa-table-cells"></i></div><div><h2>Maktab × fan xaritasi</h2><p>Har bir maktabning har bir fandan oʻrtacha bali. Qizil — past, yashil — yuqori.</p></div></div>
+<div class="ot-map" id="map"></div>
+<div class="ot-scale"><span>8 va past</span><i></i><span>32 va yuqori</span><span>· Xira katak — 3 tadan kam ishtirokchi (ishonchlilik past)</span></div>
+</section>
+<section class="ot-blk" id="yutuq">
+<div class="ot-sh"><div class="ot-bd" style="background:linear-gradient(135deg,#d97706,#f59e0b);box-shadow:0 10px 22px -8px rgba(217,119,6,.55)"><i class="fa-solid fa-trophy"></i></div><div><h2>Sovrindorlar (1–3-oʻrin)</h2><p>Qaysi maktablar eng koʻp sovrindor tayyorlagan va ulushi qancha.</p></div></div>
+<div class="ot-grid2">
+<div class="ot-card"><h3 class="ot-ct"><i class="fa-solid fa-medal" style="color:#d97706"></i> Sovrindorlar soni</h3><div class="ot-cs">Qora chiziqcha — oʻtgan yil</div><div id="sovBars"></div></div>
+<div class="ot-card"><h3 class="ot-ct"><i class="fa-solid fa-percent" style="color:#d97706"></i> Sovrindorlar ulushi</h3><div class="ot-cs">Ishtirokchilarning necha foizi sovrindor boʻlgan (kamida 20 ishtirokchi)</div><div id="shareBars"></div></div>
+</div>
+</section>
+<section class="ot-blk" id="otgan">
+<div class="ot-sh"><div class="ot-bd" style="background:linear-gradient(135deg,#4f46e5,#7c3aed)"><i class="fa-solid fa-clock-rotate-left"></i></div><div><h2>Oʻtgan yil bilan solishtiruv</h2><p>2026/2027 va 2025/2026 oʻquv yillari natijalari: kim oldinga siljidi, kim orqaga ketdi.</p></div></div>
+<div class="ot-grid2">
+<div class="ot-card"><h3 class="ot-ct"><i class="fa-solid fa-arrow-trend-up" style="color:var(--ot-ok)"></i> Oʻrtacha ball oʻzgarishi (maktablar)</h3><div class="ot-cs">Joriy yil minus oʻtgan yil, ball (ikkala yilda kamida 10 ishtirokchi)</div><div id="dBars"></div></div>
+<div class="ot-card"><h3 class="ot-ct"><i class="fa-solid fa-users" style="color:#4f46e5"></i> Ishtirokchilar soni oʻzgarishi</h3><div class="ot-cs">Qatnashchilar eng koʻp kamaygan muassasalar</div><div id="pBars"></div></div>
+</div>
+<div class="ot-card" style="margin-top:18px">
+<h3 class="ot-ct"><i class="fa-solid fa-book-open" style="color:#7c3aed"></i> Fanlar boʻyicha oʻzgarish</h3>
+<div class="ot-cs">Barcha fanlar: oʻrtacha ball va ishtirokchilar soni oʻzgarishi</div>
+<div class="ot-tw"><table class="ot-t" id="fT"></table></div>
+</div>
+</section>
+<section class="ot-blk" id="xulosa">
+<div class="ot-sh"><div class="ot-bd" style="background:linear-gradient(135deg,#0f2547,#2563eb)"><i class="fa-solid fa-lightbulb"></i></div><div><h2>Xulosa va tavsiyalar</h2><p>Maʼlumotlardan avtomatik shakllantirilgan asosiy topilmalar.</p></div></div>
+<ul class="ot-concl" id="concl"></ul>
+<p class="ot-note">Manba: tuman bosqichi natijalari jamlanmasi (maktablar, sinflar, fanlar, maktab×sinf, maktab×fan kesimlari). Taqqoslashda ishtirokchilar soni kamaygani sababli oʻrtacha ball oʻsishining bir qismi saralash kuchayishi bilan ham bogʻliq boʻlishi mumkin.</p>
+</section>
+</div>
 <button class="ot-top" id="otTop" aria-label="Yuqoriga"><i class="fa-solid fa-arrow-up"></i></button>
-
 <script>
-const D={"maktab":[["1-son maktab",55,23.1,10,57,24,14],["2-son maktab",58,20.1,10,87,18.9,17],["3-son maktab",29,13.9,0,32,14.2,0],["4-son maktab",37,18.5,1,42,18.3,1],["5-son maktab",43,14.3,0,53,13.8,2],["6-son maktab",32,18.1,1,33,16.5,3],["7-son maktab",35,18,3,72,15,3],["8-son maktab",52,21.9,7,52,21.2,4],["9-son maktab",42,20.2,5,39,19.2,2],["10-son maktab",76,18.9,10,66,18.1,4],["11-son maktab",36,15.4,1,49,14.5,2],["12-son maktab",30,13.8,0,37,15,1],["13-son maktab",20,15.4,2,63,14.5,5],["14-son maktab",32,14.8,4,39,14.4,6],["15-son maktab",20,15.1,1,35,14.1,2],["16-son maktab",32,13.9,5,38,12.7,4],["17-son maktab",42,16.8,5,56,18.1,8],["18-son maktab",35,16.3,3,49,15.7,1],["19-son maktab",41,21.4,9,82,18.2,4],["20-son maktab",64,21.3,9,96,19.5,10],["21-son maktab",50,18.5,2,31,15.8,1],["Ixtisoslashtirilgan maktab",65,23.2,17,51,29.2,18],["PRIME xususiy maktabi",37,23.7,8,40,25,5],["EBRU School xususiy maktabi",6,21.6,0,1,14,0],["1-son texnikum",21,16,0,39,14.7,2],["2-son texnikum",2,21,0,0,0,0],["Tuman boʻyicha jami",992,18.8,113,1239,17.8,119]],"sinf":[["9-sinf",346,18.4,37,448,18.6,41],["10-sinf",338,19,38,394,17.1,39],["11-sinf",308,18.8,38,397,17.7,39],["Tuman boʻyicha jami",992,18.8,113,1239,17.8,119]],"fan":[["Ona tili va adabiyot","9-sinf",41,21.5,3,45,24.9,3],["Ona tili va adabiyot","10-sinf",38,23.6,3,43,23.7,3],["Ona tili va adabiyot","11-sinf",38,25.6,3,42,27.2,3],["Ona tili va adabiyot — jami","9–11",117,23.5,9,130,25.3,9],["Matematika","9-sinf",36,18.9,3,42,11.2,3],["Matematika","10-sinf",32,17.5,3,32,9.6,3],["Matematika","11-sinf",35,17.6,3,34,13,3],["Matematika — jami","9–11",103,18,9,108,11.3,9],["Kimyo","9-sinf",30,18.2,3,41,16.6,3],["Kimyo","10-sinf",29,16.7,3,37,15.2,3],["Kimyo","11-sinf",24,14.3,3,35,15,3],["Kimyo — jami","9–11",83,16.5,9,113,15.7,9],["Tarix","9-sinf",35,16.1,3,39,20.3,3],["Tarix","10-sinf",35,16.2,3,33,13.7,3],["Tarix","11-sinf",31,16.1,3,32,14.6,3],["Tarix — jami","9–11",101,16.2,9,104,16.4,9],["Davlat va huquq asoslari","9-sinf",25,25.1,3,33,16.8,3],["Davlat va huquq asoslari","10-sinf",25,26.1,3,27,17.7,3],["Davlat va huquq asoslari","11-sinf",19,27.5,3,29,14,3],["Davlat va huquq asoslari — jami","9–11",69,26.1,9,89,16.2,9],["Biologiya","9-sinf",29,16,3,44,17.8,3],["Biologiya","10-sinf",27,16.6,3,37,17.7,3],["Biologiya","11-sinf",25,18.1,3,39,20.9,3],["Biologiya — jami","9–11",81,16.9,9,120,18.8,9],["Fizika","9-sinf",27,14.9,3,38,11.8,3],["Fizika","10-sinf",29,14.9,3,35,12.8,3],["Fizika","11-sinf",25,9.9,3,38,9,3],["Fizika — jami","9–11",81,13.4,9,111,11.1,9],["Ingliz tili","9-sinf",39,24.4,3,46,29.5,3],["Ingliz tili","10-sinf",41,24.3,3,46,27,3],["Ingliz tili","11-sinf",35,26.9,3,45,28.4,3],["Ingliz tili — jami","9–11",115,25.1,9,137,28.3,9],["Informatika va axborot texnologiyalari","9-sinf",29,17,3,44,22.4,3],["Informatika va axborot texnologiyalari","10-sinf",26,18.1,3,37,15.8,3],["Informatika va axborot texnologiyalari","11-sinf",22,14.7,3,38,18.8,3],["Informatika va axborot texnologiyalari — jami","9–11",77,16.7,9,119,19.2,9],["Rus tili va adabiyot","9-sinf",29,13.8,3,34,15.4,3],["Rus tili va adabiyot","10-sinf",26,17.1,3,29,14,3],["Rus tili va adabiyot","11-sinf",29,17.5,3,32,13.8,3],["Rus tili va adabiyot — jami","9–11",84,16.1,9,95,14.4,9],["Geografiya","9-sinf",22,14.1,3,32,14,3],["Geografiya","10-sinf",25,15,3,30,15.8,3],["Geografiya","11-sinf",20,15.3,3,23,13.1,3],["Geografiya — jami","9–11",67,14.8,9,85,14.4,9],["Nemis tili","9-sinf",1,11.4,1,4,18.9,3],["Nemis tili","10-sinf",3,17.7,3,2,11.5,2],["Nemis tili","11-sinf",1,19.5,1,5,12.2,3],["Nemis tili — jami","9–11",5,16.8,5,11,14.5,8],["Fransuz tili","9-sinf",1,10.4,1,2,10.6,2],["Fransuz tili","10-sinf",null,null,null,1,14.5,1],["Fransuz tili","11-sinf",1,8,1,null,null,null],["Fransuz tili — jami","9–11",2,9.2,2,3,11.9,3],["Oʻzbek tili","9-sinf",2,18.4,2,4,12.7,3],["Oʻzbek tili","10-sinf",2,20.5,2,5,13.2,3],["Oʻzbek tili","11-sinf",3,14.1,3,5,16.8,3],["Oʻzbek tili — jami","9–11",7,17.1,7,14,14.3,9],["Tuman boʻyicha jami",null,992,18.8,113,1239,17.8,119]],"mxs":[["1-son maktab","9-sinf",19,21.4,2,22,24.2,7],["1-son maktab","10-sinf",20,23.1,4,16,21,4],["1-son maktab","11-sinf",16,25,4,19,26.3,3],["1-son maktab","Jami",55,23.1,10,57,24,14],["2-son maktab","9-sinf",22,18.7,5,33,18.4,7],["2-son maktab","10-sinf",20,23.6,3,28,16.3,2],["2-son maktab","11-sinf",16,17.6,2,26,22.3,8],["2-son maktab","Jami",58,20.1,10,87,18.9,17],["3-son maktab","9-sinf",10,12.3,null,13,16,null],["3-son maktab","10-sinf",11,14.3,null,9,13.5,null],["3-son maktab","11-sinf",8,15.4,null,10,12.6,null],["3-son maktab","Jami",29,13.9,null,32,14.2,null],["4-son maktab","9-sinf",12,21.5,1,17,22.3,1],["4-son maktab","10-sinf",14,17.3,null,12,17.6,null],["4-son maktab","11-sinf",11,16.6,null,13,13.8,null],["4-son maktab","Jami",37,18.5,1,42,18.3,1],["5-son maktab","9-sinf",14,12.5,null,16,15.6,null],["5-son maktab","10-sinf",14,13.8,null,15,14.7,1],["5-son maktab","11-sinf",15,16.3,null,22,11.9,1],["5-son maktab","Jami",43,14.3,null,53,13.8,2],["6-son maktab","9-sinf",13,19.6,1,12,17.2,1],["6-son maktab","10-sinf",11,17.9,null,11,16.6,1],["6-son maktab","11-sinf",8,15.8,null,10,15.5,1],["6-son maktab","Jami",32,18.1,1,33,16.5,3],["7-son maktab","9-sinf",12,17.8,1,30,15.4,1],["7-son maktab","10-sinf",13,16.6,null,20,13.6,2],["7-son maktab","11-sinf",10,20.1,2,22,15.6,null],["7-son maktab","Jami",35,18,3,72,15,3],["8-son maktab","9-sinf",14,20.1,2,19,21.5,1],["8-son maktab","10-sinf",21,21.5,2,17,20.8,1],["8-son maktab","11-sinf",17,24,3,16,21.2,2],["8-son maktab","Jami",52,21.9,7,52,21.2,4],["9-son maktab","9-sinf",17,20.7,2,14,20.2,1],["9-son maktab","10-sinf",14,20.7,2,12,16.1,1],["9-son maktab","11-sinf",11,18.6,1,13,20.9,null],["9-son maktab","Jami",42,20.2,5,39,19.2,2],["10-son maktab","9-sinf",31,21.8,8,23,20.2,1],["10-son maktab","10-sinf",26,18.3,2,21,17.4,2],["10-son maktab","11-sinf",19,15.1,null,22,16.6,1],["10-son maktab","Jami",76,18.9,10,66,18.1,4],["11-son maktab","9-sinf",14,17,null,16,12,null],["11-son maktab","10-sinf",10,14.4,1,18,15.9,1],["11-son maktab","11-sinf",12,14.5,null,15,15.5,1],["11-son maktab","Jami",36,15.4,1,49,14.5,2],["12-son maktab","9-sinf",12,15,null,14,15.1,null],["12-son maktab","10-sinf",11,13.7,null,13,15.1,1],["12-son maktab","11-sinf",7,11.9,null,10,14.6,null],["12-son maktab","Jami",30,13.8,null,37,15,1],["13-son maktab","9-sinf",9,14.7,1,25,15.1,1],["13-son maktab","10-sinf",5,17.1,null,18,13.7,2],["13-son maktab","11-sinf",6,14.9,1,20,14.5,2],["13-son maktab","Jami",20,15.4,2,63,14.5,5],["14-son maktab","9-sinf",10,12.3,null,15,17.6,4],["14-son maktab","10-sinf",12,17.3,4,11,13.5,1],["14-son maktab","11-sinf",10,14.4,null,13,11.6,1],["14-son maktab","Jami",32,14.8,4,39,14.4,6],["15-son maktab","9-sinf",10,16.1,1,13,15.8,null],["15-son maktab","10-sinf",4,17.9,null,13,12.5,1],["15-son maktab","11-sinf",6,11.5,null,9,13.9,1],["15-son maktab","Jami",20,15.1,1,35,14.1,2],["16-son maktab","9-sinf",11,10.6,1,15,13.7,1],["16-son maktab","10-sinf",10,15.4,2,12,12.2,2],["16-son maktab","11-sinf",11,15.8,2,11,12,1],["16-son maktab","Jami",32,13.9,5,38,12.7,4],["17-son maktab","9-sinf",15,14.2,1,19,16.7,2],["17-son maktab","10-sinf",12,17.2,1,20,18.2,4],["17-son maktab","11-sinf",15,19,3,17,19.5,2],["17-son maktab","Jami",42,16.8,5,56,18.1,8],["18-son maktab","9-sinf",13,17.3,1,19,15.7,null],["18-son maktab","10-sinf",11,16.1,1,13,14.5,null],["18-son maktab","11-sinf",11,15.3,1,17,16.5,1],["18-son maktab","Jami",35,16.3,3,49,15.7,1],["19-son maktab","9-sinf",12,17.1,null,31,19.7,3],["19-son maktab","10-sinf",14,22.2,3,26,17.8,null],["19-son maktab","11-sinf",15,24.2,6,25,16.9,1],["19-son maktab","Jami",41,21.4,9,82,18.2,4],["20-son maktab","9-sinf",22,22.2,4,33,19.6,2],["20-son maktab","10-sinf",19,20.1,1,33,18,2],["20-son maktab","11-sinf",23,21.4,4,30,21.2,6],["20-son maktab","Jami",64,21.3,9,96,19.5,10],["21-son maktab","9-sinf",16,15.6,null,11,15.8,null],["21-son maktab","10-sinf",18,19,1,11,15.5,null],["21-son maktab","11-sinf",16,20.9,1,9,16.2,1],["21-son maktab","Jami",50,18.5,2,31,15.8,1],["Ixtisoslashtirilgan maktab","9-sinf",21,23.9,4,23,27.4,6],["Ixtisoslashtirilgan maktab","10-sinf",23,23.2,7,13,31.5,7],["Ixtisoslashtirilgan maktab","11-sinf",21,22.5,6,15,30.1,5],["Ixtisoslashtirilgan maktab","Jami",65,23.2,17,51,29.2,18],["PRIME xususiy maktabi","9-sinf",11,23.9,2,14,26,2],["PRIME xususiy maktabi","10-sinf",16,21.8,4,14,22.9,2],["PRIME xususiy maktabi","11-sinf",10,26.3,2,12,26.2,1],["PRIME xususiy maktabi","Jami",37,23.7,8,40,25,5],["EBRU School xususiy maktabi","9-sinf",6,21.6,null,1,14,null],["EBRU School xususiy maktabi","Jami",6,21.6,null,1,14,null],["1-son texnikum","10-sinf",7,14.9,null,18,18.2,2],["1-son texnikum","11-sinf",14,16.5,null,21,11.6,null],["1-son texnikum","Jami",21,16,null,39,14.7,2],["2-son texnikum","10-sinf",2,21,null,null,null,null],["2-son texnikum","Jami",2,21,null,null,null,null],["Tuman boʻyicha jami",null,992,18.8,113,1239,17.8,119]],"mxf":[["1-son maktab","Ona tili va adabiyot",7,26.5,null,6,30.3,null],["1-son maktab","Matematika",6,25.2,3,5,29.4,4],["1-son maktab","Kimyo",6,20,2,4,16.1,null],["1-son maktab","Tarix",3,20.1,null,3,20.9,null],["1-son maktab","Davlat va huquq asoslari",3,23.6,null,5,21.8,1],["1-son maktab","Biologiya",7,21.9,1,7,23.9,1],["1-son maktab","Fizika",3,13.6,null,7,14.6,1],["1-son maktab","Ingliz tili",5,39.2,2,4,40.2,2],["1-son maktab","Informatika va axborot texnologiyalari",7,18.1,null,7,28.3,2],["1-son maktab","Rus tili va adabiyot",5,23.4,2,6,20.7,3],["1-son maktab","Geografiya",3,15.9,null,3,17.4,null],["1-son maktab","Jami",55,23.1,10,57,24,14],["2-son maktab","Ona tili va adabiyot",5,25.6,null,7,22.7,null],["2-son maktab","Matematika",7,19.5,1,7,11.1,null],["2-son maktab","Kimyo",3,13.4,null,8,19.6,2],["2-son maktab","Tarix",5,13.6,null,6,16.9,null],["2-son maktab","Davlat va huquq asoslari",5,30.5,2,7,17.5,1],["2-son maktab","Biologiya",3,12.6,null,6,19,null],["2-son maktab","Fizika",4,13.4,null,4,14.3,1],["2-son maktab","Ingliz tili",7,29.8,1,9,33.6,3],["2-son maktab","Informatika va axborot texnologiyalari",4,17.5,null,9,17.5,1],["2-son maktab","Rus tili va adabiyot",8,18.8,2,8,19.7,3],["2-son maktab","Geografiya",3,16.2,null,7,14.6,null],["2-son maktab","Oʻzbek tili",4,17.7,4,9,15.2,6],["2-son maktab","Jami",58,20.1,10,87,18.9,17],["3-son maktab","Ona tili va adabiyot",3,15.4,null,3,21.5,null],["3-son maktab","Matematika",3,12.6,null,4,6.2,null],["3-son maktab","Kimyo",2,14.3,null,2,8.3,null],["3-son maktab","Tarix",3,13.6,null,3,12.1,null],["3-son maktab","Davlat va huquq asoslari",3,20,null,2,11.1,null],["3-son maktab","Biologiya",2,10.4,null,3,15.1,null],["3-son maktab","Fizika",2,10.4,null,3,9.8,null],["3-son maktab","Ingliz tili",3,14.3,null,3,22.5,null],["3-son maktab","Informatika va axborot texnologiyalari",3,16.4,null,5,19.5,null],["3-son maktab","Rus tili va adabiyot",3,9.4,null,1,15.8,null],["3-son maktab","Geografiya",2,14.3,null,3,11.9,null],["3-son maktab","Jami",29,13.9,null,32,14.2,null],["4-son maktab","Ona tili va adabiyot",4,23.7,null,5,21.4,null],["4-son maktab","Matematika",4,19.4,1,3,10,null],["4-son maktab","Kimyo",3,15.5,null,3,13.9,null],["4-son maktab","Tarix",3,20.1,null,3,12.6,null],["4-son maktab","Davlat va huquq asoslari",3,27.4,null,3,14.6,null],["4-son maktab","Biologiya",3,11.9,null,3,17.7,null],["4-son maktab","Fizika",3,14.8,null,3,12.3,null],["4-son maktab","Ingliz tili",6,20.6,null,8,28.4,null],["4-son maktab","Informatika va axborot texnologiyalari",3,16,null,5,25.6,null],["4-son maktab","Rus tili va adabiyot",3,16.6,null,3,8.5,null],["4-son maktab","Geografiya",2,10.3,null,3,12.9,1],["4-son maktab","Jami",37,18.5,1,42,18.3,1],["5-son maktab","Ona tili va adabiyot",4,17.5,null,7,16.5,null],["5-son maktab","Matematika",3,15.8,null,3,10.3,null],["5-son maktab","Kimyo",5,12.6,null,6,15.5,null],["5-son maktab","Tarix",8,13.4,null,6,13.2,1],["5-son maktab","Davlat va huquq asoslari",3,18.2,null,5,10.4,null],["5-son maktab","Biologiya",3,15.5,null,6,13.4,null],["5-son maktab","Fizika",3,11.2,null,3,9.2,null],["5-son maktab","Ingliz tili",4,13.3,null,6,14.7,null],["5-son maktab","Informatika va axborot texnologiyalari",4,14,null,3,22.4,1],["5-son maktab","Rus tili va adabiyot",3,18,null,4,10.8,null],["5-son maktab","Geografiya",3,9.8,null,4,13.8,null],["5-son maktab","Jami",43,14.3,null,53,13.8,2],["6-son maktab","Ona tili va adabiyot",3,23.5,null,3,24.6,null],["6-son maktab","Matematika",3,15.5,null,3,6.3,null],["6-son maktab","Kimyo",3,17,null,3,18.3,1],["6-son maktab","Tarix",4,17.6,null,3,22.2,1],["6-son maktab","Davlat va huquq asoslari",2,20.8,null,2,14.7,null],["6-son maktab","Biologiya",2,15,null,3,12.9,null],["6-son maktab","Fizika",3,13.6,null,3,14.9,1],["6-son maktab","Ingliz tili",3,32.7,1,4,23,null],["6-son maktab","Informatika va axborot texnologiyalari",2,14.6,null,3,18.6,null],["6-son maktab","Rus tili va adabiyot",4,14.8,null,3,9.7,null],["6-son maktab","Geografiya",3,13.6,null,3,13.4,null],["6-son maktab","Jami",32,18.1,1,33,16.5,3],["7-son maktab","Ona tili va adabiyot",3,28.9,null,7,21.6,null],["7-son maktab","Matematika",3,18.3,null,7,8.9,null],["7-son maktab","Kimyo",3,14.2,null,7,14.1,null],["7-son maktab","Tarix",3,19,1,7,13,1],["7-son maktab","Davlat va huquq asoslari",3,30.7,1,4,19.6,1],["7-son maktab","Biologiya",3,12.2,null,7,12.2,null],["7-son maktab","Fizika",3,15.1,1,7,12.6,1],["7-son maktab","Ingliz tili",5,15.6,null,8,22.9,null],["7-son maktab","Informatika va axborot texnologiyalari",3,15,null,6,14.5,null],["7-son maktab","Rus tili va adabiyot",3,18,null,6,14.8,null],["7-son maktab","Geografiya",3,13.1,null,6,10.8,null],["7-son maktab","Jami",35,18,3,72,15,3],["8-son maktab","Ona tili va adabiyot",6,16.8,null,4,30.3,1],["8-son maktab","Matematika",1,32,1,3,14.1,null],["8-son maktab","Kimyo",5,17.9,null,8,15.9,null],["8-son maktab","Tarix",7,20.1,2,4,23.4,null],["8-son maktab","Davlat va huquq asoslari",5,28,1,4,18.8,1],["8-son maktab","Biologiya",7,20.3,null,6,19.2,null],["8-son maktab","Fizika",3,15.8,null,3,11.2,null],["8-son maktab","Ingliz tili",7,33.3,1,9,31.9,null],["8-son maktab","Informatika va axborot texnologiyalari",3,20.1,1,4,20.9,null],["8-son maktab","Rus tili va adabiyot",5,20.6,null,4,13,null],["8-son maktab","Geografiya",3,16.5,1,3,23.6,2],["8-son maktab","Jami",52,21.9,7,52,21.2,4],["9-son maktab","Ona tili va adabiyot",5,30.8,1,4,34,1],["9-son maktab","Matematika",4,12.8,null,3,13,null],["9-son maktab","Kimyo",4,17.9,null,3,14.9,null],["9-son maktab","Tarix",3,17.9,null,3,12.9,null],["9-son maktab","Davlat va huquq asoslari",3,27.6,1,3,19.9,1],["9-son maktab","Biologiya",3,14.1,null,3,27,null],["9-son maktab","Fizika",3,10.4,null,3,9.3,null],["9-son maktab","Ingliz tili",5,32.2,1,4,32.4,null],["9-son maktab","Informatika va axborot texnologiyalari",3,19.6,1,3,20.5,null],["9-son maktab","Rus tili va adabiyot",3,20.1,null,3,14,null],["9-son maktab","Geografiya",6,13.4,1,7,12.6,null],["9-son maktab","Jami",42,20.2,5,39,19.2,2],["10-son maktab","Ona tili va adabiyot",9,21.6,1,5,26.4,null],["10-son maktab","Matematika",9,21,1,9,12.4,1],["10-son maktab","Kimyo",5,13.8,null,4,14,null],["10-son maktab","Tarix",8,11,null,3,15.7,null],["10-son maktab","Davlat va huquq asoslari",7,30.3,2,6,21.9,1],["10-son maktab","Biologiya",4,17.1,null,6,18.2,null],["10-son maktab","Fizika",8,14.2,1,9,9.4,1],["10-son maktab","Ingliz tili",7,25.2,1,9,29.1,null],["10-son maktab","Informatika va axborot texnologiyalari",7,20.2,2,8,17.6,null],["10-son maktab","Rus tili va adabiyot",6,15.1,1,4,15,null],["10-son maktab","Geografiya",6,16.2,1,3,20,1],["10-son maktab","Jami",76,18.9,10,66,18.1,4],["11-son maktab","Ona tili va adabiyot",5,16,null,5,16.9,null],["11-son maktab","Matematika",5,18.1,null,3,6.5,null],["11-son maktab","Kimyo",3,8.2,null,5,13.9,null],["11-son maktab","Tarix",3,15.5,null,4,18.3,null],["11-son maktab","Davlat va huquq asoslari",3,26.7,null,2,13.7,null],["11-son maktab","Biologiya",3,15.3,null,8,11.1,null],["11-son maktab","Fizika",4,10,null,5,13.7,null],["11-son maktab","Ingliz tili",3,13.5,null,6,14.6,null],["11-son maktab","Informatika va axborot texnologiyalari",2,13.3,null,4,21.7,null],["11-son maktab","Rus tili va adabiyot",2,13.4,null,3,11.2,null],["11-son maktab","Geografiya",3,18,1,2,21.7,1],["11-son maktab","Oʻzbek tili",null,null,null,2,13.9,1],["11-son maktab","Jami",36,15.4,1,49,14.5,2],["12-son maktab","Ona tili va adabiyot",4,19.8,null,5,20.4,null],["12-son maktab","Matematika",3,13.8,null,3,8.4,null],["12-son maktab","Kimyo",3,12.7,null,3,17.5,null],["12-son maktab","Tarix",3,14.6,null,2,21,1],["12-son maktab","Davlat va huquq asoslari",1,26.3,null,3,18.1,null],["12-son maktab","Biologiya",3,8.6,null,3,11.5,null],["12-son maktab","Fizika",3,11.9,null,3,9.7,null],["12-son maktab","Ingliz tili",2,19.1,null,4,12.5,null],["12-son maktab","Informatika va axborot texnologiyalari",3,13.1,null,6,15.1,null],["12-son maktab","Rus tili va adabiyot",3,8.9,null,3,13.5,null],["12-son maktab","Geografiya",2,9.6,null,2,16.9,null],["12-son maktab","Jami",30,13.8,null,37,15,1],["13-son maktab","Ona tili va adabiyot",3,20.3,null,6,24.8,null],["13-son maktab","Matematika",1,9.1,null,4,6.8,null],["13-son maktab","Kimyo",1,5.7,null,6,13.7,null],["13-son maktab","Tarix",3,15.6,null,5,15.2,null],["13-son maktab","Davlat va huquq asoslari",2,25.7,null,6,11.3,null],["13-son maktab","Biologiya",3,12.1,null,6,15.1,null],["13-son maktab","Fizika",1,18.5,null,9,12.5,null],["13-son maktab","Informatika va axborot texnologiyalari",null,null,null,9,16.1,null],["13-son maktab","Rus tili va adabiyot",1,11.8,null,3,13,null],["13-son maktab","Geografiya",3,12,null,3,11.2,null],["13-son maktab","Nemis tili",2,15.5,2,6,15,5],["13-son maktab","Jami",20,15.4,2,63,14.5,5],["14-son maktab","Ona tili va adabiyot",3,14,null,4,21.5,null],["14-son maktab","Matematika",3,16.5,null,4,7.6,null],["14-son maktab","Kimyo",3,16.1,null,3,14.4,null],["14-son maktab","Tarix",3,15.1,null,3,20.6,1],["14-son maktab","Davlat va huquq asoslari",null,null,null,3,11.3,null],["14-son maktab","Biologiya",3,21.1,1,3,29.3,2],["14-son maktab","Fizika",3,14.1,null,3,11.1,null],["14-son maktab","Ingliz tili",2,14.4,null,2,8.4,null],["14-son maktab","Informatika va axborot texnologiyalari",3,11.3,null,3,12.7,null],["14-son maktab","Rus tili va adabiyot",3,11.9,null,3,11.1,null],["14-son maktab","Geografiya",3,10.7,null,3,9.6,null],["14-son maktab","Nemis tili",3,17.7,3,5,13.9,3],["14-son maktab","Jami",32,14.8,4,39,14.4,6],["15-son maktab","Ona tili va adabiyot",2,22.2,null,3,20.8,null],["15-son maktab","Matematika",2,27.3,1,2,5.9,null],["15-son maktab","Kimyo",3,16.3,null,6,12.7,null],["15-son maktab","Tarix",1,5.9,null,4,14.7,null],["15-son maktab","Davlat va huquq asoslari",null,null,null,2,13.6,null],["15-son maktab","Biologiya",4,11.4,null,5,13.8,null],["15-son maktab","Fizika",2,13.5,null,3,11.7,null],["15-son maktab","Ingliz tili",2,15.7,null,2,19.1,null],["15-son maktab","Informatika va axborot texnologiyalari",2,10,null,2,19.2,1],["15-son maktab","Rus tili va adabiyot",2,12.2,null,3,14.3,1],["15-son maktab","Geografiya",null,null,null,3,11.5,null],["15-son maktab","Jami",20,15.1,1,35,14.1,2],["16-son maktab","Ona tili va adabiyot",null,null,null,3,18.2,null],["16-son maktab","Matematika",3,17.6,null,3,7.3,null],["16-son maktab","Kimyo",3,11.1,null,4,15.6,1],["16-son maktab","Tarix",3,16.7,1,4,14.9,null],["16-son maktab","Davlat va huquq asoslari",3,9.9,null,3,12.6,null],["16-son maktab","Biologiya",3,13.6,null,3,17.3,null],["16-son maktab","Fizika",3,17.6,1,4,8.4,1],["16-son maktab","Ingliz tili",3,15.4,null,2,9.1,null],["16-son maktab","Informatika va axborot texnologiyalari",2,5.3,null,4,12.4,null],["16-son maktab","Rus tili va adabiyot",3,10.7,null,2,13.1,null],["16-son maktab","Geografiya",3,15.9,null,3,10.3,null],["16-son maktab","Oʻzbek tili",3,16.4,3,3,12.2,2],["16-son maktab","Jami",32,13.9,5,38,12.7,4],["17-son maktab","Ona tili va adabiyot",4,18.7,null,6,32.5,2],["17-son maktab","Matematika",5,17.4,null,5,8.5,null],["17-son maktab","Kimyo",2,12.4,null,5,13.7,null],["17-son maktab","Tarix",4,19.3,1,5,16.6,null],["17-son maktab","Davlat va huquq asoslari",3,23.8,null,3,15.1,1],["17-son maktab","Biologiya",3,20.1,1,5,23,1],["17-son maktab","Fizika",4,9.6,null,5,6.4,null],["17-son maktab","Ingliz tili",6,20,null,6,27.8,null],["17-son maktab","Informatika va axborot texnologiyalari",3,15,null,5,20.5,null],["17-son maktab","Rus tili va adabiyot",3,14.2,null,4,15.3,null],["17-son maktab","Geografiya",3,15.2,1,4,16.4,1],["17-son maktab","Fransuz tili",2,9.2,2,3,11.9,3],["17-son maktab","Jami",42,16.8,5,56,18.1,8],["18-son maktab","Ona tili va adabiyot",4,18.2,null,7,22.5,null],["18-son maktab","Matematika",3,12.3,null,5,7.4,null],["18-son maktab","Kimyo",4,17.8,1,5,14,null],["18-son maktab","Tarix",3,17.6,null,3,9.8,null],["18-son maktab","Davlat va huquq asoslari",3,21.9,null,3,9.4,null],["18-son maktab","Biologiya",3,14.4,null,6,15.4,null],["18-son maktab","Fizika",3,12.8,1,2,13.5,null],["18-son maktab","Ingliz tili",3,20.8,null,8,22.5,null],["18-son maktab","Informatika va axborot texnologiyalari",3,12.5,null,3,12.3,null],["18-son maktab","Rus tili va adabiyot",3,17.7,1,4,12.6,null],["18-son maktab","Geografiya",3,12.4,null,3,19.6,1],["18-son maktab","Jami",35,16.3,3,49,15.7,1],["19-son maktab","Ona tili va adabiyot",5,34.4,2,9,30,null],["19-son maktab","Matematika",5,15,null,8,7.7,null],["19-son maktab","Kimyo",4,20.6,1,3,16.2,null],["19-son maktab","Tarix",4,24.4,1,8,20.2,1],["19-son maktab","Davlat va huquq asoslari",4,31.8,1,8,15.1,null],["19-son maktab","Biologiya",3,19.1,null,7,24.9,1],["19-son maktab","Fizika",3,9.8,null,8,5.7,null],["19-son maktab","Ingliz tili",3,21.3,null,9,30.3,1],["19-son maktab","Informatika va axborot texnologiyalari",3,15.2,1,8,17.3,null],["19-son maktab","Rus tili va adabiyot",4,17.1,1,8,14.1,null],["19-son maktab","Geografiya",3,19.6,2,6,14.9,1],["19-son maktab","Jami",41,21.4,9,82,18.2,4],["20-son maktab","Ona tili va adabiyot",9,25.6,null,9,34,3],["20-son maktab","Matematika",5,14.9,null,9,9.8,null],["20-son maktab","Kimyo",5,18.7,1,9,15.1,null],["20-son maktab","Tarix",5,14.8,null,8,14.2,null],["20-son maktab","Davlat va huquq asoslari",4,28.9,null,9,17.7,1],["20-son maktab","Biologiya",5,24.4,3,9,18.2,1],["20-son maktab","Fizika",5,10.6,1,9,11.7,1],["20-son maktab","Ingliz tili",9,30.8,null,9,41,2],["20-son maktab","Informatika va axborot texnologiyalari",5,20.1,1,9,22.5,1],["20-son maktab","Rus tili va adabiyot",7,16.9,1,8,13.3,null],["20-son maktab","Geografiya",5,21,2,8,15.7,1],["20-son maktab","Jami",64,21.3,9,96,19.5,10],["21-son maktab","Ona tili va adabiyot",7,23.7,null,3,24.8,null],["21-son maktab","Matematika",7,13.6,null,2,4.8,null],["21-son maktab","Kimyo",3,15.1,null,3,15.5,null],["21-son maktab","Tarix",6,13.9,1,3,10,null],["21-son maktab","Davlat va huquq asoslari",5,21.9,null,2,16.1,null],["21-son maktab","Biologiya",3,14.1,null,3,13.9,null],["21-son maktab","Fizika",3,14.2,null,4,15,1],["21-son maktab","Ingliz tili",9,25.3,null,3,28.6,null],["21-son maktab","Informatika va axborot texnologiyalari",2,20.8,1,3,17,null],["21-son maktab","Rus tili va adabiyot",3,14.3,null,3,10.5,null],["21-son maktab","Geografiya",2,15.2,null,2,13.5,null],["21-son maktab","Jami",50,18.5,2,31,15.8,1],["Ixtisoslashtirilgan maktab","Ona tili va adabiyot",9,30.1,3,5,27.2,null],["Ixtisoslashtirilgan maktab","Matematika",8,21.8,null,5,23.2,3],["Ixtisoslashtirilgan maktab","Kimyo",8,23.8,3,9,22.9,5],["Ixtisoslashtirilgan maktab","Tarix",7,17.1,1,5,28.2,2],["Ixtisoslashtirilgan maktab","Davlat va huquq asoslari",null,null,null,1,37.9,1],["Ixtisoslashtirilgan maktab","Biologiya",7,22.6,3,9,34.7,3],["Ixtisoslashtirilgan maktab","Fizika",6,15.7,2,3,15.6,null],["Ixtisoslashtirilgan maktab","Ingliz tili",8,32.8,2,8,40.8,1],["Ixtisoslashtirilgan maktab","Informatika va axborot texnologiyalari",6,25.3,2,4,33.4,3],["Ixtisoslashtirilgan maktab","Rus tili va adabiyot",3,14.5,1,1,17.3,null],["Ixtisoslashtirilgan maktab","Geografiya",3,14.1,null,1,16.6,null],["Ixtisoslashtirilgan maktab","Jami",65,23.2,17,51,29.2,18],["PRIME xususiy maktabi","Ona tili va adabiyot",9,29.8,2,9,33.8,2],["PRIME xususiy maktabi","Matematika",7,19.7,1,7,18.8,1],["PRIME xususiy maktabi","Kimyo",1,24.8,1,2,13.4,null],["PRIME xususiy maktabi","Tarix",4,17.4,1,3,19.1,1],["PRIME xususiy maktabi","Davlat va huquq asoslari",3,34.9,1,2,18.8,null],["PRIME xususiy maktabi","Biologiya",1,11.5,null,2,17,null],["PRIME xususiy maktabi","Fizika",4,17.2,2,2,17.7,1],["PRIME xususiy maktabi","Ingliz tili",6,27.3,null,9,34.4,null],["PRIME xususiy maktabi","Rus tili va adabiyot",2,13.4,null,3,19.2,null],["PRIME xususiy maktabi","Geografiya",null,null,null,1,5.7,null],["PRIME xususiy maktabi","Jami",37,23.7,8,40,25,5],["EBRU School xususiy maktabi","Ona tili va adabiyot",1,26.2,null,null,null,null],["EBRU School xususiy maktabi","Matematika",null,null,null,1,14,null],["EBRU School xususiy maktabi","Kimyo",1,19.8,null,null,null,null],["EBRU School xususiy maktabi","Tarix",1,23,null,null,null,null],["EBRU School xususiy maktabi","Davlat va huquq asoslari",1,32.2,null,null,null,null],["EBRU School xususiy maktabi","Ingliz tili",2,14.2,null,null,null,null],["EBRU School xususiy maktabi","Jami",6,21.6,null,1,14,null],["1-son texnikum","Ona tili va adabiyot",3,11.8,null,5,12.9,null],["1-son texnikum","Matematika",2,15.2,null,null,null,null],["1-son texnikum","Kimyo",null,null,null,2,13.6,null],["1-son texnikum","Tarix",4,12.4,null,6,11.4,null],["1-son texnikum","Davlat va huquq asoslari",null,null,null,1,5.7,null],["1-son texnikum","Biologiya",null,null,null,1,8.9,null],["1-son texnikum","Fizika",2,15.1,null,6,6.7,null],["1-son texnikum","Ingliz tili",4,26.9,null,5,31.4,null],["1-son texnikum","Informatika va axborot texnologiyalari",4,12.8,null,6,15.9,null],["1-son texnikum","Rus tili va adabiyot",2,15.6,null,5,16.5,2],["1-son texnikum","Geografiya",null,null,null,2,11,null],["1-son texnikum","Jami",21,16,null,39,14.7,2],["2-son texnikum","Matematika",1,24.6,null,null,null,null],["2-son texnikum","Ingliz tili",1,17.4,null,null,null,null],["2-son texnikum","Jami",2,21,null,null,null,null],["Tuman boʻyicha jami",null,992,18.8,113,1239,17.8,119]]};
+const D={"maktab":[["1-son maktab",55,23.1,10,57,24,14],["2-son maktab",58,20.1,10,87,18.9,17],["3-son maktab",29,13.9,0,32,14.2,0],["4-son maktab",37,18.5,1,42,18.3,1],["5-son maktab",43,14.3,0,53,13.8,2],["6-son maktab",32,18.1,1,33,16.5,3],["7-son maktab",35,18,3,72,15,3],["8-son maktab",52,21.9,7,52,21.2,4],["9-son maktab",42,20.2,5,39,19.2,2],["10-son maktab",76,18.9,10,66,18.1,4],["11-son maktab",36,15.4,1,49,14.5,2],["12-son maktab",30,13.8,0,37,15,1],["13-son maktab",20,15.4,2,63,14.5,5],["14-son maktab",32,14.8,4,39,14.4,6],["15-son maktab",20,15.1,1,35,14.1,2],["16-son maktab",32,13.9,5,38,12.7,4],["17-son maktab",42,16.8,5,56,18.1,8],["18-son maktab",35,16.3,3,49,15.7,1],["19-son maktab",41,21.4,9,82,18.2,4],["20-son maktab",64,21.3,9,96,19.5,10],["21-son maktab",50,18.5,2,31,15.8,1],["Ixtisoslashtirilgan maktab",65,23.2,17,51,29.2,18],["PRIME xususiy maktabi",37,23.7,8,40,25,5],["EBRU School xususiy maktabi",6,21.6,0,1,14,0],["1-son texnikum",21,16,0,39,14.7,2],["2-son texnikum",2,21,0,0,0,0],["Tuman boʻyicha jami",992,18.8,113,1239,17.8,119]],"sinf":[["9-sinf",346,18.4,37,448,18.6,41],["10-sinf",338,19,38,394,17.1,39],["11-sinf",308,18.8,38,397,17.7,39],["Tuman boʻyicha jami",992,18.8,113,1239,17.8,119]],"fan":[["Ona tili va adabiyot","9-sinf",41,21.5,3,45,24.9,3],["Ona tili va adabiyot","10-sinf",38,23.6,3,43,23.7,3],["Ona tili va adabiyot","11-sinf",38,25.6,3,42,27.2,3],["Ona tili va adabiyot — jami","9–11",117,23.5,9,130,25.3,9],["Matematika","9-sinf",36,18.9,3,42,11.2,3],["Matematika","10-sinf",32,17.5,3,32,9.6,3],["Matematika","11-sinf",35,17.6,3,34,13,3],["Matematika — jami","9–11",103,18,9,108,11.3,9],["Kimyo","9-sinf",30,18.2,3,41,16.6,3],["Kimyo","10-sinf",29,16.7,3,37,15.2,3],["Kimyo","11-sinf",24,14.3,3,35,15,3],["Kimyo — jami","9–11",83,16.5,9,113,15.7,9],["Tarix","9-sinf",35,16.1,3,39,20.3,3],["Tarix","10-sinf",35,16.2,3,33,13.7,3],["Tarix","11-sinf",31,16.1,3,32,14.6,3],["Tarix — jami","9–11",101,16.2,9,104,16.4,9],["Davlat va huquq asoslari","9-sinf",25,25.1,3,33,16.8,3],["Davlat va huquq asoslari","10-sinf",25,26.1,3,27,17.7,3],["Davlat va huquq asoslari","11-sinf",19,27.5,3,29,14,3],["Davlat va huquq asoslari — jami","9–11",69,26.1,9,89,16.2,9],["Biologiya","9-sinf",29,16,3,44,17.8,3],["Biologiya","10-sinf",27,16.6,3,37,17.7,3],["Biologiya","11-sinf",25,18.1,3,39,20.9,3],["Biologiya — jami","9–11",81,16.9,9,120,18.8,9],["Fizika","9-sinf",27,14.9,3,38,11.8,3],["Fizika","10-sinf",29,14.9,3,35,12.8,3],["Fizika","11-sinf",25,9.9,3,38,9,3],["Fizika — jami","9–11",81,13.4,9,111,11.1,9],["Ingliz tili","9-sinf",39,24.4,3,46,29.5,3],["Ingliz tili","10-sinf",41,24.3,3,46,27,3],["Ingliz tili","11-sinf",35,26.9,3,45,28.4,3],["Ingliz tili — jami","9–11",115,25.1,9,137,28.3,9],["Informatika va axborot texnologiyalari","9-sinf",29,17,3,44,22.4,3],["Informatika va axborot texnologiyalari","10-sinf",26,18.1,3,37,15.8,3],["Informatika va axborot texnologiyalari","11-sinf",22,14.7,3,38,18.8,3],["Informatika va axborot texnologiyalari — jami","9–11",77,16.7,9,119,19.2,9],["Rus tili va adabiyot","9-sinf",29,13.8,3,34,15.4,3],["Rus tili va adabiyot","10-sinf",26,17.1,3,29,14,3],["Rus tili va adabiyot","11-sinf",29,17.5,3,32,13.8,3],["Rus tili va adabiyot — jami","9–11",84,16.1,9,95,14.4,9],["Geografiya","9-sinf",22,14.1,3,32,14,3],["Geografiya","10-sinf",25,15,3,30,15.8,3],["Geografiya","11-sinf",20,15.3,3,23,13.1,3],["Geografiya — jami","9–11",67,14.8,9,85,14.4,9],["Nemis tili","9-sinf",1,11.4,1,4,18.9,3],["Nemis tili","10-sinf",3,17.7,3,2,11.5,2],["Nemis tili","11-sinf",1,19.5,1,5,12.2,3],["Nemis tili — jami","9–11",5,16.8,5,11,14.5,8],["Fransuz tili","9-sinf",1,10.4,1,2,10.6,2],["Fransuz tili","10-sinf",null,null,null,1,14.5,1],["Fransuz tili","11-sinf",1,8,1],["Fransuz tili — jami","9–11",2,9.2,2,3,11.9,3],["Oʻzbek tili","9-sinf",2,18.4,2,4,12.7,3],["Oʻzbek tili","10-sinf",2,20.5,2,5,13.2,3],["Oʻzbek tili","11-sinf",3,14.1,3,5,16.8,3],["Oʻzbek tili — jami","9–11",7,17.1,7,14,14.3,9],["Tuman boʻyicha jami",null,992,18.8,113,1239,17.8,119]],"mxs":[["1-son maktab","9-sinf",19,21.4,2,22,24.2],["1-son maktab","10-sinf",20,23.1,4,16,21],["1-son maktab","11-sinf",16,25,4,19,26.3],["1-son maktab","Jami",55,23.1,10,57,24],["2-son maktab","9-sinf",22,18.7,5,33,18.4],["2-son maktab","10-sinf",20,23.6,3,28,16.3],["2-son maktab","11-sinf",16,17.6,2,26,22.3],["2-son maktab","Jami",58,20.1,10,87,18.9],["3-son maktab","9-sinf",10,12.3,null,13,16],["3-son maktab","10-sinf",11,14.3,null,9,13.5],["3-son maktab","11-sinf",8,15.4,null,10,12.6],["3-son maktab","Jami",29,13.9,null,32,14.2],["4-son maktab","9-sinf",12,21.5,1,17,22.3],["4-son maktab","10-sinf",14,17.3,null,12,17.6],["4-son maktab","11-sinf",11,16.6,null,13,13.8],["4-son maktab","Jami",37,18.5,1,42,18.3],["5-son maktab","9-sinf",14,12.5,null,16,15.6],["5-son maktab","10-sinf",14,13.8,null,15,14.7],["5-son maktab","11-sinf",15,16.3,null,22,11.9],["5-son maktab","Jami",43,14.3,null,53,13.8],["6-son maktab","9-sinf",13,19.6,1,12,17.2],["6-son maktab","10-sinf",11,17.9,null,11,16.6],["6-son maktab","11-sinf",8,15.8,null,10,15.5],["6-son maktab","Jami",32,18.1,1,33,16.5],["7-son maktab","9-sinf",12,17.8,1,30,15.4],["7-son maktab","10-sinf",13,16.6,null,20,13.6],["7-son maktab","11-sinf",10,20.1,2,22,15.6],["7-son maktab","Jami",35,18,3,72,15],["8-son maktab","9-sinf",14,20.1,2,19,21.5],["8-son maktab","10-sinf",21,21.5,2,17,20.8],["8-son maktab","11-sinf",17,24,3,16,21.2],["8-son maktab","Jami",52,21.9,7,52,21.2],["9-son maktab","9-sinf",17,20.7,2,14,20.2],["9-son maktab","10-sinf",14,20.7,2,12,16.1],["9-son maktab","11-sinf",11,18.6,1,13,20.9],["9-son maktab","Jami",42,20.2,5,39,19.2],["10-son maktab","9-sinf",31,21.8,8,23,20.2],["10-son maktab","10-sinf",26,18.3,2,21,17.4],["10-son maktab","11-sinf",19,15.1,null,22,16.6],["10-son maktab","Jami",76,18.9,10,66,18.1],["11-son maktab","9-sinf",14,17,null,16,12],["11-son maktab","10-sinf",10,14.4,1,18,15.9],["11-son maktab","11-sinf",12,14.5,null,15,15.5],["11-son maktab","Jami",36,15.4,1,49,14.5],["12-son maktab","9-sinf",12,15,null,14,15.1],["12-son maktab","10-sinf",11,13.7,null,13,15.1],["12-son maktab","11-sinf",7,11.9,null,10,14.6],["12-son maktab","Jami",30,13.8,null,37,15],["13-son maktab","9-sinf",9,14.7,1,25,15.1],["13-son maktab","10-sinf",5,17.1,null,18,13.7],["13-son maktab","11-sinf",6,14.9,1,20,14.5],["13-son maktab","Jami",20,15.4,2,63,14.5],["14-son maktab","9-sinf",10,12.3,null,15,17.6],["14-son maktab","10-sinf",12,17.3,4,11,13.5],["14-son maktab","11-sinf",10,14.4,null,13,11.6],["14-son maktab","Jami",32,14.8,4,39,14.4],["15-son maktab","9-sinf",10,16.1,1,13,15.8],["15-son maktab","10-sinf",4,17.9,null,13,12.5],["15-son maktab","11-sinf",6,11.5,null,9,13.9],["15-son maktab","Jami",20,15.1,1,35,14.1],["16-son maktab","9-sinf",11,10.6,1,15,13.7],["16-son maktab","10-sinf",10,15.4,2,12,12.2],["16-son maktab","11-sinf",11,15.8,2,11,12],["16-son maktab","Jami",32,13.9,5,38,12.7],["17-son maktab","9-sinf",15,14.2,1,19,16.7],["17-son maktab","10-sinf",12,17.2,1,20,18.2],["17-son maktab","11-sinf",15,19,3,17,19.5],["17-son maktab","Jami",42,16.8,5,56,18.1],["18-son maktab","9-sinf",13,17.3,1,19,15.7],["18-son maktab","10-sinf",11,16.1,1,13,14.5],["18-son maktab","11-sinf",11,15.3,1,17,16.5],["18-son maktab","Jami",35,16.3,3,49,15.7],["19-son maktab","9-sinf",12,17.1,null,31,19.7],["19-son maktab","10-sinf",14,22.2,3,26,17.8],["19-son maktab","11-sinf",15,24.2,6,25,16.9],["19-son maktab","Jami",41,21.4,9,82,18.2],["20-son maktab","9-sinf",22,22.2,4,33,19.6],["20-son maktab","10-sinf",19,20.1,1,33,18],["20-son maktab","11-sinf",23,21.4,4,30,21.2],["20-son maktab","Jami",64,21.3,9,96,19.5],["21-son maktab","9-sinf",16,15.6,null,11,15.8],["21-son maktab","10-sinf",18,19,1,11,15.5],["21-son maktab","11-sinf",16,20.9,1,9,16.2],["21-son maktab","Jami",50,18.5,2,31,15.8],["Ixtisoslashtirilgan maktab","9-sinf",21,23.9,4,23,27.4],["Ixtisoslashtirilgan maktab","10-sinf",23,23.2,7,13,31.5],["Ixtisoslashtirilgan maktab","11-sinf",21,22.5,6,15,30.1],["Ixtisoslashtirilgan maktab","Jami",65,23.2,17,51,29.2],["PRIME xususiy maktabi","9-sinf",11,23.9,2,14,26],["PRIME xususiy maktabi","10-sinf",16,21.8,4,14,22.9],["PRIME xususiy maktabi","11-sinf",10,26.3,2,12,26.2],["PRIME xususiy maktabi","Jami",37,23.7,8,40,25],["EBRU School xususiy maktabi","9-sinf",6,21.6,null,1,14],["EBRU School xususiy maktabi","Jami",6,21.6,null,1,14],["1-son texnikum","10-sinf",7,14.9,null,18,18.2],["1-son texnikum","11-sinf",14,16.5,null,21,11.6],["1-son texnikum","Jami",21,16,null,39,14.7],["2-son texnikum","10-sinf",2,21],["2-son texnikum","Jami",2,21]],"mxf":[["1-son maktab","Ona tili va adabiyot",7,26.5,null,6,30.3],["1-son maktab","Matematika",6,25.2,3,5,29.4],["1-son maktab","Kimyo",6,20,2,4,16.1],["1-son maktab","Tarix",3,20.1,null,3,20.9],["1-son maktab","Davlat va huquq asoslari",3,23.6,null,5,21.8],["1-son maktab","Biologiya",7,21.9,1,7,23.9],["1-son maktab","Fizika",3,13.6,null,7,14.6],["1-son maktab","Ingliz tili",5,39.2,2,4,40.2],["1-son maktab","Informatika va axborot texnologiyalari",7,18.1,null,7,28.3],["1-son maktab","Rus tili va adabiyot",5,23.4,2,6,20.7],["1-son maktab","Geografiya",3,15.9,null,3,17.4],["2-son maktab","Ona tili va adabiyot",5,25.6,null,7,22.7],["2-son maktab","Matematika",7,19.5,1,7,11.1],["2-son maktab","Kimyo",3,13.4,null,8,19.6],["2-son maktab","Tarix",5,13.6,null,6,16.9],["2-son maktab","Davlat va huquq asoslari",5,30.5,2,7,17.5],["2-son maktab","Biologiya",3,12.6,null,6,19],["2-son maktab","Fizika",4,13.4,null,4,14.3],["2-son maktab","Ingliz tili",7,29.8,1,9,33.6],["2-son maktab","Informatika va axborot texnologiyalari",4,17.5,null,9,17.5],["2-son maktab","Rus tili va adabiyot",8,18.8,2,8,19.7],["2-son maktab","Geografiya",3,16.2,null,7,14.6],["2-son maktab","Oʻzbek tili",4,17.7,4,9,15.2],["3-son maktab","Ona tili va adabiyot",3,15.4,null,3,21.5],["3-son maktab","Matematika",3,12.6,null,4,6.2],["3-son maktab","Kimyo",2,14.3,null,2,8.3],["3-son maktab","Tarix",3,13.6,null,3,12.1],["3-son maktab","Davlat va huquq asoslari",3,20,null,2,11.1],["3-son maktab","Biologiya",2,10.4,null,3,15.1],["3-son maktab","Fizika",2,10.4,null,3,9.8],["3-son maktab","Ingliz tili",3,14.3,null,3,22.5],["3-son maktab","Informatika va axborot texnologiyalari",3,16.4,null,5,19.5],["3-son maktab","Rus tili va adabiyot",3,9.4,null,1,15.8],["3-son maktab","Geografiya",2,14.3,null,3,11.9],["4-son maktab","Ona tili va adabiyot",4,23.7,null,5,21.4],["4-son maktab","Matematika",4,19.4,1,3,10],["4-son maktab","Kimyo",3,15.5,null,3,13.9],["4-son maktab","Tarix",3,20.1,null,3,12.6],["4-son maktab","Davlat va huquq asoslari",3,27.4,null,3,14.6],["4-son maktab","Biologiya",3,11.9,null,3,17.7],["4-son maktab","Fizika",3,14.8,null,3,12.3],["4-son maktab","Ingliz tili",6,20.6,null,8,28.4],["4-son maktab","Informatika va axborot texnologiyalari",3,16,null,5,25.6],["4-son maktab","Rus tili va adabiyot",3,16.6,null,3,8.5],["4-son maktab","Geografiya",2,10.3,null,3,12.9],["5-son maktab","Ona tili va adabiyot",4,17.5,null,7,16.5],["5-son maktab","Matematika",3,15.8,null,3,10.3],["5-son maktab","Kimyo",5,12.6,null,6,15.5],["5-son maktab","Tarix",8,13.4,null,6,13.2],["5-son maktab","Davlat va huquq asoslari",3,18.2,null,5,10.4],["5-son maktab","Biologiya",3,15.5,null,6,13.4],["5-son maktab","Fizika",3,11.2,null,3,9.2],["5-son maktab","Ingliz tili",4,13.3,null,6,14.7],["5-son maktab","Informatika va axborot texnologiyalari",4,14,null,3,22.4],["5-son maktab","Rus tili va adabiyot",3,18,null,4,10.8],["5-son maktab","Geografiya",3,9.8,null,4,13.8],["6-son maktab","Ona tili va adabiyot",3,23.5,null,3,24.6],["6-son maktab","Matematika",3,15.5,null,3,6.3],["6-son maktab","Kimyo",3,17,null,3,18.3],["6-son maktab","Tarix",4,17.6,null,3,22.2],["6-son maktab","Davlat va huquq asoslari",2,20.8,null,2,14.7],["6-son maktab","Biologiya",2,15,null,3,12.9],["6-son maktab","Fizika",3,13.6,null,3,14.9],["6-son maktab","Ingliz tili",3,32.7,1,4,23],["6-son maktab","Informatika va axborot texnologiyalari",2,14.6,null,3,18.6],["6-son maktab","Rus tili va adabiyot",4,14.8,null,3,9.7],["6-son maktab","Geografiya",3,13.6,null,3,13.4],["7-son maktab","Ona tili va adabiyot",3,28.9,null,7,21.6],["7-son maktab","Matematika",3,18.3,null,7,8.9],["7-son maktab","Kimyo",3,14.2,null,7,14.1],["7-son maktab","Tarix",3,19,1,7,13],["7-son maktab","Davlat va huquq asoslari",3,30.7,1,4,19.6],["7-son maktab","Biologiya",3,12.2,null,7,12.2],["7-son maktab","Fizika",3,15.1,1,7,12.6],["7-son maktab","Ingliz tili",5,15.6,null,8,22.9],["7-son maktab","Informatika va axborot texnologiyalari",3,15,null,6,14.5],["7-son maktab","Rus tili va adabiyot",3,18,null,6,14.8],["7-son maktab","Geografiya",3,13.1,null,6,10.8],["8-son maktab","Ona tili va adabiyot",6,16.8,null,4,30.3],["8-son maktab","Matematika",1,32,1,3,14.1],["8-son maktab","Kimyo",5,17.9,null,8,15.9],["8-son maktab","Tarix",7,20.1,2,4,23.4],["8-son maktab","Davlat va huquq asoslari",5,28,1,4,18.8],["8-son maktab","Biologiya",7,20.3,null,6,19.2],["8-son maktab","Fizika",3,15.8,null,3,11.2],["8-son maktab","Ingliz tili",7,33.3,1,9,31.9],["8-son maktab","Informatika va axborot texnologiyalari",3,20.1,1,4,20.9],["8-son maktab","Rus tili va adabiyot",5,20.6,null,4,13],["8-son maktab","Geografiya",3,16.5,1,3,23.6],["9-son maktab","Ona tili va adabiyot",5,30.8,1,4,34],["9-son maktab","Matematika",4,12.8,null,3,13],["9-son maktab","Kimyo",4,17.9,null,3,14.9],["9-son maktab","Tarix",3,17.9,null,3,12.9],["9-son maktab","Davlat va huquq asoslari",3,27.6,1,3,19.9],["9-son maktab","Biologiya",3,14.1,null,3,27],["9-son maktab","Fizika",3,10.4,null,3,9.3],["9-son maktab","Ingliz tili",5,32.2,1,4,32.4],["9-son maktab","Informatika va axborot texnologiyalari",3,19.6,1,3,20.5],["9-son maktab","Rus tili va adabiyot",3,20.1,null,3,14],["9-son maktab","Geografiya",6,13.4,1,7,12.6],["10-son maktab","Ona tili va adabiyot",9,21.6,1,5,26.4],["10-son maktab","Matematika",9,21,1,9,12.4],["10-son maktab","Kimyo",5,13.8,null,4,14],["10-son maktab","Tarix",8,11,null,3,15.7],["10-son maktab","Davlat va huquq asoslari",7,30.3,2,6,21.9],["10-son maktab","Biologiya",4,17.1,null,6,18.2],["10-son maktab","Fizika",8,14.2,1,9,9.4],["10-son maktab","Ingliz tili",7,25.2,1,9,29.1],["10-son maktab","Informatika va axborot texnologiyalari",7,20.2,2,8,17.6],["10-son maktab","Rus tili va adabiyot",6,15.1,1,4,15],["10-son maktab","Geografiya",6,16.2,1,3,20],["11-son maktab","Ona tili va adabiyot",5,16,null,5,16.9],["11-son maktab","Matematika",5,18.1,null,3,6.5],["11-son maktab","Kimyo",3,8.2,null,5,13.9],["11-son maktab","Tarix",3,15.5,null,4,18.3],["11-son maktab","Davlat va huquq asoslari",3,26.7,null,2,13.7],["11-son maktab","Biologiya",3,15.3,null,8,11.1],["11-son maktab","Fizika",4,10,null,5,13.7],["11-son maktab","Ingliz tili",3,13.5,null,6,14.6],["11-son maktab","Informatika va axborot texnologiyalari",2,13.3,null,4,21.7],["11-son maktab","Rus tili va adabiyot",2,13.4,null,3,11.2],["11-son maktab","Geografiya",3,18,1,2,21.7],["11-son maktab","Oʻzbek tili",null,null,null,2,13.9],["12-son maktab","Ona tili va adabiyot",4,19.8,null,5,20.4],["12-son maktab","Matematika",3,13.8,null,3,8.4],["12-son maktab","Kimyo",3,12.7,null,3,17.5],["12-son maktab","Tarix",3,14.6,null,2,21],["12-son maktab","Davlat va huquq asoslari",1,26.3,null,3,18.1],["12-son maktab","Biologiya",3,8.6,null,3,11.5],["12-son maktab","Fizika",3,11.9,null,3,9.7],["12-son maktab","Ingliz tili",2,19.1,null,4,12.5],["12-son maktab","Informatika va axborot texnologiyalari",3,13.1,null,6,15.1],["12-son maktab","Rus tili va adabiyot",3,8.9,null,3,13.5],["12-son maktab","Geografiya",2,9.6,null,2,16.9],["13-son maktab","Ona tili va adabiyot",3,20.3,null,6,24.8],["13-son maktab","Matematika",1,9.1,null,4,6.8],["13-son maktab","Kimyo",1,5.7,null,6,13.7],["13-son maktab","Tarix",3,15.6,null,5,15.2],["13-son maktab","Davlat va huquq asoslari",2,25.7,null,6,11.3],["13-son maktab","Biologiya",3,12.1,null,6,15.1],["13-son maktab","Fizika",1,18.5,null,9,12.5],["13-son maktab","Informatika va axborot texnologiyalari",null,null,null,9,16.1],["13-son maktab","Rus tili va adabiyot",1,11.8,null,3,13],["13-son maktab","Geografiya",3,12,null,3,11.2],["13-son maktab","Nemis tili",2,15.5,2,6,15],["14-son maktab","Ona tili va adabiyot",3,14,null,4,21.5],["14-son maktab","Matematika",3,16.5,null,4,7.6],["14-son maktab","Kimyo",3,16.1,null,3,14.4],["14-son maktab","Tarix",3,15.1,null,3,20.6],["14-son maktab","Davlat va huquq asoslari",null,null,null,3,11.3],["14-son maktab","Biologiya",3,21.1,1,3,29.3],["14-son maktab","Fizika",3,14.1,null,3,11.1],["14-son maktab","Ingliz tili",2,14.4,null,2,8.4],["14-son maktab","Informatika va axborot texnologiyalari",3,11.3,null,3,12.7],["14-son maktab","Rus tili va adabiyot",3,11.9,null,3,11.1],["14-son maktab","Geografiya",3,10.7,null,3,9.6],["14-son maktab","Nemis tili",3,17.7,3,5,13.9],["15-son maktab","Ona tili va adabiyot",2,22.2,null,3,20.8],["15-son maktab","Matematika",2,27.3,1,2,5.9],["15-son maktab","Kimyo",3,16.3,null,6,12.7],["15-son maktab","Tarix",1,5.9,null,4,14.7],["15-son maktab","Davlat va huquq asoslari",null,null,null,2,13.6],["15-son maktab","Biologiya",4,11.4,null,5,13.8],["15-son maktab","Fizika",2,13.5,null,3,11.7],["15-son maktab","Ingliz tili",2,15.7,null,2,19.1],["15-son maktab","Informatika va axborot texnologiyalari",2,10,null,2,19.2],["15-son maktab","Rus tili va adabiyot",2,12.2,null,3,14.3],["15-son maktab","Geografiya",null,null,null,3,11.5],["16-son maktab","Ona tili va adabiyot",null,null,null,3,18.2],["16-son maktab","Matematika",3,17.6,null,3,7.3],["16-son maktab","Kimyo",3,11.1,null,4,15.6],["16-son maktab","Tarix",3,16.7,1,4,14.9],["16-son maktab","Davlat va huquq asoslari",3,9.9,null,3,12.6],["16-son maktab","Biologiya",3,13.6,null,3,17.3],["16-son maktab","Fizika",3,17.6,1,4,8.4],["16-son maktab","Ingliz tili",3,15.4,null,2,9.1],["16-son maktab","Informatika va axborot texnologiyalari",2,5.3,null,4,12.4],["16-son maktab","Rus tili va adabiyot",3,10.7,null,2,13.1],["16-son maktab","Geografiya",3,15.9,null,3,10.3],["16-son maktab","Oʻzbek tili",3,16.4,3,3,12.2],["17-son maktab","Ona tili va adabiyot",4,18.7,null,6,32.5],["17-son maktab","Matematika",5,17.4,null,5,8.5],["17-son maktab","Kimyo",2,12.4,null,5,13.7],["17-son maktab","Tarix",4,19.3,1,5,16.6],["17-son maktab","Davlat va huquq asoslari",3,23.8,null,3,15.1],["17-son maktab","Biologiya",3,20.1,1,5,23],["17-son maktab","Fizika",4,9.6,null,5,6.4],["17-son maktab","Ingliz tili",6,20,null,6,27.8],["17-son maktab","Informatika va axborot texnologiyalari",3,15,null,5,20.5],["17-son maktab","Rus tili va adabiyot",3,14.2,null,4,15.3],["17-son maktab","Geografiya",3,15.2,1,4,16.4],["17-son maktab","Fransuz tili",2,9.2,2,3,11.9],["18-son maktab","Ona tili va adabiyot",4,18.2,null,7,22.5],["18-son maktab","Matematika",3,12.3,null,5,7.4],["18-son maktab","Kimyo",4,17.8,1,5,14],["18-son maktab","Tarix",3,17.6,null,3,9.8],["18-son maktab","Davlat va huquq asoslari",3,21.9,null,3,9.4],["18-son maktab","Biologiya",3,14.4,null,6,15.4],["18-son maktab","Fizika",3,12.8,1,2,13.5],["18-son maktab","Ingliz tili",3,20.8,null,8,22.5],["18-son maktab","Informatika va axborot texnologiyalari",3,12.5,null,3,12.3],["18-son maktab","Rus tili va adabiyot",3,17.7,1,4,12.6],["18-son maktab","Geografiya",3,12.4,null,3,19.6],["19-son maktab","Ona tili va adabiyot",5,34.4,2,9,30],["19-son maktab","Matematika",5,15,null,8,7.7],["19-son maktab","Kimyo",4,20.6,1,3,16.2],["19-son maktab","Tarix",4,24.4,1,8,20.2],["19-son maktab","Davlat va huquq asoslari",4,31.8,1,8,15.1],["19-son maktab","Biologiya",3,19.1,null,7,24.9],["19-son maktab","Fizika",3,9.8,null,8,5.7],["19-son maktab","Ingliz tili",3,21.3,null,9,30.3],["19-son maktab","Informatika va axborot texnologiyalari",3,15.2,1,8,17.3],["19-son maktab","Rus tili va adabiyot",4,17.1,1,8,14.1],["19-son maktab","Geografiya",3,19.6,2,6,14.9],["20-son maktab","Ona tili va adabiyot",9,25.6,null,9,34],["20-son maktab","Matematika",5,14.9,null,9,9.8],["20-son maktab","Kimyo",5,18.7,1,9,15.1],["20-son maktab","Tarix",5,14.8,null,8,14.2],["20-son maktab","Davlat va huquq asoslari",4,28.9,null,9,17.7],["20-son maktab","Biologiya",5,24.4,3,9,18.2],["20-son maktab","Fizika",5,10.6,1,9,11.7],["20-son maktab","Ingliz tili",9,30.8,null,9,41],["20-son maktab","Informatika va axborot texnologiyalari",5,20.1,1,9,22.5],["20-son maktab","Rus tili va adabiyot",7,16.9,1,8,13.3],["20-son maktab","Geografiya",5,21,2,8,15.7],["21-son maktab","Ona tili va adabiyot",7,23.7,null,3,24.8],["21-son maktab","Matematika",7,13.6,null,2,4.8],["21-son maktab","Kimyo",3,15.1,null,3,15.5],["21-son maktab","Tarix",6,13.9,1,3,10],["21-son maktab","Davlat va huquq asoslari",5,21.9,null,2,16.1],["21-son maktab","Biologiya",3,14.1,null,3,13.9],["21-son maktab","Fizika",3,14.2,null,4,15],["21-son maktab","Ingliz tili",9,25.3,null,3,28.6],["21-son maktab","Informatika va axborot texnologiyalari",2,20.8,1,3,17],["21-son maktab","Rus tili va adabiyot",3,14.3,null,3,10.5],["21-son maktab","Geografiya",2,15.2,null,2,13.5],["Ixtisoslashtirilgan maktab","Ona tili va adabiyot",9,30.1,3,5,27.2],["Ixtisoslashtirilgan maktab","Matematika",8,21.8,null,5,23.2],["Ixtisoslashtirilgan maktab","Kimyo",8,23.8,3,9,22.9],["Ixtisoslashtirilgan maktab","Tarix",7,17.1,1,5,28.2],["Ixtisoslashtirilgan maktab","Davlat va huquq asoslari",null,null,null,1,37.9],["Ixtisoslashtirilgan maktab","Biologiya",7,22.6,3,9,34.7],["Ixtisoslashtirilgan maktab","Fizika",6,15.7,2,3,15.6],["Ixtisoslashtirilgan maktab","Ingliz tili",8,32.8,2,8,40.8],["Ixtisoslashtirilgan maktab","Informatika va axborot texnologiyalari",6,25.3,2,4,33.4],["Ixtisoslashtirilgan maktab","Rus tili va adabiyot",3,14.5,1,1,17.3],["Ixtisoslashtirilgan maktab","Geografiya",3,14.1,null,1,16.6],["PRIME xususiy maktabi","Ona tili va adabiyot",9,29.8,2,9,33.8],["PRIME xususiy maktabi","Matematika",7,19.7,1,7,18.8],["PRIME xususiy maktabi","Kimyo",1,24.8,1,2,13.4],["PRIME xususiy maktabi","Tarix",4,17.4,1,3,19.1],["PRIME xususiy maktabi","Davlat va huquq asoslari",3,34.9,1,2,18.8],["PRIME xususiy maktabi","Biologiya",1,11.5,null,2,17],["PRIME xususiy maktabi","Fizika",4,17.2,2,2,17.7],["PRIME xususiy maktabi","Ingliz tili",6,27.3,null,9,34.4],["PRIME xususiy maktabi","Rus tili va adabiyot",2,13.4,null,3,19.2],["PRIME xususiy maktabi","Geografiya",null,null,null,1,5.7],["EBRU School xususiy maktabi","Ona tili va adabiyot",1,26.2],["EBRU School xususiy maktabi","Matematika",null,null,null,1,14],["EBRU School xususiy maktabi","Kimyo",1,19.8],["EBRU School xususiy maktabi","Tarix",1,23],["EBRU School xususiy maktabi","Davlat va huquq asoslari",1,32.2],["EBRU School xususiy maktabi","Ingliz tili",2,14.2],["1-son texnikum","Ona tili va adabiyot",3,11.8,null,5,12.9],["1-son texnikum","Matematika",2,15.2],["1-son texnikum","Kimyo",null,null,null,2,13.6],["1-son texnikum","Tarix",4,12.4,null,6,11.4],["1-son texnikum","Davlat va huquq asoslari",null,null,null,1,5.7],["1-son texnikum","Biologiya",null,null,null,1,8.9],["1-son texnikum","Fizika",2,15.1,null,6,6.7],["1-son texnikum","Ingliz tili",4,26.9,null,5,31.4],["1-son texnikum","Informatika va axborot texnologiyalari",4,12.8,null,6,15.9],["1-son texnikum","Rus tili va adabiyot",2,15.6,null,5,16.5],["1-son texnikum","Geografiya",null,null,null,2,11],["2-son texnikum","Matematika",1,24.6],["2-son texnikum","Ingliz tili",1,17.4]]};
 (function(){
 'use strict';
 var $=function(s,r){return (r||document).querySelector(s)};
@@ -311,8 +282,6 @@ var f0=function(v){return v==null?'–':Math.round(v).toLocaleString('ru-RU')};
 var num=function(v){return typeof v==='number'?v:0};
 var has=function(v){return typeof v==='number'};
 var sum=function(a,k){return a.reduce(function(s,x){return s+num(k?x[k]:x)},0)};
-
-/* ---------- Maʼlumotlarni tayyorlash ---------- */
 function mk(r){return {name:r[0],n:num(r[1]),avg:has(r[2])?r[2]:null,sov:num(r[3]),pn:num(r[4]),pavg:(has(r[5])&&num(r[4])>0)?r[5]:null,psov:num(r[6])}}
 var T=mk(D.maktab[D.maktab.length-1]);               // tuman jami
 var S=D.maktab.slice(0,-1).map(mk);                  // maktablar
@@ -332,177 +301,155 @@ function pill(v){var c=v>=20?'hi':(v>=15?'md':'lo');return '<span class="ot-pill
 function col(v){return v>=20?'#22c55e':(v>=15?'#f59e0b':'#ef4444')}
 function mapCol(v){var t=Math.max(0,Math.min(1,(v-8)/24));var h=t<.5?t*2*55:55+(t-.5)*2*75;return 'hsl('+h+','+(t<.5?78:70)+'%,'+(t<.5?66:60)+'%)'}
 function bar(opt){ // nom, qiymat, max, rang, ghost, line, right
-  var w=Math.max(0,Math.min(100,opt.v/opt.max*100));
-  return '<div class="ot-row'+(opt.click?' click':'')+(opt.sel?' sel':'')+'" '+(opt.attr||'')+'><b title="'+esc(opt.name)+'">'+esc(opt.name)+'</b><div class="ot-track"><div class="ot-fill" style="width:'+w+'%;--c:'+opt.color+'"></div>'
-   +(opt.ghost!=null&&opt.ghost>0?'<span class="ot-ghost" style="left:calc('+Math.min(100,opt.ghost/opt.max*100)+'% - 1px)"></span>':'')
-   +(opt.line!=null?'<span class="ot-avgline" style="left:'+(opt.line/opt.max*100)+'%"></span>':'')+'</div><div class="ot-val">'+opt.right+'</div></div>';
+var w=Math.max(0,Math.min(100,opt.v/opt.max*100));
+return '<div class="ot-row'+(opt.click?' click':'')+(opt.sel?' sel':'')+'" '+(opt.attr||'')+'><b title="'+esc(opt.name)+'">'+esc(opt.name)+'</b><div class="ot-track"><div class="ot-fill" style="width:'+w+'%;--c:'+opt.color+'"></div>'
++(opt.ghost!=null&&opt.ghost>0?'<span class="ot-ghost" style="left:calc('+Math.min(100,opt.ghost/opt.max*100)+'% - 1px)"></span>':'')
++(opt.line!=null?'<span class="ot-avgline" style="left:'+(opt.line/opt.max*100)+'%"></span>':'')+'</div><div class="ot-val">'+opt.right+'</div></div>';
 }
-
-/* ---------- KPI ---------- */
 (function(){
-  var pd=T.pn?(T.n-T.pn)/T.pn*100:0;
-  var items=[
-    ['Ishtirokchilar',f0(T.n),'<em class="'+(T.n>=T.pn?'up':'dn')+'">'+(T.n>=T.pn?'▲ +':'▼ ')+f0(T.n-T.pn)+' ('+(pd>0?'+':'')+f1(pd)+'%)</em>','fa-users','#2563eb'],
-    ['Oʻrtacha ball',f1(T.avg)+' <small style="font-size:1rem;color:var(--muted)">/ 50</small>','<em>'+dEl(dlt(T.avg,T.pavg))+' ball</em>','fa-chart-line','#16a34a'],
-    ['Sovrindorlar',f0(T.sov),'<em>'+dEl(T.sov-T.psov,'int')+' · ulushi '+f1(T.sov/T.n*100)+'%</em>','fa-trophy','#d97706'],
-    ['Taʼlim muassasalari',f0(S.length),'<em class="eq">maktab, xususiy maktab, texnikum</em>','fa-school','#0891b2'],
-    ['Fanlar',f0(FA.length),'<em class="eq">asosiy: '+FM.length+' ta fan</em>','fa-book-open','#7c3aed'],
-    ['Past natija (<15)',f0(S.filter(function(s){return s.avg<15}).length),'<em class="dn">muassasaning oʻrtachasi 15 dan past</em>','fa-triangle-exclamation','#dc2626']
-  ];
-  $('#kpis').innerHTML=items.map(function(i){return '<div class="ot-kpi" style="--c:'+i[4]+'"><small><i class="fa-solid '+i[3]+'" style="color:'+i[4]+'"></i> '+i[0]+'</small><b>'+i[1]+'</b>'+i[2]+'</div>'}).join('');
+var pd=T.pn?(T.n-T.pn)/T.pn*100:0;
+var items=[
+['Ishtirokchilar',f0(T.n),'<em class="'+(T.n>=T.pn?'up':'dn')+'">'+(T.n>=T.pn?'▲ +':'▼ ')+f0(T.n-T.pn)+' ('+(pd>0?'+':'')+f1(pd)+'%)</em>','fa-users','#2563eb'],
+['Oʻrtacha ball',f1(T.avg)+' <small style="font-size:1rem;color:var(--muted)">/ 50</small>','<em>'+dEl(dlt(T.avg,T.pavg))+' ball</em>','fa-chart-line','#16a34a'],
+['Sovrindorlar',f0(T.sov),'<em>'+dEl(T.sov-T.psov,'int')+' · ulushi '+f1(T.sov/T.n*100)+'%</em>','fa-trophy','#d97706'],
+['Taʼlim muassasalari',f0(S.length),'<em class="eq">maktab, xususiy maktab, texnikum</em>','fa-school','#0891b2'],
+['Fanlar',f0(FA.length),'<em class="eq">asosiy: '+FM.length+' ta fan</em>','fa-book-open','#7c3aed'],
+['Past natija (<15)',f0(S.filter(function(s){return s.avg<15}).length),'<em class="dn">muassasaning oʻrtachasi 15 dan past</em>','fa-triangle-exclamation','#dc2626']
+];
+$('#kpis').innerHTML=items.map(function(i){return '<div class="ot-kpi" style="--c:'+i[4]+'"><small><i class="fa-solid '+i[3]+'" style="color:'+i[4]+'"></i> '+i[0]+'</small><b>'+i[1]+'</b>'+i[2]+'</div>'}).join('');
 })();
-
-/* ---------- Umumiy ---------- */
 (function(){
-  var shn=T.sov/T.n*100, shp=T.psov/T.pn*100;
-  var rows=[['Ishtirokchilar',f0(T.n),f0(T.pn),dEl(T.n-T.pn,'int')],['Oʻrtacha ball',f1(T.avg),f1(T.pavg),dEl(dlt(T.avg,T.pavg))],['Sovrindorlar',f0(T.sov),f0(T.psov),dEl(T.sov-T.psov,'int')],['Sovrindorlar ulushi',f1(shn)+'%',f1(shp)+'%',dEl(dlt(shn,shp))+' %']];
-  $('#sumT').innerHTML='<thead><tr><th class="l">Koʻrsatkich</th><th>2026/27</th><th>2025/26</th><th>Farq</th></tr></thead><tbody>'+rows.map(function(r){return '<tr><td class="l">'+r[0]+'</td><td><b>'+r[1]+'</b></td><td>'+r[2]+'</td><td>'+r[3]+'</td></tr>'}).join('')+'</tbody>';
-  var lv=[['Past: 15 dan past',S.filter(function(s){return s.avg<15}),'#ef4444'],['Oʻrta: 15–20',S.filter(function(s){return s.avg>=15&&s.avg<20}),'#f59e0b'],['Yuqori: 20 va yuqori',S.filter(function(s){return s.avg>=20}),'#22c55e']];
-  $('#levels').innerHTML=lv.map(function(l){return bar({name:l[0],v:l[1].length,max:S.length,color:l[2],right:l[1].length+' ta'})+'<div class="ot-note" style="margin:0 0 6px 0;font-size:.8rem">'+l[1].map(function(s){return esc(s.name.replace(/ maktabi$/,'').replace(' maktab',''))}).join(', ')+'</div>'}).join('');
+var shn=T.sov/T.n*100, shp=T.psov/T.pn*100;
+var rows=[['Ishtirokchilar',f0(T.n),f0(T.pn),dEl(T.n-T.pn,'int')],['Oʻrtacha ball',f1(T.avg),f1(T.pavg),dEl(dlt(T.avg,T.pavg))],['Sovrindorlar',f0(T.sov),f0(T.psov),dEl(T.sov-T.psov,'int')],['Sovrindorlar ulushi',f1(shn)+'%',f1(shp)+'%',dEl(dlt(shn,shp))+' %']];
+$('#sumT').innerHTML='<thead><tr><th class="l">Koʻrsatkich</th><th>2026/27</th><th>2025/26</th><th>Farq</th></tr></thead><tbody>'+rows.map(function(r){return '<tr><td class="l">'+r[0]+'</td><td><b>'+r[1]+'</b></td><td>'+r[2]+'</td><td>'+r[3]+'</td></tr>'}).join('')+'</tbody>';
+var lv=[['Past: 15 dan past',S.filter(function(s){return s.avg<15}),'#ef4444'],['Oʻrta: 15–20',S.filter(function(s){return s.avg>=15&&s.avg<20}),'#f59e0b'],['Yuqori: 20 va yuqori',S.filter(function(s){return s.avg>=20}),'#22c55e']];
+$('#levels').innerHTML=lv.map(function(l){return bar({name:l[0],v:l[1].length,max:S.length,color:l[2],right:l[1].length+' ta'})+'<div class="ot-note" style="margin:0 0 6px 0;font-size:.8rem">'+l[1].map(function(s){return esc(s.name.replace(/ maktabi$/,'').replace(' maktab',''))}).join(', ')+'</div>'}).join('');
 })();
-
-/* ---------- Sinflar ---------- */
 (function(){
-  $('#cls').innerHTML=CL.concat([CT]).map(function(c,i){
-    var total=i===CL.length, share=c.n?c.sov/c.n*100:0;
-    return '<div class="ot-cc"><h4>'+esc(total?'Tuman boʻyicha':c.name)+' <span class="ot-pill '+(c.avg>=20?'hi':c.avg>=15?'md':'lo')+'">'+f1(c.avg)+'</span></h4>'
-     +'<div class="big">'+f0(c.n)+' <small style="font-size:.9rem;color:var(--muted);font-weight:600">ishtirokchi</small></div><div>'+dEl(c.n-c.pn,'int')+' <small class="eq">oʻtgan yil: '+f0(c.pn)+'</small></div>'
-     +'<dl><dt>Oʻrtacha ball</dt><dd>'+f1(c.avg)+' '+dEl(dlt(c.avg,c.pavg))+'</dd><dt>Oʻtgan yil</dt><dd>'+f1(c.pavg)+'</dd><dt>Sovrindorlar</dt><dd>'+c.sov+' '+dEl(c.sov-c.psov,'int')+'</dd><dt>Sovrindor ulushi</dt><dd>'+f1(share)+'%</dd></dl></div>';
-  }).join('');
+$('#cls').innerHTML=CL.concat([CT]).map(function(c,i){
+var total=i===CL.length, share=c.n?c.sov/c.n*100:0;
+return '<div class="ot-cc"><h4>'+esc(total?'Tuman boʻyicha':c.name)+' <span class="ot-pill '+(c.avg>=20?'hi':c.avg>=15?'md':'lo')+'">'+f1(c.avg)+'</span></h4>'
++'<div class="big">'+f0(c.n)+' <small style="font-size:.9rem;color:var(--muted);font-weight:600">ishtirokchi</small></div><div>'+dEl(c.n-c.pn,'int')+' <small class="eq">oʻtgan yil: '+f0(c.pn)+'</small></div>'
++'<dl><dt>Oʻrtacha ball</dt><dd>'+f1(c.avg)+' '+dEl(dlt(c.avg,c.pavg))+'</dd><dt>Oʻtgan yil</dt><dd>'+f1(c.pavg)+'</dd><dt>Sovrindorlar</dt><dd>'+c.sov+' '+dEl(c.sov-c.psov,'int')+'</dd><dt>Sovrindor ulushi</dt><dd>'+f1(share)+'%</dd></dl></div>';
+}).join('');
 })();
-
-/* ---------- Fanlar ---------- */
 var curFan=null;
 function drawFans(){
-  var list=FM.slice().sort(function(a,b){return b.avg-a.avg});
-  $('#fbars').innerHTML=list.map(function(f){
-    return bar({name:f.name,v:f.avg,max:50,color:col(f.avg),ghost:f.pavg,line:T.avg,click:true,sel:f.name===curFan,attr:'data-f="'+esc(f.name)+'"',right:f1(f.avg)+'<small>'+dEl(f.d).replace(/ball$/,'')+'</small>'});
-  }).join('');
-  var f=FMAP[curFan]; if(!f)return;
-  var sch=XF.filter(function(x){return x.f===f.name&&x.n>=3&&x.avg!=null}).sort(function(a,b){return b.avg-a.avg});
-  var top=sch.slice(0,3), low=sch.slice(-3).reverse();
-  var li=function(x){return '<tr><td class="l">'+esc(x.s)+'</td><td>'+x.n+'</td><td>'+pill(x.avg)+'</td></tr>'};
-  $('#fdet').innerHTML='<h3 class="ot-ct"><i class="fa-solid fa-circle-info" style="color:var(--primary)"></i> '+esc(f.name)+'</h3><div class="ot-cs">Fan boʻyicha batafsil koʻrsatkichlar</div>'
-   +'<div class="ot-mini"><div>Ishtirokchilar<b>'+f0(f.n)+'</b>'+dEl(f.n-f.pn,'int')+'</div><div>Oʻrtacha ball<b>'+f1(f.avg)+'</b>'+dEl(f.d)+'</div><div>Oʻtgan yil<b>'+f1(f.pavg)+'</b><span class="eq">'+f0(f.pn)+' ishtirokchi</span></div><div>Tuman oʻrtachasidan<b class="'+(f.avg>=T.avg?'up':'dn')+'">'+(f.avg-T.avg>0?'+':'')+f1(f.avg-T.avg)+'</b></div></div>'
-   +'<h4 style="margin:16px 0 6px;color:var(--ot-ink)">Sinflar boʻyicha</h4><div class="ot-tw"><table class="ot-t" style="min-width:0"><thead><tr><th class="l">Sinf</th><th>Ishtirokchi</th><th>Oʻrtacha</th><th>Oʻtgan yil</th><th>Farq</th></tr></thead><tbody>'
-   +f.cls.map(function(c){return '<tr><td class="l">'+esc(c.c)+'</td><td>'+c.n+'</td><td>'+pill(c.avg)+'</td><td>'+f1(c.pavg)+'</td><td>'+dEl(dlt(c.avg,c.pavg))+'</td></tr>'}).join('')+'</tbody></table></div>'
-   +'<div class="ot-grid2" style="margin-top:14px;gap:12px"><div><h4 style="color:var(--ot-ok);margin-bottom:4px"><i class="fa-solid fa-arrow-up"></i> Eng yuqori</h4><div class="ot-tw"><table class="ot-t" style="min-width:0"><tbody>'+top.map(li).join('')+'</tbody></table></div></div><div><h4 style="color:var(--ot-bad);margin-bottom:4px"><i class="fa-solid fa-arrow-down"></i> Eng past</h4><div class="ot-tw"><table class="ot-t" style="min-width:0"><tbody>'+low.map(li).join('')+'</tbody></table></div></div></div>'
-   +'<p class="ot-note">Maktablar roʻyxati kamida 3 ishtirokchisi boʻlgan maktablar boʻyicha.</p>';
+var list=FM.slice().sort(function(a,b){return b.avg-a.avg});
+$('#fbars').innerHTML=list.map(function(f){
+return bar({name:f.name,v:f.avg,max:50,color:col(f.avg),ghost:f.pavg,line:T.avg,click:true,sel:f.name===curFan,attr:'data-f="'+esc(f.name)+'"',right:f1(f.avg)+'<small>'+dEl(f.d).replace(/ball$/,'')+'</small>'});
+}).join('');
+var f=FMAP[curFan]; if(!f)return;
+var sch=XF.filter(function(x){return x.f===f.name&&x.n>=3&&x.avg!=null}).sort(function(a,b){return b.avg-a.avg});
+var top=sch.slice(0,3), low=sch.slice(-3).reverse();
+var li=function(x){return '<tr><td class="l">'+esc(x.s)+'</td><td>'+x.n+'</td><td>'+pill(x.avg)+'</td></tr>'};
+$('#fdet').innerHTML='<h3 class="ot-ct"><i class="fa-solid fa-circle-info" style="color:var(--primary)"></i> '+esc(f.name)+'</h3><div class="ot-cs">Fan boʻyicha batafsil koʻrsatkichlar</div>'
++'<div class="ot-mini"><div>Ishtirokchilar<b>'+f0(f.n)+'</b>'+dEl(f.n-f.pn,'int')+'</div><div>Oʻrtacha ball<b>'+f1(f.avg)+'</b>'+dEl(f.d)+'</div><div>Oʻtgan yil<b>'+f1(f.pavg)+'</b><span class="eq">'+f0(f.pn)+' ishtirokchi</span></div><div>Tuman oʻrtachasidan<b class="'+(f.avg>=T.avg?'up':'dn')+'">'+(f.avg-T.avg>0?'+':'')+f1(f.avg-T.avg)+'</b></div></div>'
++'<h4 style="margin:16px 0 6px;color:var(--ot-ink)">Sinflar boʻyicha</h4><div class="ot-tw"><table class="ot-t" style="min-width:0"><thead><tr><th class="l">Sinf</th><th>Ishtirokchi</th><th>Oʻrtacha</th><th>Oʻtgan yil</th><th>Farq</th></tr></thead><tbody>'
++f.cls.map(function(c){return '<tr><td class="l">'+esc(c.c)+'</td><td>'+c.n+'</td><td>'+pill(c.avg)+'</td><td>'+f1(c.pavg)+'</td><td>'+dEl(dlt(c.avg,c.pavg))+'</td></tr>'}).join('')+'</tbody></table></div>'
++'<div class="ot-grid2" style="margin-top:14px;gap:12px"><div><h4 style="color:var(--ot-ok);margin-bottom:4px"><i class="fa-solid fa-arrow-up"></i> Eng yuqori</h4><div class="ot-tw"><table class="ot-t" style="min-width:0"><tbody>'+top.map(li).join('')+'</tbody></table></div></div><div><h4 style="color:var(--ot-bad);margin-bottom:4px"><i class="fa-solid fa-arrow-down"></i> Eng past</h4><div class="ot-tw"><table class="ot-t" style="min-width:0"><tbody>'+low.map(li).join('')+'</tbody></table></div></div></div>'
++'<p class="ot-note">Maktablar roʻyxati kamida 3 ishtirokchisi boʻlgan maktablar boʻyicha.</p>';
 }
 curFan=FM.slice().sort(function(a,b){return a.avg-b.avg})[0].name;
 drawFans();
 $('#fbars').addEventListener('click',function(e){var r=e.target.closest('[data-f]');if(!r)return;curFan=r.getAttribute('data-f');drawFans()});
-
-/* ---------- Past natijalar ---------- */
 var gap=XF.filter(function(x){return x.n>=4&&x.avg!=null&&FMAP[x.f]&&FMAP[x.f].avg!=null}).map(function(x){return {s:x.s,f:x.f,n:x.n,avg:x.avg,fa:FMAP[x.f].avg,g:+(x.avg-FMAP[x.f].avg).toFixed(1)}});
 var lowSchools=S.filter(function(s){return s.avg<15&&s.n>=10});
 (function(){
-  var lowPairs=XF.filter(function(x){return x.n>=4&&x.avg!=null&&x.avg<10});
-  var drops=S.filter(function(s){return s.d!=null&&s.d<=-1&&s.n>=10&&s.pn>=10});
-  var big=[[f0(S.filter(function(s){return s.avg<15}).length),'muassasaning oʻrtachasi 15 dan past'],[f0(FM.filter(function(f){return f.avg<15}).length),'fan oʻrtachasi 15 dan past'],[f0(lowPairs.length),'maktab–fan juftligida oʻrtacha 10 dan past'],[f0(drops.length),'maktab oʻrtachasi 1 balldan koʻp pasaygan'],[f0(S.filter(function(s){return s.sov===0&&s.n>=10}).length),'maktabda sovrindor yoʻq']];
-  $('#abig').innerHTML=big.map(function(b){return '<div><b>'+b[0]+'</b><span>'+b[1]+'</span></div>'}).join('');
-  var ls=S.filter(function(s){return s.n>=10&&s.avg!=null}).sort(function(a,b){return a.avg-b.avg}).slice(0,8);
-  $('#lowS').innerHTML=ls.map(function(s){return bar({name:s.name,v:s.avg,max:50,color:col(s.avg),line:T.avg,right:f1(s.avg)+'<small class="'+(s.avg<T.avg?'dn':'up')+'">'+(s.avg-T.avg>0?'+':'')+f1(s.avg-T.avg)+'</small>'})}).join('')+'<p class="ot-note">Punktir chiziq — tuman oʻrtachasi ('+f1(T.avg)+').</p>';
-  var lf=FM.slice().sort(function(a,b){return a.avg-b.avg}).slice(0,5);
-  $('#lowF').innerHTML=lf.map(function(f){return bar({name:f.name,v:f.avg,max:50,color:col(f.avg),right:f1(f.avg)})}).join('');
-  var df=FM.filter(function(f){return f.d!=null}).sort(function(a,b){return a.d-b.d}).slice(0,5);
-  $('#dropF').innerHTML=df.map(function(f){return bar({name:f.name,v:Math.abs(f.d),max:Math.max(4,Math.abs(df[0].d)),color:'#ef4444',right:f1(f.avg)+' <small class="dn">'+f1(f.d)+'</small>'})}).join('');
-  var lp=gap.slice().sort(function(a,b){return a.g-b.g}).slice(0,12);
-  $('#lowT').innerHTML='<thead><tr><th class="l">Maktab</th><th class="l">Fan</th><th>Ishtirokchi</th><th>Maktab oʻrt.</th><th>Tuman oʻrt.</th><th>Farq</th></tr></thead><tbody>'+lp.map(function(x){return '<tr><td class="l">'+esc(x.s)+'</td><td class="l">'+esc(x.f)+'</td><td>'+x.n+'</td><td>'+pill(x.avg)+'</td><td>'+f1(x.fa)+'</td><td><span class="dn">▼ '+f1(x.g)+'</span></td></tr>'}).join('')+'</tbody>';
+var lowPairs=XF.filter(function(x){return x.n>=4&&x.avg!=null&&x.avg<10});
+var drops=S.filter(function(s){return s.d!=null&&s.d<=-1&&s.n>=10&&s.pn>=10});
+var big=[[f0(S.filter(function(s){return s.avg<15}).length),'muassasaning oʻrtachasi 15 dan past'],[f0(FM.filter(function(f){return f.avg<15}).length),'fan oʻrtachasi 15 dan past'],[f0(lowPairs.length),'maktab–fan juftligida oʻrtacha 10 dan past'],[f0(drops.length),'maktab oʻrtachasi 1 balldan koʻp pasaygan'],[f0(S.filter(function(s){return s.sov===0&&s.n>=10}).length),'maktabda sovrindor yoʻq']];
+$('#abig').innerHTML=big.map(function(b){return '<div><b>'+b[0]+'</b><span>'+b[1]+'</span></div>'}).join('');
+var ls=S.filter(function(s){return s.n>=10&&s.avg!=null}).sort(function(a,b){return a.avg-b.avg}).slice(0,8);
+$('#lowS').innerHTML=ls.map(function(s){return bar({name:s.name,v:s.avg,max:50,color:col(s.avg),line:T.avg,right:f1(s.avg)+'<small class="'+(s.avg<T.avg?'dn':'up')+'">'+(s.avg-T.avg>0?'+':'')+f1(s.avg-T.avg)+'</small>'})}).join('')+'<p class="ot-note">Punktir chiziq — tuman oʻrtachasi ('+f1(T.avg)+').</p>';
+var lf=FM.slice().sort(function(a,b){return a.avg-b.avg}).slice(0,5);
+$('#lowF').innerHTML=lf.map(function(f){return bar({name:f.name,v:f.avg,max:50,color:col(f.avg),right:f1(f.avg)})}).join('');
+var df=FM.filter(function(f){return f.d!=null}).sort(function(a,b){return a.d-b.d}).slice(0,5);
+$('#dropF').innerHTML=df.map(function(f){return bar({name:f.name,v:Math.abs(f.d),max:Math.max(4,Math.abs(df[0].d)),color:'#ef4444',right:f1(f.avg)+' <small class="dn">'+f1(f.d)+'</small>'})}).join('');
+var lp=gap.slice().sort(function(a,b){return a.g-b.g}).slice(0,12);
+$('#lowT').innerHTML='<thead><tr><th class="l">Maktab</th><th class="l">Fan</th><th>Ishtirokchi</th><th>Maktab oʻrt.</th><th>Tuman oʻrt.</th><th>Farq</th></tr></thead><tbody>'+lp.map(function(x){return '<tr><td class="l">'+esc(x.s)+'</td><td class="l">'+esc(x.f)+'</td><td>'+x.n+'</td><td>'+pill(x.avg)+'</td><td>'+f1(x.fa)+'</td><td><span class="dn">▼ '+f1(x.g)+'</span></td></tr>'}).join('')+'</tbody>';
 })();
-
-/* ---------- Maktablar jadvali ---------- */
 var openS=null;
 function schoolDetail(name){
-  var cs=XS.filter(function(x){return x.s===name}), fs=XF.filter(function(x){return x.s===name&&x.avg!=null}).sort(function(a,b){return b.avg-a.avg});
-  return '<div class="ot-grid2" style="gap:14px"><div><h4 style="color:var(--ot-ink);margin-bottom:6px">Sinflar boʻyicha</h4><div class="ot-tw"><table class="ot-t" style="min-width:0;background:#fff"><thead><tr><th class="l">Sinf</th><th>Ishtirokchi</th><th>Oʻrtacha</th><th>Oʻtgan yil</th><th>Farq</th></tr></thead><tbody>'
-   +cs.map(function(c){return '<tr><td class="l">'+esc(c.c)+'</td><td>'+c.n+'</td><td>'+(c.avg!=null?pill(c.avg):'–')+'</td><td>'+f1(c.pavg)+'</td><td>'+dEl(dlt(c.avg,c.pavg))+'</td></tr>'}).join('')+'</tbody></table></div></div>'
-   +'<div><h4 style="color:var(--ot-ink);margin-bottom:6px">Fanlar boʻyicha</h4><div class="ot-tw"><table class="ot-t" style="min-width:0;background:#fff"><thead><tr><th class="l">Fan</th><th>Ishtirokchi</th><th>Oʻrtacha</th><th>Oʻtgan yil</th><th>Farq</th></tr></thead><tbody>'
-   +fs.map(function(c){return '<tr><td class="l">'+esc(c.f)+'</td><td>'+c.n+'</td><td>'+pill(c.avg)+'</td><td>'+f1(c.pavg)+'</td><td>'+dEl(dlt(c.avg,c.pavg))+'</td></tr>'}).join('')+'</tbody></table></div></div></div>';
+var cs=XS.filter(function(x){return x.s===name}), fs=XF.filter(function(x){return x.s===name&&x.avg!=null}).sort(function(a,b){return b.avg-a.avg});
+return '<div class="ot-grid2" style="gap:14px"><div><h4 style="color:var(--ot-ink);margin-bottom:6px">Sinflar boʻyicha</h4><div class="ot-tw"><table class="ot-t" style="min-width:0;background:#fff"><thead><tr><th class="l">Sinf</th><th>Ishtirokchi</th><th>Oʻrtacha</th><th>Oʻtgan yil</th><th>Farq</th></tr></thead><tbody>'
++cs.map(function(c){return '<tr><td class="l">'+esc(c.c)+'</td><td>'+c.n+'</td><td>'+(c.avg!=null?pill(c.avg):'–')+'</td><td>'+f1(c.pavg)+'</td><td>'+dEl(dlt(c.avg,c.pavg))+'</td></tr>'}).join('')+'</tbody></table></div></div>'
++'<div><h4 style="color:var(--ot-ink);margin-bottom:6px">Fanlar boʻyicha</h4><div class="ot-tw"><table class="ot-t" style="min-width:0;background:#fff"><thead><tr><th class="l">Fan</th><th>Ishtirokchi</th><th>Oʻrtacha</th><th>Oʻtgan yil</th><th>Farq</th></tr></thead><tbody>'
++fs.map(function(c){return '<tr><td class="l">'+esc(c.f)+'</td><td>'+c.n+'</td><td>'+pill(c.avg)+'</td><td>'+f1(c.pavg)+'</td><td>'+dEl(dlt(c.avg,c.pavg))+'</td></tr>'}).join('')+'</tbody></table></div></div></div>';
 }
 function drawSchools(){
-  var q=$('#sq').value.trim().toLowerCase(), key=$('#ss').value;
-  var list=S.filter(function(s){return s.name.toLowerCase().indexOf(q)>-1});
-  var rankAll=S.slice().sort(function(a,b){return b.avg-a.avg}).map(function(s){return s.name});
-  list.sort(function(a,b){if(a.small!==b.small)return a.small?1:-1;var x=key==='d'?(b.d==null?-99:b.d)-(a.d==null?-99:a.d):b[key]-a[key];return x||b.avg-a.avg});
-  $('#sT').innerHTML='<thead><tr><th>#</th><th class="l">Taʼlim muassasasi</th><th>Ishtirokchi</th><th>Oʻrtacha</th><th>Oʻtgan yil</th><th>Farq</th><th>Sovrindor</th><th>Ulushi</th></tr></thead><tbody>'
-   +list.map(function(s,i){var r=i+1; var o=openS===s.name;
-     return '<tr class="m'+(s.small?' ot-small':'')+'" data-s="'+esc(s.name)+'"><td>'+(s.small?'<span class="ot-rk" title="10 tadan kam ishtirokchi — reytingga kirmaydi">–</span>':'<span class="ot-rk g'+r+'">'+r+'</span>')+'</td><td class="l">'+esc(s.name)+'</td><td>'+s.n+' <small class="eq">'+(s.pn?'('+s.pn+')':'')+'</small></td><td>'+pill(s.avg)+'</td><td>'+f1(s.pavg)+'</td><td>'+dEl(s.d)+'</td><td><b>'+s.sov+'</b> <small class="eq">('+s.psov+')</small></td><td>'+f1(s.share)+'%</td></tr>'
-     +(o?'<tr class="det"><td colspan="8">'+schoolDetail(s.name)+'</td></tr>':'');}).join('')
-   +'<tr style="background:#f1f5f9;font-weight:800"><td></td><td class="l">Tuman boʻyicha jami</td><td>'+T.n+' <small class="eq">('+T.pn+')</small></td><td>'+pill(T.avg)+'</td><td>'+f1(T.pavg)+'</td><td>'+dEl(dlt(T.avg,T.pavg))+'</td><td>'+T.sov+' <small class="eq">('+T.psov+')</small></td><td>'+f1(T.sov/T.n*100)+'%</td></tr></tbody>';
+var q=$('#sq').value.trim().toLowerCase(), key=$('#ss').value;
+var list=S.filter(function(s){return s.name.toLowerCase().indexOf(q)>-1});
+var rankAll=S.slice().sort(function(a,b){return b.avg-a.avg}).map(function(s){return s.name});
+list.sort(function(a,b){if(a.small!==b.small)return a.small?1:-1;var x=key==='d'?(b.d==null?-99:b.d)-(a.d==null?-99:a.d):b[key]-a[key];return x||b.avg-a.avg});
+$('#sT').innerHTML='<thead><tr><th>#</th><th class="l">Taʼlim muassasasi</th><th>Ishtirokchi</th><th>Oʻrtacha</th><th>Oʻtgan yil</th><th>Farq</th><th>Sovrindor</th><th>Ulushi</th></tr></thead><tbody>'
++list.map(function(s,i){var r=i+1; var o=openS===s.name;
+return '<tr class="m'+(s.small?' ot-small':'')+'" data-s="'+esc(s.name)+'"><td>'+(s.small?'<span class="ot-rk" title="10 tadan kam ishtirokchi — reytingga kirmaydi">–</span>':'<span class="ot-rk g'+r+'">'+r+'</span>')+'</td><td class="l">'+esc(s.name)+'</td><td>'+s.n+' <small class="eq">'+(s.pn?'('+s.pn+')':'')+'</small></td><td>'+pill(s.avg)+'</td><td>'+f1(s.pavg)+'</td><td>'+dEl(s.d)+'</td><td><b>'+s.sov+'</b> <small class="eq">('+s.psov+')</small></td><td>'+f1(s.share)+'%</td></tr>'
++(o?'<tr class="det"><td colspan="8">'+schoolDetail(s.name)+'</td></tr>':'');}).join('')
++'<tr style="background:#f1f5f9;font-weight:800"><td></td><td class="l">Tuman boʻyicha jami</td><td>'+T.n+' <small class="eq">('+T.pn+')</small></td><td>'+pill(T.avg)+'</td><td>'+f1(T.pavg)+'</td><td>'+dEl(dlt(T.avg,T.pavg))+'</td><td>'+T.sov+' <small class="eq">('+T.psov+')</small></td><td>'+f1(T.sov/T.n*100)+'%</td></tr></tbody>';
 }
 drawSchools();
 $('#sq').addEventListener('input',drawSchools); $('#ss').addEventListener('change',drawSchools);
 $('#sT').addEventListener('click',function(e){var r=e.target.closest('tr.m');if(!r)return;var n=r.getAttribute('data-s');openS=openS===n?null:n;drawSchools()});
-
-/* ---------- Xarita ---------- */
 (function(){
-  var cols=FM.slice().sort(function(a,b){return b.n-a.n});
-  var idx={}; XF.forEach(function(x){idx[x.s+'|'+x.f]=x});
-  var short=function(n){return n.replace('Informatika va axborot texnologiyalari','Informatika').replace('Davlat va huquq asoslari','Davlat va huquq').replace('Ona tili va adabiyot','Ona tili').replace('Rus tili va adabiyot','Rus tili')};
-  var h='<table><thead><tr><th>Maktab</th>'+cols.map(function(c){return '<th title="'+esc(c.name)+'">'+esc(short(c.name))+'</th>'}).join('')+'<th>Jami</th></tr></thead><tbody>';
-  S.slice().sort(function(a,b){return (a.small-b.small)||(b.avg-a.avg)}).forEach(function(s){
-    h+='<tr><td>'+esc(s.name)+'</td>'+cols.map(function(c){var x=idx[s.name+'|'+c.name];
-      if(!x||x.avg==null)return '<td class="na">–</td>';
-      return '<td class="'+(x.n<3?'few':'')+'" style="background:'+mapCol(x.avg)+'" title="'+esc(s.name+' · '+c.name+': '+x.n+' ishtirokchi, oʻtgan yil '+f1(x.pavg))+'">'+f1(x.avg)+'</td>'}).join('')
-      +'<td style="background:'+mapCol(s.avg)+'">'+f1(s.avg)+'</td></tr>';
-  });
-  h+='<tr><td style="background:#e2e8f0">Tuman oʻrtachasi</td>'+cols.map(function(c){return '<td style="background:'+mapCol(c.avg)+'">'+f1(c.avg)+'</td>'}).join('')+'<td style="background:'+mapCol(T.avg)+'">'+f1(T.avg)+'</td></tr></tbody></table>';
-  $('#map').innerHTML=h;
+var cols=FM.slice().sort(function(a,b){return b.n-a.n});
+var idx={}; XF.forEach(function(x){idx[x.s+'|'+x.f]=x});
+var short=function(n){return n.replace('Informatika va axborot texnologiyalari','Informatika').replace('Davlat va huquq asoslari','Davlat va huquq').replace('Ona tili va adabiyot','Ona tili').replace('Rus tili va adabiyot','Rus tili')};
+var h='<table><thead><tr><th>Maktab</th>'+cols.map(function(c){return '<th title="'+esc(c.name)+'">'+esc(short(c.name))+'</th>'}).join('')+'<th>Jami</th></tr></thead><tbody>';
+S.slice().sort(function(a,b){return (a.small-b.small)||(b.avg-a.avg)}).forEach(function(s){
+h+='<tr><td>'+esc(s.name)+'</td>'+cols.map(function(c){var x=idx[s.name+'|'+c.name];
+if(!x||x.avg==null)return '<td class="na">–</td>';
+return '<td class="'+(x.n<3?'few':'')+'" style="background:'+mapCol(x.avg)+'" title="'+esc(s.name+' · '+c.name+': '+x.n+' ishtirokchi, oʻtgan yil '+f1(x.pavg))+'">'+f1(x.avg)+'</td>'}).join('')
++'<td style="background:'+mapCol(s.avg)+'">'+f1(s.avg)+'</td></tr>';
+});
+h+='<tr><td style="background:#e2e8f0">Tuman oʻrtachasi</td>'+cols.map(function(c){return '<td style="background:'+mapCol(c.avg)+'">'+f1(c.avg)+'</td>'}).join('')+'<td style="background:'+mapCol(T.avg)+'">'+f1(T.avg)+'</td></tr></tbody></table>';
+$('#map').innerHTML=h;
 })();
-
-/* ---------- Sovrindorlar ---------- */
 (function(){
-  var a=S.filter(function(s){return s.sov>0||s.psov>0}).sort(function(x,y){return y.sov-x.sov||y.share-x.share}).slice(0,12);
-  var mx=Math.max.apply(null,a.map(function(s){return Math.max(s.sov,s.psov)}));
-  $('#sovBars').innerHTML=a.map(function(s){return bar({name:s.name,v:s.sov,max:mx*1.1,color:'#f59e0b',ghost:s.psov,right:s.sov+' <small>'+dEl(s.sov-s.psov,'int')+'</small>'})}).join('');
-  var b=S.filter(function(s){return s.n>=20}).sort(function(x,y){return y.share-x.share}).slice(0,12);
-  var mb=Math.max.apply(null,b.map(function(s){return s.share}));
-  $('#shareBars').innerHTML=b.map(function(s){return bar({name:s.name,v:s.share,max:mb*1.1,color:'#d97706',ghost:s.pshare,right:f1(s.share)+'% <small class="eq">('+s.sov+'/'+s.n+')</small>'})}).join('');
+var a=S.filter(function(s){return s.sov>0||s.psov>0}).sort(function(x,y){return y.sov-x.sov||y.share-x.share}).slice(0,12);
+var mx=Math.max.apply(null,a.map(function(s){return Math.max(s.sov,s.psov)}));
+$('#sovBars').innerHTML=a.map(function(s){return bar({name:s.name,v:s.sov,max:mx*1.1,color:'#f59e0b',ghost:s.psov,right:s.sov+' <small>'+dEl(s.sov-s.psov,'int')+'</small>'})}).join('');
+var b=S.filter(function(s){return s.n>=20}).sort(function(x,y){return y.share-x.share}).slice(0,12);
+var mb=Math.max.apply(null,b.map(function(s){return s.share}));
+$('#shareBars').innerHTML=b.map(function(s){return bar({name:s.name,v:s.share,max:mb*1.1,color:'#d97706',ghost:s.pshare,right:f1(s.share)+'% <small class="eq">('+s.sov+'/'+s.n+')</small>'})}).join('');
 })();
-
-/* ---------- Oʻtgan yil ---------- */
 (function(){
-  var a=S.filter(function(s){return s.d!=null&&s.n>=10&&s.pn>=10}).sort(function(x,y){return y.d-x.d});
-  var m=Math.max.apply(null,a.map(function(s){return Math.abs(s.d)}));
-  $('#dBars').innerHTML=a.map(function(s){return '<div class="ot-row"><b title="'+esc(s.name)+'">'+esc(s.name)+'</b><div class="ot-track"><div class="ot-avgline" style="left:50%;opacity:.35"></div><div class="ot-fill" style="width:'+(Math.abs(s.d)/m*50)+'%;'+(s.d>=0?'left:50%':'left:'+(50-Math.abs(s.d)/m*50)+'%')+';--c:'+(s.d>=0?'#22c55e':'#ef4444')+'"></div></div><div class="ot-val">'+f1(s.avg)+' <small>'+dEl(s.d)+'</small></div></div>'}).join('');
-  var p=S.filter(function(s){return s.pn>0}).map(function(s){return {s:s,k:s.n-s.pn}}).sort(function(x,y){return x.k-y.k}).slice(0,10);
-  var mp=Math.max.apply(null,p.map(function(x){return Math.abs(x.k)}));
-  $('#pBars').innerHTML=p.map(function(x){return bar({name:x.s.name,v:Math.abs(x.k),max:mp*1.05,color:x.k<0?'#f87171':'#4ade80',right:x.s.pn+' → '+x.s.n+' <small>'+dEl(x.k,'int')+'</small>'})}).join('');
-  var rows=FA.filter(function(f){return f.n>0}).sort(function(x,y){return y.n-x.n});
-  $('#fT').innerHTML='<thead><tr><th class="l">Fan</th><th>Ishtirokchi</th><th>Oʻtgan yil</th><th>Farq</th><th>Oʻrtacha</th><th>Oʻtgan yil</th><th>Farq</th></tr></thead><tbody>'+rows.map(function(f){return '<tr><td class="l">'+esc(f.name)+'</td><td>'+f.n+'</td><td>'+f.pn+'</td><td>'+dEl(f.n-f.pn,'int')+'</td><td>'+(f.avg!=null?pill(f.avg):'–')+'</td><td>'+f1(f.pavg)+'</td><td>'+dEl(f.d)+'</td></tr>'}).join('')+'</tbody>';
+var a=S.filter(function(s){return s.d!=null&&s.n>=10&&s.pn>=10}).sort(function(x,y){return y.d-x.d});
+var m=Math.max.apply(null,a.map(function(s){return Math.abs(s.d)}));
+$('#dBars').innerHTML=a.map(function(s){return '<div class="ot-row"><b title="'+esc(s.name)+'">'+esc(s.name)+'</b><div class="ot-track"><div class="ot-avgline" style="left:50%;opacity:.35"></div><div class="ot-fill" style="width:'+(Math.abs(s.d)/m*50)+'%;'+(s.d>=0?'left:50%':'left:'+(50-Math.abs(s.d)/m*50)+'%')+';--c:'+(s.d>=0?'#22c55e':'#ef4444')+'"></div></div><div class="ot-val">'+f1(s.avg)+' <small>'+dEl(s.d)+'</small></div></div>'}).join('');
+var p=S.filter(function(s){return s.pn>0}).map(function(s){return {s:s,k:s.n-s.pn}}).sort(function(x,y){return x.k-y.k}).slice(0,10);
+var mp=Math.max.apply(null,p.map(function(x){return Math.abs(x.k)}));
+$('#pBars').innerHTML=p.map(function(x){return bar({name:x.s.name,v:Math.abs(x.k),max:mp*1.05,color:x.k<0?'#f87171':'#4ade80',right:x.s.pn+' → '+x.s.n+' <small>'+dEl(x.k,'int')+'</small>'})}).join('');
+var rows=FA.filter(function(f){return f.n>0}).sort(function(x,y){return y.n-x.n});
+$('#fT').innerHTML='<thead><tr><th class="l">Fan</th><th>Ishtirokchi</th><th>Oʻtgan yil</th><th>Farq</th><th>Oʻrtacha</th><th>Oʻtgan yil</th><th>Farq</th></tr></thead><tbody>'+rows.map(function(f){return '<tr><td class="l">'+esc(f.name)+'</td><td>'+f.n+'</td><td>'+f.pn+'</td><td>'+dEl(f.n-f.pn,'int')+'</td><td>'+(f.avg!=null?pill(f.avg):'–')+'</td><td>'+f1(f.pavg)+'</td><td>'+dEl(f.d)+'</td></tr>'}).join('')+'</tbody>';
 })();
-
-/* ---------- Xulosa ---------- */
 (function(){
-  var up=FM.filter(function(f){return f.d!=null}).sort(function(a,b){return b.d-a.d});
-  var best=S.filter(function(s){return s.n>=20}).sort(function(a,b){return b.avg-a.avg});
-  var gain=S.filter(function(s){return s.d!=null&&s.n>=10&&s.pn>=10}).sort(function(a,b){return b.d-a.d});
-  var sm=function(a){return a.map(function(x){return x.name}).join(', ')};
-  var topSov=S.slice().sort(function(a,b){return b.sov-a.sov}).slice(0,3);
-  var best2=FM.slice().sort(function(a,b){return b.avg-a.avg}), worst=FM.slice().sort(function(a,b){return a.avg-b.avg});
-  var lows=S.filter(function(s){return s.avg<15&&s.n>=10});
-  var cb=CL.slice().sort(function(a,b){return b.avg-a.avg})[0], cw=CL.slice().sort(function(a,b){return a.avg-b.avg})[0];
-  var pd=(T.n-T.pn)/T.pn*100;
-  var it=[
-   ['fa-gauge-high','#2563eb','Umumiy manzara','Tuman boʻyicha '+f0(T.n)+' nafar ishtirokchi qatnashdi (oʻtgan yil '+f0(T.pn)+', '+f1(pd)+'%). Oʻrtacha ball '+f1(T.avg)+' (oʻtgan yil '+f1(T.pavg)+', '+(T.avg>=T.pavg?'+':'')+f1(T.avg-T.pavg)+'). Sovrindorlar '+T.sov+' nafar (ulushi '+f1(T.sov/T.n*100)+'%, oʻtgan yil '+f1(T.psov/T.pn*100)+'%).'],
-   ['fa-book-open','#7c3aed','Fanlar','Eng yuqori oʻrtacha ball: '+best2[0].name+' ('+f1(best2[0].avg)+'), '+best2[1].name+' ('+f1(best2[1].avg)+'). Eng past: '+worst[0].name+' ('+f1(worst[0].avg)+'), '+worst[1].name+' ('+f1(worst[1].avg)+'). Eng yaxshi oʻsish: '+up[0].name+' ('+(up[0].d>0?'+':'')+f1(up[0].d)+'), '+up[1].name+' ('+(up[1].d>0?'+':'')+f1(up[1].d)+'); eng katta pasayish: '+up[up.length-1].name+' ('+f1(up[up.length-1].d)+'), '+up[up.length-2].name+' ('+f1(up[up.length-2].d)+').'],
-   ['fa-layer-group','#0891b2','Sinflar','Eng yuqori oʻrtacha — '+cb.name+' ('+f1(cb.avg)+'), eng past — '+cw.name+' ('+f1(cw.avg)+'). Ishtirokchilar soni barcha sinflarda kamaygan: '+CL.map(function(c){return c.name+' '+f0(c.n-c.pn)}).join(', ')+'.'],
-   ['fa-school','#16a34a','Yetakchi muassasalar','Oʻrtacha ball boʻyicha yetakchilar (kamida 20 ishtirokchi): '+sm(best.slice(0,3))+'. Eng koʻp sovrindor: '+topSov.map(function(s){return s.name+' ('+s.sov+')'}).join(', ')+'. Oʻtgan yilga nisbatan eng yaxshi oʻsish: '+gain.slice(0,3).map(function(s){return s.name+' (+'+f1(s.d)+')'}).join(', ')+'.'],
-   ['fa-triangle-exclamation','#dc2626','Eʼtibor talab qiladi','Oʻrtacha bali 15 dan past muassasalar: '+(lows.length?sm(lows):'yoʻq')+'. Eng katta pasayish: '+gain.slice(-3).reverse().map(function(s){return s.name+' ('+f1(s.d)+')'}).join(', ')+'. Past natijali maktab–fan juftliklari uchun fan metodistlari bilan alohida tayyorgarlik rejasi tuzish tavsiya etiladi.'],
-   ['fa-lightbulb','#d97706','Tavsiyalar','1) '+worst[0].name+' va '+worst[1].name+' fanlaridan tuman miqyosida qoʻshimcha tayyorgarlik mashgʻulotlari; 2) yetakchi maktablar tajribasini (ustoz–shogird tartibida) past natijali maktablarga yetkazish; 3) ishtirokchilar soni keskin kamaygan maktablarda saralash va tayyorgarlik jarayonini tahlil qilish; 4) fanlar kesimida oʻsish koʻrsatgan oʻqituvchilar tajribasini ommalashtirish.']
-  ];
-  $('#concl').innerHTML=it.map(function(i){return '<li style="--c:'+i[1]+'"><i class="fa-solid '+i[0]+'"></i><div><b>'+i[2]+'</b><span>'+esc(i[3])+'</span></div></li>'}).join('');
+var up=FM.filter(function(f){return f.d!=null}).sort(function(a,b){return b.d-a.d});
+var best=S.filter(function(s){return s.n>=20}).sort(function(a,b){return b.avg-a.avg});
+var gain=S.filter(function(s){return s.d!=null&&s.n>=10&&s.pn>=10}).sort(function(a,b){return b.d-a.d});
+var sm=function(a){return a.map(function(x){return x.name}).join(', ')};
+var topSov=S.slice().sort(function(a,b){return b.sov-a.sov}).slice(0,3);
+var best2=FM.slice().sort(function(a,b){return b.avg-a.avg}), worst=FM.slice().sort(function(a,b){return a.avg-b.avg});
+var lows=S.filter(function(s){return s.avg<15&&s.n>=10});
+var cb=CL.slice().sort(function(a,b){return b.avg-a.avg})[0], cw=CL.slice().sort(function(a,b){return a.avg-b.avg})[0];
+var pd=(T.n-T.pn)/T.pn*100;
+var it=[
+['fa-gauge-high','#2563eb','Umumiy manzara','Tuman boʻyicha '+f0(T.n)+' nafar ishtirokchi qatnashdi (oʻtgan yil '+f0(T.pn)+', '+f1(pd)+'%). Oʻrtacha ball '+f1(T.avg)+' (oʻtgan yil '+f1(T.pavg)+', '+(T.avg>=T.pavg?'+':'')+f1(T.avg-T.pavg)+'). Sovrindorlar '+T.sov+' nafar (ulushi '+f1(T.sov/T.n*100)+'%, oʻtgan yil '+f1(T.psov/T.pn*100)+'%).'],
+['fa-book-open','#7c3aed','Fanlar','Eng yuqori oʻrtacha ball: '+best2[0].name+' ('+f1(best2[0].avg)+'), '+best2[1].name+' ('+f1(best2[1].avg)+'). Eng past: '+worst[0].name+' ('+f1(worst[0].avg)+'), '+worst[1].name+' ('+f1(worst[1].avg)+'). Eng yaxshi oʻsish: '+up[0].name+' ('+(up[0].d>0?'+':'')+f1(up[0].d)+'), '+up[1].name+' ('+(up[1].d>0?'+':'')+f1(up[1].d)+'); eng katta pasayish: '+up[up.length-1].name+' ('+f1(up[up.length-1].d)+'), '+up[up.length-2].name+' ('+f1(up[up.length-2].d)+').'],
+['fa-layer-group','#0891b2','Sinflar','Eng yuqori oʻrtacha — '+cb.name+' ('+f1(cb.avg)+'), eng past — '+cw.name+' ('+f1(cw.avg)+'). Ishtirokchilar soni barcha sinflarda kamaygan: '+CL.map(function(c){return c.name+' '+f0(c.n-c.pn)}).join(', ')+'.'],
+['fa-school','#16a34a','Yetakchi muassasalar','Oʻrtacha ball boʻyicha yetakchilar (kamida 20 ishtirokchi): '+sm(best.slice(0,3))+'. Eng koʻp sovrindor: '+topSov.map(function(s){return s.name+' ('+s.sov+')'}).join(', ')+'. Oʻtgan yilga nisbatan eng yaxshi oʻsish: '+gain.slice(0,3).map(function(s){return s.name+' (+'+f1(s.d)+')'}).join(', ')+'.'],
+['fa-triangle-exclamation','#dc2626','Eʼtibor talab qiladi','Oʻrtacha bali 15 dan past muassasalar: '+(lows.length?sm(lows):'yoʻq')+'. Eng katta pasayish: '+gain.slice(-3).reverse().map(function(s){return s.name+' ('+f1(s.d)+')'}).join(', ')+'. Past natijali maktab–fan juftliklari uchun fan metodistlari bilan alohida tayyorgarlik rejasi tuzish tavsiya etiladi.'],
+['fa-lightbulb','#d97706','Tavsiyalar','1) '+worst[0].name+' va '+worst[1].name+' fanlaridan tuman miqyosida qoʻshimcha tayyorgarlik mashgʻulotlari; 2) yetakchi maktablar tajribasini (ustoz–shogird tartibida) past natijali maktablarga yetkazish; 3) ishtirokchilar soni keskin kamaygan maktablarda saralash va tayyorgarlik jarayonini tahlil qilish; 4) fanlar kesimida oʻsish koʻrsatgan oʻqituvchilar tajribasini ommalashtirish.']
+];
+$('#concl').innerHTML=it.map(function(i){return '<li style="--c:'+i[1]+'"><i class="fa-solid '+i[0]+'"></i><div><b>'+i[2]+'</b><span>'+esc(i[3])+'</span></div></li>'}).join('');
 })();
-
-/* ---------- UI: menyu, progress, pills ---------- */
 $('#burger').addEventListener('click',function(){$('#menu').classList.toggle('open')});
 var prog=$('#otProg'), topBtn=$('#otTop'), links=$$('#pills a'), secs=links.map(function(a){return $(a.getAttribute('href'))});
 function onScroll(){
-  var d=document.documentElement,h=d.scrollHeight-innerHeight,y=pageYOffset||d.scrollTop||0;
-  prog.style.transform='scaleX('+(h>0?Math.min(1,y/h):0)+')'; topBtn.classList.toggle('show',y>400);
-  var cur=0; secs.forEach(function(s,i){if(s&&s.getBoundingClientRect().top<180)cur=i});
-  links.forEach(function(a,i){var on=i===cur; if(a.classList.contains('on')!==on){a.classList.toggle('on',on); if(on)a.scrollIntoView({block:'nearest',inline:'center'})}});
+var d=document.documentElement,h=d.scrollHeight-innerHeight,y=pageYOffset||d.scrollTop||0;
+prog.style.transform='scaleX('+(h>0?Math.min(1,y/h):0)+')'; topBtn.classList.toggle('show',y>400);
+var cur=0; secs.forEach(function(s,i){if(s&&s.getBoundingClientRect().top<180)cur=i});
+links.forEach(function(a,i){var on=i===cur; if(a.classList.contains('on')!==on){a.classList.toggle('on',on); if(on)a.scrollIntoView({block:'nearest',inline:'center'})}});
 }
 addEventListener('scroll',onScroll,{passive:true}); onScroll();
 topBtn.addEventListener('click',function(){scrollTo({top:0,behavior:'smooth'})});
